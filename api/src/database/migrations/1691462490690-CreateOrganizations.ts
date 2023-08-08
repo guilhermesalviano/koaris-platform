@@ -47,6 +47,15 @@ export class CreateOrganizations1691462490690 implements MigrationInterface {
                         type: "timestamp",
                         default: "now()"
                     }
+                ],
+                foreignKeys: [
+                    {
+                        name: "FKUser",
+                        referencedTableName: "users",
+                        referencedColumnNames: ["id"],
+                        columnNames: ["user_id"],
+                        onDelete: "CASCADE"
+                    }
                 ]
             })
         );

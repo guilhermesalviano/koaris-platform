@@ -8,10 +8,11 @@ class OrganizationsService {
         const organizationManager = new EntityManager(datasource);
 
         const organizationsRepository = getOrganizationRepository(organizationManager);
-        
+
         const organizationExists = await organizationsRepository.findOne({ 
-            where: { 
-                identification
+            where: {
+                identification,
+                user_id
             }
         });
 
