@@ -1,15 +1,20 @@
-import { EntityManager } from "typeorm";
+import { EntityManager, Repository } from "typeorm";
 import { getOrganizationRepository } from "../repositories/OrganizationsRespository"
 import datasource from "../database/datasource";
+import { Organization } from "../entities/Organization";
 
 class OrganizationsService {
+    private organizationManager: EntityManager;
+    private organizationsRepository: Repository<Organization>;
+
+    constructor() {
+        this.organizationManager = new EntityManager(datasource);
+        this.organizationsRepository = getOrganizationRepository(this.organizationManager);
+    }
+
     async create({ identification, name, description, logo, user_id }) {
 
-        const organizationManager = new EntityManager(datasource);
-
-        const organizationsRepository = getOrganizationRepository(organizationManager);
-
-        const organizationExists = await organizationsRepository.findOne({ 
+        const organizationExists = await this.organizationsRepository.findOne({ 
             where: {
                 identification,
                 user_id
@@ -20,7 +25,7 @@ class OrganizationsService {
             return organizationExists;
         }
 
-        const organization = organizationsRepository.create({
+        const organization = this.organizationsRepository.create({
             identification,
             name,
             description,
@@ -28,7 +33,7 @@ class OrganizationsService {
             user_id
         });
 
-        await organizationsRepository.save(organization);
+        await this.organizationsRepository.save(organization);
 
         return organization;
     }

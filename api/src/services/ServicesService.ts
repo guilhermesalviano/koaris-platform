@@ -1,6 +1,7 @@
-import { EntityManager } from "typeorm";
+import { EntityManager, Repository } from "typeorm";
 import { getServiceRepository } from "../repositories/ServicesRespository"
 import datasource from "../database/datasource";
+import { Service } from "../entities/Service";
 
 interface IService {
     name: string;
@@ -8,14 +9,19 @@ interface IService {
     logo: string;
     price?: string;
 }
+
 class ServicesService {
+    private serviceManager: EntityManager;
+    private servicesRepository: Repository<Service>;
+
+    constructor() {
+        this.serviceManager = new EntityManager(datasource);
+        this.servicesRepository = getServiceRepository(this.serviceManager);
+    }
+
     async create({ name, description, logo, price }: IService) {
 
-        const serviceManager = new EntityManager(datasource);
-
-        const servicesRepository = getServiceRepository(serviceManager);
-
-        const serviceExists = await servicesRepository.findOne({ 
+        const serviceExists = await this.servicesRepository.findOne({ 
             where: {
                 name
             }
@@ -25,24 +31,20 @@ class ServicesService {
             return serviceExists;
         }
 
-        const service = servicesRepository.create({
+        const service = this.servicesRepository.create({
             name,
             description,
             logo,
             price
         });
 
-        await servicesRepository.save(service);
+        await this.servicesRepository.save(service);
 
         return service;
     }
 
     async index() {
-        const serviceManager = new EntityManager(datasource);
-
-        const servicesRepository = getServiceRepository(serviceManager);
-
-        const services = await servicesRepository.find();
+        const services = await this.servicesRepository.find();
 
         return services;
     }

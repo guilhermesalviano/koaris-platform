@@ -1,6 +1,7 @@
-import { EntityManager, FindOneOptions } from "typeorm";
+import { EntityManager, FindOneOptions, Repository } from "typeorm";
 import datasource from "../database/datasource";
 import { getUserRepository } from "../repositories/UsersRepository";
+import { User } from "../entities/User";
 
 interface IUsersCreate {
     name: string;
@@ -10,12 +11,16 @@ interface IUsersCreate {
 }
 
 class UsersService {
+    private userManager: EntityManager;
+    private usersRepository: Repository<User>;
+
+    constructor() {
+        this.userManager = new EntityManager(datasource);
+        this.usersRepository = getUserRepository(this.userManager);
+    }
+
     async create({ name, role, email, password }: IUsersCreate) {
-        const userManager = new EntityManager(datasource);
-
-        const usersRepository = getUserRepository(userManager);
-
-        const emailAlreadyExists = await usersRepository.findOne({ 
+        const emailAlreadyExists = await this.usersRepository.findOne({ 
             where: { 
               email
             } 
@@ -25,14 +30,14 @@ class UsersService {
             throw new Error('Email already exists');
         }
 
-        const users = usersRepository.create({
+        const users = this.usersRepository.create({
             name,
             role,
             email,
             password
         });
 
-        await usersRepository.save(users);
+        await this.usersRepository.save(users);
 
         return users;
     }
