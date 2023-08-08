@@ -1,26 +1,21 @@
 import { Request, Response } from "express";
-import { EntityManager } from "typeorm";
-import datasource from "../database/datasource";
-import { getUserRepository } from "../repositories/UsersRepository";
+import { UsersServices } from "../services/UsersService";
+
 
 class UsersController {
     async create(request: Request, response: Response) {
         const { name, role, email, password } = request.body;
 
-        const userManager = new EntityManager(datasource);
-
-        const usersRepository = getUserRepository(userManager);
-
-        const users = usersRepository.create({
-            name,
-            role,
-            email,
-            password
-        });
-
-        await usersRepository.save(users);
-
-        return response.json(users);
+        const usersService = new UsersServices();
+        
+        try {
+            const users = await usersService.create({ name, role, email, password });
+            return response.json(users);
+        } catch (error: any) {
+            return response.status(400).json({
+                message: error.message
+            });
+        }
     }
 }
 
