@@ -34,8 +34,7 @@ export class CreateOrganizations1691462490690 implements MigrationInterface {
                     },
                     {
                         name: "user_id",
-                        type: "uuid",
-                        isNullable: false
+                        type: "uuid"
                     },
                     {
                         name: "updated_at",
