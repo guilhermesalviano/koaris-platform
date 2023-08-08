@@ -25,6 +25,19 @@ class ServicesController {
             });
         }
     }
+
+    async index(request: Request, response: Response): Promise<Response> {
+        const servicesService = new ServicesService();
+
+        try {
+            const service = await servicesService.index();
+            return response.json(service);
+        } catch (error: any) {
+            return response.status(400).json({
+                message: error.message
+            });
+        }
+    }
 }
 
 export { ServicesController }

@@ -16,6 +16,7 @@ routes.get("/status", (request, response) => {return response.json({message: "al
 routes.post("/users", usersController.create);
 routes.post("/organizations", organizationsController.create);
 routes.post("/contacts", contactsController.create);
+routes.get("/services", servicesController.index);
 routes.post("/services", servicesController.create);
 
 export { routes };
