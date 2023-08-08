@@ -9,7 +9,7 @@ import datasource from "../database/datasource";
 // };
 
 // A custom repository - with my functionalities
-const UsersRepository: Repository<User>  = datasource.getRepository(User).extend({
+const UsersRepository: Repository<User> = datasource.getRepository(User).extend({
 
 });
 

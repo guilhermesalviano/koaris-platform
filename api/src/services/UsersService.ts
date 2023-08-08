@@ -9,7 +9,7 @@ interface IUsersCreate {
     password: string;
 }
 
-class UsersServices {
+class UsersService {
     async create({ name, role, email, password }: IUsersCreate) {
         const userManager = new EntityManager(datasource);
 
@@ -38,4 +38,4 @@ class UsersServices {
     }
 }
 
-export { UsersServices }
+export { UsersService }

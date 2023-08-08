@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "ts-node-dev src/server.ts",
     "typeorm": "ts-node-dev node_modules/typeorm/cli.js",
-    "migration:run": "yarn typeorm migration:run --d src/database/datasource.ts"
+    "migration:revert": "yarn typeorm migration:revert -d src/database/datasource.ts",
+    "migration:run": "yarn typeorm migration:run -d src/database/datasource.ts"
   },
   "dependencies": {
     "express": "^4.18.2",
