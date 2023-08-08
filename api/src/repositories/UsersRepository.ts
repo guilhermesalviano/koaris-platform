@@ -3,17 +3,17 @@ import { User } from "../entities/User";
 
 import datasource from "../database/datasource";
 
-export type UsersRepositoryType = Repository<User> & {
+// export type UsersRepositoryType = Repository<User> & {
     // findByEmail(email: string): Promise<User | null>;
     // isEmailAlreadyInUser(email: string): Promise<boolean>;
-}
+// };
 
-// Repository.extend function to create a custom repository
-const UsersRepository: UsersRepositoryType  = datasource.getRepository(User).extend({
+// A custom repository - with my functionalities
+const UsersRepository: Repository<User>  = datasource.getRepository(User).extend({
 
 });
 
 // Helper function, so clients are shielded of typeoRM access.
-export function getUserRepository(manager: EntityManager): UsersRepositoryType {
+export function getUserRepository(manager: EntityManager): Repository<User> {
     return manager.withRepository(UsersRepository);
 }
