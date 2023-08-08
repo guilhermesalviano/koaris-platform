@@ -3,9 +3,8 @@ import AppDataSource from "./datasource"
 const connection = AppDataSource.initialize()
     .then(() => {
         console.log("Data Source has been initialized!")
-    })
-    .catch((err) => {
+    }).catch((err) => {
         console.error("Error during Data Source initialization", err)
     })
 
-    export default connection
+export default connection
