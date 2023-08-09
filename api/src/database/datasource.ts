@@ -1,5 +1,4 @@
 import { DataSource } from "typeorm"
-import { SpannerConnectionOptions as Options } from "typeorm/driver/spanner/SpannerConnectionOptions"
-import * as orm from "../../ormconfig.json"
+import { DatabaseConnectionTestConfiguration } from "../../typeorm.config"
 
-export default new DataSource(orm as Options)
+export default new DataSource(DatabaseConnectionTestConfiguration)
