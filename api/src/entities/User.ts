@@ -18,7 +18,7 @@ class User {
     email: string;
     @Column()
     password: string;
-    @UpdateDateColumn()
+    @UpdateDateColumn({onUpdate: "now()"})
     updated_at: Date;
     @CreateDateColumn()
     created_at: Date;

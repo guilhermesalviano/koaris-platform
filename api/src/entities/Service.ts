@@ -18,7 +18,7 @@ class Service {
     logo: string;
     @Column()
     price: string;
-    @UpdateDateColumn()
+    @UpdateDateColumn({onUpdate: "now()"})
     updated_at: Date;
 }
 
