@@ -18,4 +18,4 @@ routes.post("/contacts", contactsController.create);
 routes.get("/services", servicesController.index);
 routes.post("/services", servicesController.create);
 
-export { routes };
+export default routes;

@@ -21,7 +21,7 @@ class Contact {
     source: string;
     @Column()
     organization_id: string;
-    @UpdateDateColumn({onUpdate: "now()"})
+    @UpdateDateColumn()
     updated_at: Date;
     @CreateDateColumn()
     created_at: Date;
