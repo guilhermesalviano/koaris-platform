@@ -43,7 +43,7 @@ class ServicesService {
         return service;
     }
 
-    async index() {
+    async index(): Promise<IService[]> {
         const services = await this.servicesRepository.find();
 
         return services;

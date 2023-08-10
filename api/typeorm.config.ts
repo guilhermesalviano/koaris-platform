@@ -1,8 +1,8 @@
-// require('dotenv').config();
+require('dotenv').config();
 
 import { DataSourceOptions } from 'typeorm';
 
-const port: number = Number.parseInt(process.env.MYSQL_PORT);
+const port: number = Number.parseInt(process.env.MYSQL_PORT || '8080');
 
 const DatabaseConnectionConfiguration: DataSourceOptions = {
     name: process.env.MYSQL_TEST_NAME,
@@ -24,8 +24,8 @@ const DatabaseConnectionConfiguration: DataSourceOptions = {
 const DatabaseConnectionTestConfiguration: DataSourceOptions = {
     type: "sqlite",
     database: __dirname + "/src/database/database.sqlite",
-    entities: [__dirname + "/src/entities/*.{js,ts}"],
-    migrations: [__dirname + "/src/database/migrations/*.{js,ts}"]
+    entities: [__dirname + "/src/entities/**.{js,ts}"],
+    migrations: [__dirname + "/src/database/migrations/**.{js,ts}"]
 }
 
 export { DatabaseConnectionConfiguration, DatabaseConnectionTestConfiguration };

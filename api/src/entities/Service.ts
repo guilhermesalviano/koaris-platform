@@ -8,15 +8,15 @@ class Service {
             this.id = uuid();
         }
     }
-    @PrimaryColumn()
+    @PrimaryColumn("uuid")
     id: string;
-    @Column()
+    @Column("text")
     name: string;
-    @Column()
+    @Column("text")
     description: string;
-    @Column()
+    @Column("text")
     logo: string;
-    @Column()
+    @Column("text")
     price: string;
     @UpdateDateColumn({onUpdate: "now()"})
     updated_at: Date;

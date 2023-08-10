@@ -4,7 +4,6 @@ import { OrganizationsController } from "./controllers/OrganizationsController";
 import { ContactsController } from "./controllers/ContactsController";
 import { ServicesController } from "./controllers/ServicesController";
 
-
 const routes = Router();
 
 const usersController = new UsersController();

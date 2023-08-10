@@ -1,10 +1,15 @@
 import AppDataSource from "./datasource"
 
-const connection = AppDataSource.initialize()
-    .then(() => {
-        console.log("Data Source has been initialized!")
-    }).catch((err) => {
-        console.error("Error during Data Source initialization", err)
-    })
+async function initializeDataSource() {
+    try {
+        const appDataSource = await AppDataSource.initialize();
+        console.log(`Data Source has been initialized`);
+        return appDataSource;
+    } catch (err) {
+        console.error(`Data Source initialization error `, err);
+    }
+}
 
-export default connection
+const connection = initializeDataSource();
+
+export default connection;
