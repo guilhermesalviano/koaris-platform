@@ -18,7 +18,7 @@ class ServicesController {
 
         try {
             const service = await servicesService.create(data);
-            return response.json(service);
+            return response.status(201).json(service);
         } catch (error: any) {
             return response.status(400).json({
                 message: error.message
