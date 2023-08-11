@@ -1,5 +1,5 @@
 import { EntityManager, FindOneOptions, Repository } from "typeorm";
-import datasource from "../database/datasource";
+import datasource from "../../infra/database/datasource";
 import { getUserRepository } from "../repositories/UsersRepository";
 import { User } from "../entities/User";
 

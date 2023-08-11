@@ -1,6 +1,6 @@
 import { EntityManager, Repository } from "typeorm";
 import { getServiceRepository } from "../repositories/ServicesRespository"
-import datasource from "../database/datasource";
+import datasource from "../../infra/database/datasource";
 import { Service } from "../entities/Service";
 
 interface IService {

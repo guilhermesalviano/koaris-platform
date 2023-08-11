@@ -23,9 +23,9 @@ const DatabaseConnectionConfiguration: DataSourceOptions = {
 
 const DatabaseConnectionTestConfiguration: DataSourceOptions = {
     type: "sqlite",
-    database: __dirname + "/src/database/database.sqlite",
-    entities: [__dirname + "/src/entities/**.{js,ts}"],
-    migrations: [__dirname + "/src/database/migrations/**.{js,ts}"]
+    database: __dirname + "/src/infra/database/database.sqlite",
+    entities: [__dirname + "/src/domain/entities/**.{js,ts}"],
+    migrations: [__dirname + "/src/infra/database/migrations/**.{js,ts}"]
 }
 
 export { DatabaseConnectionConfiguration, DatabaseConnectionTestConfiguration };

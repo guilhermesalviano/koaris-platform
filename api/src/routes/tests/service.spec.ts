@@ -1,15 +1,15 @@
 import request from "supertest";
-import app from "../app";
-import AppDataSource from "../database/datasource";
+import app from "../../app";
+import AppDataSource from "../../infra/database/datasource";
 
 describe("Test the services", () => {
     beforeAll(async function () {
         await AppDataSource.initialize();
     });
-    test("It should create a new Service - upload a image and create a new Service.", async () => {
+    test("It should create a new Service", async () => {
         const response = await request(app).post("/services", () => {
             return {
-                name: "asdasd",
+                name: "asdasdasdasdf",
                 description: "Otimize seus processos",
                 logo: "https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-4.png",
                 price: "20,30",

@@ -1,6 +1,6 @@
 import { EntityManager, Repository } from "typeorm";
 import { getOrganizationRepository } from "../repositories/OrganizationsRespository"
-import datasource from "../database/datasource";
+import datasource from "../../infra/database/datasource";
 import { Organization } from "../entities/Organization";
 
 class OrganizationsService {

@@ -2,5 +2,5 @@ node_modules
 
 api/node_modules
 api/src/dist
-api/src/database/database.sqlite
+api/src/infra/database/database.sqlite
 api/coverage

@@ -1,7 +1,7 @@
 import { EntityManager, Repository } from "typeorm";
 import { Contact } from "../entities/Contact";
 
-import datasource from "../database/datasource";
+import datasource from "../../infra/database/datasource";
 
 const ContactsRepository: Repository<Contact> = datasource.getRepository(Contact).extend({});
 

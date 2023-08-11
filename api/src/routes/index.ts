@@ -1,8 +1,8 @@
 import { Router, response } from "express";
-import { UsersController } from "./controllers/UsersController";
-import { OrganizationsController } from "./controllers/OrganizationsController";
-import { ContactsController } from "./controllers/ContactsController";
-import { ServicesController } from "./controllers/ServicesController";
+import { UsersController } from "../domain/controllers/UsersController";
+import { OrganizationsController } from "../domain/controllers/OrganizationsController";
+import { ContactsController } from "../domain/controllers/ContactsController";
+import { ServicesController } from "../domain/controllers/ServicesController";
 
 const routes = Router();
 

@@ -1,7 +1,7 @@
 import { EntityManager, Repository } from "typeorm";
 import { Organization } from "../entities/Organization";
 
-import datasource from "../database/datasource";
+import datasource from "../../infra/database/datasource";
 
 const OrganizationsRepository: Repository<Organization> = datasource.getRepository(Organization).extend({});
 
