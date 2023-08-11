@@ -2,19 +2,20 @@ import request from "supertest";
 import app from "../../app";
 import AppDataSource from "../../infra/database/datasource";
 
-describe("Test the services", () => {
+describe("Test the services routes", () => {
     beforeAll(async function () {
         await AppDataSource.initialize();
     });
     test("It should create a new Service", async () => {
-        const response = await request(app).post("/services", () => {
-            return {
-                name: "asdasdasdasdf",
-                description: "Otimize seus processos",
-                logo: "https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-4.png",
-                price: "20,30",
-            };
-        });
+        const service = {
+            name: "asdasdasdasdf",
+            description: "Otimize seus processos",
+            logo: "https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-4.png",
+            price: "20,30",
+        };
+        const response = await request(app)
+            .post("/services")
+            .send(service);
         expect(response.statusCode).toBe(201);
     });
     test("It should get all Services", async () => {
