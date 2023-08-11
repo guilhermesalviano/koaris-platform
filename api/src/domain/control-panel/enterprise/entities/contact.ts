@@ -1,6 +1,6 @@
 import { Entity, PrimaryColumn, Column, UpdateDateColumn, CreateDateColumn, JoinColumn, ManyToOne } from "typeorm";
 import { v4 as uuid } from "uuid";
-import { Organization } from "./Organization";
+import { Organization } from "./organization";
 
 @Entity("contacts")
 class Contact {

@@ -1,7 +1,7 @@
 import { EntityManager, Repository } from "typeorm";
 import { getContactRepository } from "../repositories/ContactsRespository"
-import datasource from "../../infra/database/datasource";
-import { Contact } from "../entities/Contact";
+import datasource from "../../../../infra/database/datasource";
+import { Contact } from "../../enterprise/entities/contact";
 
 class ContactsService {
     private contactManager: EntityManager;

@@ -1,7 +1,7 @@
 import { EntityManager, FindOneOptions, Repository } from "typeorm";
-import datasource from "../../infra/database/datasource";
 import { getUserRepository } from "../repositories/UsersRepository";
-import { User } from "../entities/User";
+import datasource from "../../../../infra/database/datasource";
+import { User } from "../../enterprise/entities/user";
 
 interface IUsersCreate {
     name: string;

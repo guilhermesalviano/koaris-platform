@@ -1,7 +1,7 @@
 import { EntityManager, Repository } from "typeorm";
-import { User } from "../entities/User";
+import { User } from "../../enterprise/entities/user";
 
-import datasource from "../../infra/database/datasource";
+import datasource from "../../../../infra/database/datasource";
 
 // export type UsersRepositoryType = Repository<User> & {
     // findByEmail(email: string): Promise<User | null>;
