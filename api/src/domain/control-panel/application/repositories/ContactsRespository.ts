@@ -1,10 +1,8 @@
-import { EntityManager, Repository } from "typeorm";
+import { GenericRepository } from "../../../../core/repositories/generic-repository";
 import { Contact } from "../../enterprise/entities/contact";
 
-import datasource from "../../../../infra/database/datasource";
-
-const ContactsRepository: Repository<Contact> = datasource.getRepository(Contact).extend({});
-
-export function getContactRepository(manager: EntityManager): Repository<Contact> {
-    return manager.withRepository(ContactsRepository);
+export class ContactsRespository extends GenericRepository<Contact> {
+    constructor() {
+        super(Contact);
+    }
 }

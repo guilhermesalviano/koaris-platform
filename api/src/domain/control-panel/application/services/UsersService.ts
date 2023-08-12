@@ -1,5 +1,5 @@
 import { EntityManager, Repository } from "typeorm";
-import { getUserRepository } from "../repositories/UsersRepository";
+import { OrganizationsRespository } from "../repositories/UsersRepository";
 import { User } from "../../enterprise/entities/user";
 import datasource from "../../../../infra/database/datasource";
 import { Email } from "../../enterprise/entities/value-objects/email";
@@ -19,7 +19,7 @@ class UsersService {
 
     constructor() {
         this.userManager = new EntityManager(datasource);
-        this.usersRepository = getUserRepository(this.userManager);
+        this.usersRepository = new OrganizationsRespository().getRepository(this.userManager);
     }
 
     async create({ name, role, email, password }: IUsers): Promise<IUsers> {

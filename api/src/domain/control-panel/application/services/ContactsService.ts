@@ -1,5 +1,5 @@
 import { EntityManager, Repository } from "typeorm";
-import { getContactRepository } from "../repositories/ContactsRespository"
+import { ContactsRespository } from "../repositories/ContactsRespository";
 import datasource from "../../../../infra/database/datasource";
 import { Contact } from "../../enterprise/entities/contact";
 import { Email } from "../../enterprise/entities/value-objects/email";
@@ -19,7 +19,7 @@ class ContactsService {
 
     constructor() {
         this.contactManager = new EntityManager(datasource);
-        this.contactsRepository = getContactRepository(this.contactManager);
+        this.contactsRepository = new ContactsRespository().getRepository(this.contactManager);
     }
     
     async create({ name, email, phone, source, organization_id }: IContact): Promise<IContact> {

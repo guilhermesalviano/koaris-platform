@@ -1,5 +1,5 @@
 import { EntityManager, Repository } from "typeorm";
-import { getServiceRepository } from "../repositories/ServicesRespository"
+import { OrganizationsRespository } from "../repositories/ServicesRespository"
 import datasource from "../../../../infra/database/datasource";
 import { Service } from "../../enterprise/entities/service";
 
@@ -17,7 +17,7 @@ class ServicesService {
 
     constructor() {
         this.serviceManager = new EntityManager(datasource);
-        this.servicesRepository = getServiceRepository(this.serviceManager);
+        this.servicesRepository = new OrganizationsRespository().getRepository(this.serviceManager);
     }
 
     async create({ name, description, logo, price }: IService): Promise<IService> {
