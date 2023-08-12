@@ -5,7 +5,7 @@
 export class Email {
 
     /**
-     * method to nomalizer cpf's and cnpj's keep just points, slash and hyphen
+     * method to nomalizer email address
      * @param email string
      * @returns string
      */

@@ -17,7 +17,7 @@ class ContactsService extends ServiceGeneric<Contact> {
         super(ContactsRespository)
     }
     
-    public async checkIfEmailAlreadyExistsInDB({ email, organization_id }: IContact): Promise<IContact> {
+    public async checkIfEmailAlreadyExistsInDB({ id, email, organization_id }: IContact): Promise<IContact> {
         if (email && organization_id) {
             if (!Email.emailValidator(email))
                 throw new Error('E-mail inválido.');
@@ -26,6 +26,7 @@ class ContactsService extends ServiceGeneric<Contact> {
     
             const contactExists = await this.genericRepository.findOne({ 
                 where: {
+                    id,
                     email,
                     organization_id
                 }
@@ -33,6 +34,11 @@ class ContactsService extends ServiceGeneric<Contact> {
     
             return contactExists;
         }
+    }
+
+    async index(): Promise<IContact[]> {
+        const services = await this.genericRepository.find();
+        return services;
     }
 
     async create({ name, email, phone, source, organization_id }: IContact): Promise<IContact> {
@@ -49,9 +55,18 @@ class ContactsService extends ServiceGeneric<Contact> {
         return contact;
     }
 
-    async index(): Promise<IContact[]> {
-        const services = await this.genericRepository.find();
-        return services;
+    async update({ id, name, email, phone, source, organization_id }: IContact): Promise<IContact> {
+        const contact = {
+            id,
+            name,
+            email,
+            phone,
+            source,
+            organization_id
+        }
+        await this.genericRepository.update(id, contact);
+
+        return contact;
     }
 }
 

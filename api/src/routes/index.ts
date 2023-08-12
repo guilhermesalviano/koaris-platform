@@ -15,8 +15,11 @@ routes.get("/status", (request, response) => {return response.json({message: "al
 routes.post("/users", usersController.create);
 routes.get("/organizations", organizationsController.index);
 routes.post("/organizations", organizationsController.create);
+
 routes.get("/contacts", contactsController.index);
 routes.post("/contacts", contactsController.create);
+routes.put("/contacts", contactsController.update);
+
 routes.get("/services", servicesController.index);
 routes.post("/services", servicesController.create);
 
