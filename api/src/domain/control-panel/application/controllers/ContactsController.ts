@@ -8,6 +8,7 @@ interface ContactsControllerProps {
     phone?: string;
     source?: string;
     organization_id: string;
+    status?: number;
 }
 
 class ContactsController {
@@ -25,8 +26,11 @@ class ContactsController {
         const contactsService = new ContactsService();
 
         try {
-            const contact = await contactsService.create(data);
-            return response.status(201).json(contact);
+            let result = await contactsService.checkIfEmailAlreadyExistsInDB(data);
+            if (result)
+                return response.status(200).json({ error: 'Email já cadastrado.' });
+            result = await contactsService.create(data);
+            return response.status(201).json(result);
         } catch (error: any) {
             return response.status(400).json({
                 message: error.message
