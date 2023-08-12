@@ -47,7 +47,7 @@ class ConfigurationsService extends ServiceGeneric<Configuration> {
         });
 
         if (configurationExists)
-            return configurationExists;
+            throw new Error("Serviço já configurado.");
 
         const configurationCreated = this.genericRepository.create(configuration);
 

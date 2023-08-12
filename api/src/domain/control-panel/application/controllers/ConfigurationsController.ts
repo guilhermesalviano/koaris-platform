@@ -59,7 +59,7 @@ class ConfigurationsController {
         try {
             const configurationsService = new ConfigurationsService();
             const result = await configurationsService.delete(data);
-            const resultConfig = (result)? { status: 200, message: "Serviço deletado." } : { status: 404, message: "Serviço não encontrado." };
+            const resultConfig = (result)? { status: 200, message: "Configuração deletada." } : { status: 404, message: "Configuração não encontrada." };
             return response.status(resultConfig.status).json({ message: resultConfig.message });
         } catch (error: any) {
             return response.status(400).json({

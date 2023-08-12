@@ -10,26 +10,27 @@ describe("Test the Configurations routes", () => {
     });
     test("It should create a new Configuration", async () => {
         const configuration = {
-            organization_id: "8f614c88-3b40-4994-92dc-8c1ec54affdc",
-            service_id: "62ebb76c-65f8-4122-8e7a-8846ed6fa95c",
+            organization_id: "f223bf64-0b18-4f9c-96d2-a54e7767fc46",
+            service_id: "5dfea2d0-d7cc-4eab-8ece-0ef2b2d9ac73",
             logoCustom: "https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-4.png",
             phone: casual.phone,
             socialLinks: "https://www.instragram.com/social"
         };
         const response = await request(app)
-            .post("/services")
+            .post("/configurations")
             .send(configuration);
         expect(response.statusCode).toBe(201);
         configurationId = response.body.id;
     });
-    test("It should get all Services", async () => {
-        const response = await request(app).get("/services");
+    test("It should get all Configurations", async () => {
+        const response = await request(app).get("/configurations");
         expect(response.statusCode).toBe(200);
     });
     test("It should update a Configuration", async () => {
+        console.log(configurationId)
         const configuration = {
             id: configurationId,
-            organization_id: "8f614c88-3b40-4994-92dc-8c1ec54affdc",
+            organization_id: "1813624b-495b-4c6f-a5f6-151fd07294ad",
             service_id: "62ebb76c-65f8-4122-8e7a-8846ed6fa95c",
             logoCustom: "https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-4.png",
             phone: casual.phone,
@@ -43,7 +44,7 @@ describe("Test the Configurations routes", () => {
 
     test("It shouldn't update a Configuration without id", async () => {
         const configuration = {
-            organization_id: "8f614c88-3b40-4994-92dc-8c1ec54affdc",
+            organization_id: "1813624b-495b-4c6f-a5f6-151fd07294ad",
             service_id: "62ebb76c-65f8-4122-8e7a-8846ed6fa95c",
             logoCustom: "https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-4.png",
             phone: casual.phone,
