@@ -5,7 +5,7 @@ import { User } from "../../enterprise/entities/user";
     // findByEmail(email: string): Promise<User | null>;
     // isEmailAlreadyInUser(email: string): Promise<boolean>;
 // };
-export class OrganizationsRespository extends RepositoryGeneric<User> {
+export class UsersRespository extends RepositoryGeneric<User> {
     constructor() {
         super(User);
     }

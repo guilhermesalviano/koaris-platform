@@ -1,7 +1,6 @@
-import { EntityManager, Repository } from "typeorm";
-import { OrganizationsRespository } from "../repositories/ServicesRespository"
-import datasource from "../../../../infra/database/datasource";
+import { ServicesRespository } from "../repositories/ServicesRespository"
 import { Service } from "../../enterprise/entities/service";
+import { ServiceGeneric } from "../../../../core/services/service.generic";
 
 interface IService {
     id?: string;
@@ -11,18 +10,14 @@ interface IService {
     price?: string;
 }
 
-class ServicesService {
-    private serviceManager: EntityManager;
-    private servicesRepository: Repository<Service>;
-
+class ServicesService extends ServiceGeneric<Service> {
     constructor() {
-        this.serviceManager = new EntityManager(datasource);
-        this.servicesRepository = new OrganizationsRespository().getRepository(this.serviceManager);
+        super(ServicesRespository)
     }
 
     async create({ name, description, logo, price }: IService): Promise<IService> {
 
-        const serviceExists = await this.servicesRepository.findOne({ 
+        const serviceExists = await this.genericRepository.findOne({ 
             where: {
                 name
             }
@@ -32,20 +27,20 @@ class ServicesService {
             return serviceExists;
         }
 
-        const service = this.servicesRepository.create({
+        const service = this.genericRepository.create({
             name,
             description,
             logo,
             price
         });
 
-        await this.servicesRepository.save(service);
+        await this.genericRepository.save(service);
 
         return service;
     }
 
     async index(): Promise<IService[]> {
-        const services = await this.servicesRepository.find();
+        const services = await this.genericRepository.find();
         return services;
     }
 }

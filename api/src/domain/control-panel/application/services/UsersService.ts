@@ -1,9 +1,8 @@
-import { EntityManager, Repository } from "typeorm";
-import { OrganizationsRespository } from "../repositories/UsersRepository";
+import { UsersRespository } from "../repositories/UsersRepository";
 import { User } from "../../enterprise/entities/user";
-import datasource from "../../../../infra/database/datasource";
 import { Email } from "../../enterprise/entities/value-objects/email";
 import { Role } from "../../enterprise/entities/value-objects/role";
+import { ServiceGeneric } from "../../../../core/services/service.generic";
 
 interface IUsers {
     id?: string;
@@ -13,13 +12,9 @@ interface IUsers {
     password: string;
 }
 
-class UsersService {
-    private userManager: EntityManager;
-    private usersRepository: Repository<User>;
-
+class UsersService extends ServiceGeneric<User> {
     constructor() {
-        this.userManager = new EntityManager(datasource);
-        this.usersRepository = new OrganizationsRespository().getRepository(this.userManager);
+        super(UsersRespository)
     }
 
     async create({ name, role, email, password }: IUsers): Promise<IUsers> {
@@ -31,7 +26,7 @@ class UsersService {
             throw new Error('E-mail inválido.');
         }
 
-        const emailAlreadyExists = await this.usersRepository.findOne({ 
+        const emailAlreadyExists = await this.genericRepository.findOne({ 
             where: { 
               email
             } 
@@ -43,14 +38,14 @@ class UsersService {
 
         role = Role.checkRole(role);
 
-        const users = this.usersRepository.create({
+        const users = this.genericRepository.create({
             name,
             role,
             email,
             password
         });
 
-        await this.usersRepository.save(users);
+        await this.genericRepository.save(users);
 
         return users;
     }

@@ -1,8 +1,7 @@
-import { EntityManager, Repository } from "typeorm";
 import { ContactsRespository } from "../repositories/ContactsRespository";
-import datasource from "../../../../infra/database/datasource";
 import { Contact } from "../../enterprise/entities/contact";
 import { Email } from "../../enterprise/entities/value-objects/email";
+import { ServiceGeneric } from "../../../../core/services/service.generic";
 
 interface IContact {
     id?: string;
@@ -13,13 +12,9 @@ interface IContact {
     organization_id: string;
 }
 
-class ContactsService {
-    private contactManager: EntityManager;
-    private contactsRepository: Repository<Contact>;
-
+class ContactsService extends ServiceGeneric<Contact> {
     constructor() {
-        this.contactManager = new EntityManager(datasource);
-        this.contactsRepository = new ContactsRespository().getRepository(this.contactManager);
+        super(ContactsRespository)
     }
     
     async create({ name, email, phone, source, organization_id }: IContact): Promise<IContact> {
@@ -27,7 +22,7 @@ class ContactsService {
             throw new Error('E-mail inválido.');
         }
 
-        const contactExists = await this.contactsRepository.findOne({ 
+        const contactExists = await this.genericRepository.findOne({ 
             where: {
                 email,
                 organization_id
@@ -38,7 +33,7 @@ class ContactsService {
             return contactExists;
         }
 
-        const contact = this.contactsRepository.create({
+        const contact = this.genericRepository.create({
             name,
             email,
             phone,
@@ -46,13 +41,13 @@ class ContactsService {
             organization_id
         });
 
-        await this.contactsRepository.save(contact);
+        await this.genericRepository.save(contact);
 
         return contact;
     }
 
     async index(): Promise<IContact[]> {
-        const services = await this.contactsRepository.find();
+        const services = await this.genericRepository.find();
         return services;
     }
 }

@@ -1,8 +1,7 @@
-import { EntityManager, Repository } from "typeorm";
 import { OrganizationsRespository } from "../repositories/OrganizationsRespository"
-import datasource from "../../../../infra/database/datasource";
 import { Organization } from "../../enterprise/entities/organization";
 import { Identification } from "../../enterprise/entities/value-objects/identification";
+import { ServiceGeneric } from "../../../../core/services/service.generic";
 
 interface IOrganization {
     id?: string;
@@ -13,13 +12,9 @@ interface IOrganization {
     user_id: string;
 }
 
-class OrganizationsService {
-    private organizationManager: EntityManager;
-    private organizationsRepository: Repository<Organization>;
-
+class OrganizationsService extends ServiceGeneric<Organization> {
     constructor() {
-        this.organizationManager = new EntityManager(datasource);
-        this.organizationsRepository = new OrganizationsRespository().getRepository(this.organizationManager);
+        super(OrganizationsRespository)
     }
 
     async create({ identification, name, description, logo, user_id }: IOrganization): Promise<IOrganization> {
@@ -31,7 +26,7 @@ class OrganizationsService {
             throw new Error(`Adicione um ${validatorResult.type} válido.`);
         }
 
-        const organizationExists = await this.organizationsRepository.findOne({ 
+        const organizationExists = await this.genericRepository.findOne({ 
             where: {
                 identification,
                 user_id
@@ -42,7 +37,7 @@ class OrganizationsService {
             return organizationExists;
         }
 
-        const organization = this.organizationsRepository.create({
+        const organization = this.genericRepository.create({
             identification,
             name,
             description,
@@ -50,13 +45,13 @@ class OrganizationsService {
             user_id
         });
 
-        await this.organizationsRepository.save(organization);
+        await this.genericRepository.save(organization);
 
         return organization;
     }
 
     async index(): Promise<IOrganization[]> {
-        const organizations = await this.organizationsRepository.find();
+        const organizations = await this.genericRepository.find();
         return organizations;
     }
 }
