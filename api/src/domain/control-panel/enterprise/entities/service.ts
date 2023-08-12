@@ -1,12 +1,10 @@
 import { Entity, PrimaryColumn, Column, UpdateDateColumn } from "typeorm";
-import { v4 as uuid } from "uuid";
+import { EntityGeneric } from "../../../../core/entities/entity.generic";
 
 @Entity("services")
-class Service {
+class Service extends EntityGeneric {
     constructor() {
-        if (!this.id) {
-            this.id = uuid();
-        }
+        super();
     }
     @PrimaryColumn()
     id: string;

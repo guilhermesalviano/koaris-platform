@@ -1,7 +1,7 @@
 import { EntityManager, EntityTarget, Repository } from "typeorm";
 import datasource from "../../infra/database/datasource";
 
-export class GenericRepository<T> {
+export class RepositoryGeneric<T> {
     private entity: EntityTarget<T>;
 
     constructor(entity: EntityTarget<T>) {

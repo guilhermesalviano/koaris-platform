@@ -9,7 +9,7 @@
     "migration:revert": "yarn typeorm migration:revert -d src/database/datasource.ts",
     "migration:run": "yarn typeorm migration:run -d src/database/datasource.ts",
     "migration:create": "yarn typeorm migration:create ",
-    "test": "jest"
+    "test": "jest --watch"
   },
   "dependencies": {
     "dotenv": "^16.3.1",

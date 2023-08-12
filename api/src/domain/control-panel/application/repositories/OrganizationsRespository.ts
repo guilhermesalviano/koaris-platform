@@ -1,7 +1,7 @@
-import { GenericRepository } from "../../../../core/repositories/generic-repository";
+import { RepositoryGeneric } from "../../../../core/repositories/repository.generic";
 import { Organization } from "../../enterprise/entities/organization";
 
-export class OrganizationsRespository extends GenericRepository<Organization> {
+export class OrganizationsRespository extends RepositoryGeneric<Organization> {
     constructor() {
         super(Organization);
     }
