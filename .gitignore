@@ -4,3 +4,4 @@ api/node_modules
 api/src/dist
 api/src/infra/database/database.sqlite
 api/coverage
+api/yarn-error.log

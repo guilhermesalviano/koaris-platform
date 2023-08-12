@@ -2,6 +2,8 @@ import { EntityManager, Repository } from "typeorm";
 import { getUserRepository } from "../repositories/UsersRepository";
 import { User } from "../../enterprise/entities/user";
 import datasource from "../../../../infra/database/datasource";
+import { Email } from "../../enterprise/entities/value-objects/email";
+import { Role } from "../../enterprise/entities/value-objects/role";
 
 interface IUsersCreate {
     name: string;
@@ -20,6 +22,14 @@ class UsersService {
     }
 
     async create({ name, role, email, password }: IUsersCreate) {
+        if (!name || !role || !email || !password) {
+            throw new Error(`Alguns campos faltando.`);
+        }
+
+        if (!Email.emailValidator(email)) {
+            throw new Error('E-mail inválido.');
+        }
+
         const emailAlreadyExists = await this.usersRepository.findOne({ 
             where: { 
               email
@@ -29,6 +39,8 @@ class UsersService {
         if (emailAlreadyExists) {
             throw new Error('Email already exists');
         }
+
+        role = Role.checkRole(role);
 
         const users = this.usersRepository.create({
             name,

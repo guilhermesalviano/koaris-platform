@@ -13,6 +13,7 @@ const servicesController = new ServicesController();
 
 routes.get("/status", (request, response) => {return response.json({message: "already's fine!"})});
 routes.post("/users", usersController.create);
+routes.get("/organizations", organizationsController.index);
 routes.post("/organizations", organizationsController.create);
 routes.post("/contacts", contactsController.create);
 routes.get("/services", servicesController.index);

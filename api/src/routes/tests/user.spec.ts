@@ -41,4 +41,16 @@ describe("Test the users routes", () => {
             .send(user);
         expect(response.statusCode).toBe(400);
     });
+    test("It shouldn't create a new User with wrong email", async () => {
+        const user = {
+            name: casual.name,
+            role: "administrator",
+            email: "guilhermesalviano@test",
+            password: casual.password,
+        };
+        const response = await request(app)
+            .post("/users")
+            .send(user);
+        expect(response.statusCode).toBe(400);
+    });
 });

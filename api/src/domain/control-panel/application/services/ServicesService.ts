@@ -45,7 +45,6 @@ class ServicesService {
 
     async index(): Promise<IService[]> {
         const services = await this.servicesRepository.find();
-
         return services;
     }
 }
