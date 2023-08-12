@@ -17,7 +17,7 @@ class ContactsService extends ServiceGeneric<Contact> {
         super(ContactsRespository)
     }
     
-    public async checkIfEmailAlreadyExistsInDB({ id, email, organization_id }: IContact): Promise<IContact> {
+    public async checkIfEmailAlreadyExistsInDB({ email, organization_id }: IContact): Promise<IContact> {
         if (email && organization_id) {
             if (!Email.emailValidator(email))
                 throw new Error('E-mail inválido.');
@@ -26,7 +26,6 @@ class ContactsService extends ServiceGeneric<Contact> {
     
             const contactExists = await this.genericRepository.findOne({ 
                 where: {
-                    id,
                     email,
                     organization_id
                 }
@@ -36,12 +35,33 @@ class ContactsService extends ServiceGeneric<Contact> {
         }
     }
 
+    public async checkIfConctactAlreadyExistsInDB({ id }: IContact): Promise<IContact> {
+        if (!id)
+            throw new Error('O campo Id é requerido.');
+        const contactExists = await this.genericRepository.findOne({ 
+            where: {
+                id
+            }
+        });
+
+        if (!contactExists)
+            throw new Error('Contato não encontrado.');
+
+        return contactExists;
+    }
+
     async index(): Promise<IContact[]> {
         const services = await this.genericRepository.find();
         return services;
     }
 
     async create({ name, email, phone, source, organization_id }: IContact): Promise<IContact> {
+        if (!organization_id || !name) {
+            throw new Error(`Alguns campos faltando.`);
+        }
+
+        email = Email.emailNormalizer(email);
+
         const contact = this.genericRepository.create({
             name,
             email,
@@ -56,6 +76,10 @@ class ContactsService extends ServiceGeneric<Contact> {
     }
 
     async update({ id, name, email, phone, source, organization_id }: IContact): Promise<IContact> {
+        if (!id || !organization_id) {
+            throw new Error(`Alguns campos faltando.`);
+        }
+
         const contact = {
             id,
             name,

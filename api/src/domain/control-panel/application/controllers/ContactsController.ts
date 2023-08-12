@@ -68,12 +68,8 @@ class ContactsController {
         const contactsService = new ContactsService();
 
         try {
-            if (!id)
-                throw new Error(`O campo id é requerido.`);
-            let result = await contactsService.checkIfEmailAlreadyExistsInDB(data);
-            if (!result)
-                return response.status(304).json({ error: "Contato não encontrado." });
-            result = await contactsService.create(data);
+            await contactsService.checkIfConctactAlreadyExistsInDB(data);
+            const result = await contactsService.update(data);
             return response.status(200).json(result);
         } catch (error: any) {
             return response.status(400).json({

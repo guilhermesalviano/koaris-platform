@@ -35,7 +35,19 @@ describe("Test the contacts routes", () => {
         const response = await request(app)
             .put("/contacts")
             .send(contact);
-        expect(response.statusCode).toBe(200);
+        expect(response.statusCode).toEqual(200);
+    });
+    test("It shouldn't update a Contact without id", async () => {
+        const contact = {
+            name: casual.name,
+            email: "contact@outlook.com",
+            phone: casual.phone,
+            organization_id: "8f614c88-3b40-4994-92dc-8c1ec54affdc"
+        };
+        const response = await request(app)
+            .put("/contacts")
+            .send(contact);
+        expect(response.statusCode).toEqual(400);
     });
     test("It should delete a Contact", async () => {
         expect(200).toBe(200);

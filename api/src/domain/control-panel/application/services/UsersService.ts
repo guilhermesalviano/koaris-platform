@@ -22,11 +22,11 @@ class UsersService extends ServiceGeneric<User> {
             throw new Error(`Alguns campos faltando.`);
         }
 
+        email = Email.emailNormalizer(email);
+
         if (!Email.emailValidator(email)) {
             throw new Error('E-mail inválido.');
         }
-
-        email = Email.emailNormalizer(email);
 
         const emailAlreadyExists = await this.genericRepository.findOne({ 
             where: { 
