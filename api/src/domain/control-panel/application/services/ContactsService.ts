@@ -53,48 +53,30 @@ class ContactsService extends ServiceGeneric<Contact> {
         return services;
     }
 
-    async create({ name, email, phone, source, organization_id }: IContact): Promise<IContact> {
-        if (!organization_id || !name)
+    async create(contact: IContact): Promise<IContact> {
+        if (!contact.organization_id || !contact.name)
             throw new Error(`Alguns campos faltando.`);
 
-        if (email)
-            email = Email.emailNormalizer(email);
+        contact.email = Email.emailNormalizer(contact.email);
 
-        const newContact = {
-            name,
-            email,
-            phone,
-            source,
-            organization_id
-        }
-
-        if (email && await this.checkIfEmailAlreadyExistsInDB(newContact))
+        if (contact.email && await this.checkIfEmailAlreadyExistsInDB(contact))
             throw new Error("Email já cadastrado.");
 
-        const contact = this.genericRepository.create(newContact);
+        const contactCreated = this.genericRepository.create(contact);
 
-        await this.genericRepository.save(contact);
+        await this.genericRepository.save(contactCreated);
 
-        return contact;
+        return contactCreated;
     }
 
-    async update({ id, name, email, phone, source, organization_id }: IContact): Promise<IContact> {
-        if (!id || !organization_id)
+    async update(contact: IContact): Promise<IContact> {
+        if (!contact.id || !contact.organization_id)
             throw new Error(`Alguns campos faltando.`);
-
-        const contact = {
-            id,
-            name,
-            email,
-            phone,
-            source,
-            organization_id
-        }
 
         if (!await this.checkIfEmailAlreadyExistsInDB(contact))
             throw new Error("Contato não encontrado.");
 
-        await this.genericRepository.update(id, contact);
+        await this.genericRepository.update(contact.id, contact);
 
         return contact;
     }
