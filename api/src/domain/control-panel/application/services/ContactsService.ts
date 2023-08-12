@@ -21,6 +21,8 @@ class ContactsService extends ServiceGeneric<Contact> {
         if (email && organization_id) {
             if (!Email.emailValidator(email))
                 throw new Error('E-mail inválido.');
+
+            email = Email.emailNormalizer(email);
     
             const contactExists = await this.genericRepository.findOne({ 
                 where: {

@@ -72,7 +72,7 @@ describe("Test the contacts routes", () => {
     test("It shouldn't create a new Contact with same email", async () => {
         const contact = {
             name: casual.name,
-            email: "Alanna.Grimes@gmail.com",
+            email: "contact@outlook.com",
             phone: casual.phone,
             source: casual.company_name + " - LP dia dos pais",
             organization_id: "8f614c88-3b40-4994-92dc-8c1ec54affdc"

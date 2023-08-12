@@ -26,6 +26,8 @@ class UsersService extends ServiceGeneric<User> {
             throw new Error('E-mail inválido.');
         }
 
+        email = Email.emailNormalizer(email);
+
         const emailAlreadyExists = await this.genericRepository.findOne({ 
             where: { 
               email
