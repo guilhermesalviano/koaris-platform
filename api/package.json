@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "ts-node-dev src/server.ts",
     "typeorm": "ts-node-dev node_modules/typeorm/cli.js",
-    "migration:revert": "yarn typeorm migration:revert -d src/database/datasource.ts",
-    "migration:run": "yarn typeorm migration:run -d src/database/datasource.ts",
-    "migration:create": "yarn typeorm migration:create ",
+    "migration:revert": "yarn typeorm migration:revert -d src/infra/database/datasource.ts",
+    "migration:run": "yarn typeorm migration:run -d src/infra/database/datasource.ts",
+    "migration:create": "yarn typeorm migration:create",
     "test": "jest --watch"
   },
   "dependencies": {

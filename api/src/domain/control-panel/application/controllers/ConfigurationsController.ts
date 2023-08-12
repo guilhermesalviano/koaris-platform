@@ -1,21 +1,23 @@
 import { Request, Response } from "express";
 
-import { ServicesService } from "../services/ServicesService";
+import { ConfigurationsService } from "../services/ConfigurationsService";
 
-interface ServicesControllerProps {
-    name: string;
-    description: string;
-    logo: string;
-    price?: string;
+interface ConfigurationsControllerProps {
+    id?: string;
+    organization_id: string;
+    service_id: string;
+    logoCustom?: string;
+    phone: string;
+    socialLinks?: string;
 }
 
-class ServicesController {
+class ConfigurationsController {
 
     async index(request: Request, response: Response): Promise<Response> {
         try {
-            const servicesService = new ServicesService();
-            const services = await servicesService.index();
-            return response.json(services);
+            const configurationsService = new ConfigurationsService();
+            const configurations = await configurationsService.index();
+            return response.json(configurations);
         } catch (error: any) {
             return response.status(400).json({
                 message: error.message
@@ -24,11 +26,11 @@ class ServicesController {
     }
 
     async create(request: Request, response: Response): Promise<Response> {
-        const data: ServicesControllerProps = request.body;
+        const data: ConfigurationsControllerProps = request.body;
 
         try {
-            const servicesService = new ServicesService();
-            const result = await servicesService.create(data);
+            const configurationsService = new ConfigurationsService();
+            const result = await configurationsService.create(data);
             return response.status(201).json(result);
         } catch (error: any) {
             return response.status(400).json({
@@ -38,11 +40,11 @@ class ServicesController {
     }
 
     async update(request: Request, response: Response): Promise<Response> {
-        const data: ServicesControllerProps = request.body;
+        const data: ConfigurationsControllerProps = request.body;
 
         try {
-            const servicesService = new ServicesService();
-            const result = await servicesService.update(data);
+            const configurationsService = new ConfigurationsService();
+            const result = await configurationsService.update(data);
             return response.status(200).json(result);
         } catch (error: any) {
             return response.status(400).json({
@@ -52,11 +54,11 @@ class ServicesController {
     }
 
     async delete(request: Request, response: Response): Promise<Response> {
-        const data: ServicesControllerProps = request.body;
+        const data: ConfigurationsControllerProps = request.body;
 
         try {
-            const servicesService = new ServicesService();
-            const result = await servicesService.delete(data);
+            const configurationsService = new ConfigurationsService();
+            const result = await configurationsService.delete(data);
             const resultConfig = (result)? { status: 200, message: "Serviço deletado." } : { status: 404, message: "Serviço não encontrado." };
             return response.status(resultConfig.status).json({ message: resultConfig.message });
         } catch (error: any) {
@@ -67,4 +69,4 @@ class ServicesController {
     }
 }
 
-export { ServicesController }
+export { ConfigurationsController }

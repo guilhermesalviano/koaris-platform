@@ -55,11 +55,11 @@ class ContactsController {
     }
 
     async delete(request: Request, response: Response): Promise<Response> {
-        const contact: ContactsControllerProps = request.body;
+        const data: ContactsControllerProps = request.body;
 
         try {
             const contactsService = new ContactsService();
-            const result = await contactsService.delete(contact);
+            const result = await contactsService.delete(data);
             const resultConfig = (result)? { status: 200, message: "Contato deletado." } : { status: 404, message: "Contato não encontrado." };
             return response.status(resultConfig.status).json({ message: resultConfig.message });
         } catch (error: any) {

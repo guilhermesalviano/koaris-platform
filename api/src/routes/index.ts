@@ -3,6 +3,7 @@ import { UsersController } from "../domain/control-panel/application/controllers
 import { OrganizationsController } from "../domain/control-panel/application/controllers/OrganizationsController";
 import { ContactsController } from "../domain/control-panel/application/controllers/ContactsController";
 import { ServicesController } from "../domain/control-panel/application/controllers/ServicesController";
+import { ConfigurationsController } from "../domain/control-panel/application/controllers/ConfigurationsController";
 
 const routes = Router();
 
@@ -10,6 +11,7 @@ const usersController = new UsersController();
 const organizationsController = new OrganizationsController();
 const contactsController = new ContactsController();
 const servicesController = new ServicesController();
+const configurationsController = new ConfigurationsController();
 
 routes.get("/status", (request, response) => {return response.json({message: "already's fine!"})});
 
@@ -27,5 +29,10 @@ routes.get("/services", servicesController.index);
 routes.post("/services", servicesController.create);
 routes.put("/services", servicesController.update);
 routes.delete("/services", servicesController.delete);
+
+routes.get("/configurations", configurationsController.index);
+routes.post("/configurations", configurationsController.create);
+routes.put("/configurations", configurationsController.update);
+routes.delete("/configurations", configurationsController.delete);
 
 export default routes;
