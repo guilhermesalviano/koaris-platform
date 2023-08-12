@@ -41,7 +41,7 @@ describe("Test the contacts routes", () => {
         const response = await request(app)
             .post("/contacts")
             .send(contact);
-        expect(response.statusCode).toBe(201);
+        expect(response.body.phone).toEqual(contact.phone);
     });
     test("It should create a new Contact without phone", async () => {
         const contact = {

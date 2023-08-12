@@ -18,19 +18,20 @@ class ContactsService extends ServiceGeneric<Contact> {
     }
     
     async create({ name, email, phone, source, organization_id }: IContact): Promise<IContact> {
-        if (email && !Email.emailValidator(email)) {
-            throw new Error('E-mail inválido.');
-        }
-
-        const contactExists = await this.genericRepository.findOne({ 
-            where: {
-                email,
-                organization_id
+        if (email) {
+            if (!Email.emailValidator(email))
+                throw new Error('E-mail inválido.');
+            
+            const contactExists = await this.genericRepository.findOne({ 
+                where: {
+                    email,
+                    organization_id
+                }
+            });
+    
+            if (contactExists) {
+                return contactExists;
             }
-        });
-
-        if (contactExists) {
-            return contactExists;
         }
 
         const contact = this.genericRepository.create({
