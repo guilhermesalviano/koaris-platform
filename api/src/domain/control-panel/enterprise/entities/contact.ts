@@ -14,11 +14,11 @@ class Contact {
     @Column()
     name: string;
     @Column()
-    email: string;
+    email?: string;
     @Column()
-    phone: string;
+    phone?: string;
     @Column()
-    source: string;
+    source?: string;
     @Column()
     organization_id: string;
     @UpdateDateColumn()

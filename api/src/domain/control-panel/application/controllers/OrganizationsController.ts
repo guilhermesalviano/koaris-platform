@@ -2,10 +2,17 @@ import { Request, Response } from "express";
 
 import { OrganizationsService } from "../services/OrganizationsService";
 
+interface OrganizationsControllerProps {
+    identification: string;
+    name: string;
+    description: string;
+    logo?: string;
+    user_id: string;
+}
 
 class OrganizationsController {
     async create(request: Request, response: Response): Promise<Response> {
-        const { identification, name, description, logo, user_id } = request.body;
+        const { identification, name, description, logo, user_id }: OrganizationsControllerProps = request.body;
 
         const data = {
             identification,

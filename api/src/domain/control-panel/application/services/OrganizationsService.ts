@@ -8,7 +8,7 @@ interface IOrganization {
     id?: string;
     name: string;
     description: string;
-    logo: string;
+    logo?: string;
     identification: string;
     user_id: string;
 }

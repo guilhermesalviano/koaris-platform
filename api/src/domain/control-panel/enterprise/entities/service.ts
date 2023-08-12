@@ -17,7 +17,7 @@ class Service {
     @Column()
     logo: string;
     @Column()
-    price: string;
+    price?: string;
     @UpdateDateColumn()
     updated_at: Date;
 }

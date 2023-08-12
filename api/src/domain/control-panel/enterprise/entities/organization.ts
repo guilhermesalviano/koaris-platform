@@ -16,7 +16,7 @@ class Organization {
     @Column()
     description: string;
     @Column()
-    logo: string;
+    logo?: string;
     @Column()
     identification: string;
     @Column()

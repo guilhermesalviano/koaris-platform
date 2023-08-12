@@ -2,10 +2,16 @@ import { Request, Response } from "express";
 
 import { ServicesService } from "../services/ServicesService";
 
+interface ServicesControllerProps {
+    name: string;
+    description: string;
+    logo: string;
+    price?: string;
+}
 
 class ServicesController {
     async create(request: Request, response: Response): Promise<Response> {
-        const { name, description, logo, price } = request.body;
+        const { name, description, logo, price }: ServicesControllerProps = request.body;
 
         const data = {
             name,

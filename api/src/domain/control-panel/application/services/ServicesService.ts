@@ -4,6 +4,7 @@ import datasource from "../../../../infra/database/datasource";
 import { Service } from "../../enterprise/entities/service";
 
 interface IService {
+    id?: string;
     name: string;
     description: string;
     logo: string;

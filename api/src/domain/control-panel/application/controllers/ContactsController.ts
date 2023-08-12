@@ -2,10 +2,17 @@ import { Request, Response } from "express";
 
 import { ContactsService } from "../services/ContactsService";
 
+interface ContactsControllerProps {
+    name: string;
+    email?: string;
+    phone?: string;
+    source?: string;
+    organization_id: string;
+}
 
 class ContactsController {
     async create(request: Request, response: Response): Promise<Response> {
-        const { name, email, phone, source, organization_id } = request.body;
+        const { name, email, phone, source, organization_id }: ContactsControllerProps = request.body;
 
         const data = {
             name,

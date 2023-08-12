@@ -6,6 +6,7 @@ import { Email } from "../../enterprise/entities/value-objects/email";
 import { Role } from "../../enterprise/entities/value-objects/role";
 
 interface IUsers {
+    id?: string;
     name: string;
     role: string;
     email: string;
