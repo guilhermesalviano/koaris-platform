@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { UsersService } from "../services/UsersService";
 import { Role } from "../../enterprise/entities/value-objects/role";
+import { Email } from "../../enterprise/entities/value-objects/email";
 
 interface UsersControllerProps {
     name: string;
@@ -11,14 +12,16 @@ interface UsersControllerProps {
 class UsersController {
     async create(request: Request, response: Response): Promise<Response> {
         const { name, role, email, password }: UsersControllerProps = request.body;
-        
-        try {
-            if (!name || !role || !email || !password) {
-                throw new Error(`Some field missing.`);
-            }
-    
-            const usersService = new UsersService();
 
+        if (!name || !role || !email || !password) {
+            throw new Error(`Some field missing.`);
+        }
+
+        if (!Email.valideEmail(email)) {
+            throw new Error('Invalid email');
+        }
+
+        try {
             const data = { 
                 name,
                 role: Role.checkRole(role),
@@ -26,7 +29,10 @@ class UsersController {
                 password 
             };
 
+            const usersService = new UsersService();
+
             const users = await usersService.create(data);
+
             return response.status(201).json(users);
         } catch (error: any) {
             return response.status(400).json({

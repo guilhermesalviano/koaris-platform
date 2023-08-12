@@ -1,4 +1,5 @@
 import request from "supertest";
+import casual from "casual";
 import app from "../../app";
 import AppDataSource from "../../infra/database/datasource";
 
@@ -8,10 +9,10 @@ describe("Test the users routes", () => {
     });
     test("It should create a new User", async () => {
         const user = {
-            name: "guilherme teste 4",
+            name: casual.name,
             role: "operator",
-            email: "guilherme.salviano@afasdas.com",
-            password: "1234",
+            email: casual.email,
+            password: casual.password,
         };
         const response = await request(app)
             .post("/users")
@@ -30,10 +31,10 @@ describe("Test the users routes", () => {
     });
     test("It shouldn't create a new User with wrong role", async () => {
         const user = {
-            name: "guilherme teste 4",
+            name: casual.name,
             role: "outro",
-            email: "guilherme.salviano@2314asdasf.com",
-            password: "1234",
+            email: casual.email,
+            password: casual.password,
         };
         const response = await request(app)
             .post("/users")
