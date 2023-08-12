@@ -3,7 +3,7 @@ import casual from "casual";
 import app from "../../app";
 import AppDataSource from "../../infra/database/datasource";
 
-describe("Test the users routes", () => {
+describe("Test the Users routes", () => {
     beforeAll(async function () {
         await AppDataSource.initialize();
     });

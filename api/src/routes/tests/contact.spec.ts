@@ -3,7 +3,7 @@ import casual from "casual";
 import app from "../../app";
 import AppDataSource from "../../infra/database/datasource";
 
-describe("Test the contacts routes", () => {
+describe("Test the Contacts routes", () => {
     let contactId: string;
     beforeAll(async function () {
         await AppDataSource.initialize();

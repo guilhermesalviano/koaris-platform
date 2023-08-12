@@ -36,6 +36,35 @@ class ServicesController {
             });
         }
     }
+
+    async update(request: Request, response: Response): Promise<Response> {
+        const data: ServicesControllerProps = request.body;
+
+        try {
+            const servicesService = new ServicesService();
+            const result = await servicesService.update(data);
+            return response.status(200).json(result);
+        } catch (error: any) {
+            return response.status(400).json({
+                message: error.message
+            });
+        }
+    }
+
+    async delete(request: Request, response: Response): Promise<Response> {
+        const contact: ServicesControllerProps = request.body;
+
+        try {
+            const servicesService = new ServicesService();
+            const result = await servicesService.delete(contact);
+            const resultConfig = (result)? { status: 200, message: "Serviço deletado." } : { status: 404, message: "Serviço não encontrado." };
+            return response.status(resultConfig.status).json({ message: resultConfig.message });
+        } catch (error: any) {
+            return response.status(400).json({
+                message: error.message
+            });
+        }
+    }
 }
 
 export { ServicesController }

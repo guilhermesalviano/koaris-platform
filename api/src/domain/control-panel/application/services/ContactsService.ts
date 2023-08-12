@@ -87,6 +87,7 @@ class ContactsService extends ServiceGeneric<Contact> {
             throw new Error(`O campo Id está faltando.`);
 
         const result = await this.genericRepository.delete(contact.id);
+
         return (result.affected === 0)? false : true;
     }
 }

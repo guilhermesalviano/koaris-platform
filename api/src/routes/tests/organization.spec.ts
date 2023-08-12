@@ -4,7 +4,7 @@ import { generate as cpfGenerate } from "gerador-validador-cpf";
 import app from "../../app";
 import AppDataSource from "../../infra/database/datasource";
 
-describe("Test the organizations routes", () => {
+describe("Test the Organizations routes", () => {
     beforeAll(async function () {
         await AppDataSource.initialize();
     });

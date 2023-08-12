@@ -25,5 +25,7 @@ routes.delete("/contacts", contactsController.delete);
 
 routes.get("/services", servicesController.index);
 routes.post("/services", servicesController.create);
+routes.put("/services", servicesController.update);
+routes.delete("/services", servicesController.delete);
 
 export default routes;
