@@ -4,6 +4,7 @@ import app from "../../app";
 import AppDataSource from "../../infra/database/datasource";
 
 describe("Test the contacts routes", () => {
+    let contactId: string;
     beforeAll(async function () {
         await AppDataSource.initialize();
     });
@@ -19,6 +20,7 @@ describe("Test the contacts routes", () => {
             .post("/contacts")
             .send(contact);
         expect(response.statusCode).toBe(201);
+        contactId = response.body.id;
     });
     test("It should get all Contact", async () => {
         const response = await request(app).get("/contacts");
@@ -50,7 +52,13 @@ describe("Test the contacts routes", () => {
         expect(response.statusCode).toEqual(400);
     });
     test("It should delete a Contact", async () => {
-        expect(200).toBe(200);
+        const contact = {
+            id: contactId
+        };
+        const response = await request(app)
+            .delete("/contacts")
+            .send(contact);
+        expect(response.statusCode).toEqual(200);
     });
     test("It should create a new Contact without email", async () => {
         const contact = {

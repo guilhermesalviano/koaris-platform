@@ -81,6 +81,15 @@ class ContactsService extends ServiceGeneric<Contact> {
 
         return contact;
     }
+
+    async delete(contact: IContact): Promise<IContact> {
+        if (!contact.id)
+            throw new Error(`O campo Id está faltando.`);
+
+        await this.genericRepository.delete(contact.id);
+
+        return contact;
+    }
 }
 
 export { ContactsService }

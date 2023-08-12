@@ -53,6 +53,20 @@ class ContactsController {
             });
         }
     }
+
+    async delete(request: Request, response: Response): Promise<Response> {
+        const contact: ContactsControllerProps = request.body;
+
+        try {
+            const contactsService = new ContactsService();
+            const result = await contactsService.delete(contact);
+            return response.status(200).json(result);
+        } catch (error: any) {
+            return response.status(400).json({
+                message: error.message
+            });
+        }
+    }
 }
 
 export { ContactsController }

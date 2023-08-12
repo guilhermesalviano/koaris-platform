@@ -17,6 +17,11 @@ class OrganizationsService extends ServiceGeneric<Organization> {
         super(OrganizationsRespository)
     }
 
+    async index(): Promise<IOrganization[]> {
+        const organizations = await this.genericRepository.find();
+        return organizations;
+    }
+
     async create(organization: IOrganization): Promise<IOrganization> {
 
         const identificationNormalized = Identification.identificationNormalizer(organization.identification);
@@ -40,11 +45,6 @@ class OrganizationsService extends ServiceGeneric<Organization> {
         await this.genericRepository.save(organizationCreated);
 
         return organizationCreated;
-    }
-
-    async index(): Promise<IOrganization[]> {
-        const organizations = await this.genericRepository.find();
-        return organizations;
     }
 }
 

@@ -15,6 +15,11 @@ class ServicesService extends ServiceGeneric<Service> {
         super(ServicesRespository)
     }
 
+    async index(): Promise<IService[]> {
+        const services = await this.genericRepository.find();
+        return services;
+    }
+
     async create(service: IService): Promise<IService> {
 
         const serviceExists = await this.genericRepository.findOne({ 
@@ -33,10 +38,6 @@ class ServicesService extends ServiceGeneric<Service> {
         return serviceCreated;
     }
 
-    async index(): Promise<IService[]> {
-        const services = await this.genericRepository.find();
-        return services;
-    }
 }
 
 export { ServicesService }
