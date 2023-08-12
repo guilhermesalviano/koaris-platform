@@ -15,28 +15,22 @@ class ServicesService extends ServiceGeneric<Service> {
         super(ServicesRespository)
     }
 
-    async create({ name, description, logo, price }: IService): Promise<IService> {
+    async create(service: IService): Promise<IService> {
 
         const serviceExists = await this.genericRepository.findOne({ 
             where: {
-                name
+                name: service.name
             }
         });
 
-        if (serviceExists) {
+        if (serviceExists)
             return serviceExists;
-        }
 
-        const service = this.genericRepository.create({
-            name,
-            description,
-            logo,
-            price
-        });
+        const serviceCreated = this.genericRepository.create(service);
 
-        await this.genericRepository.save(service);
+        await this.genericRepository.save(serviceCreated);
 
-        return service;
+        return serviceCreated;
     }
 
     async index(): Promise<IService[]> {

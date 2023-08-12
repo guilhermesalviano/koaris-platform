@@ -17,37 +17,29 @@ class OrganizationsService extends ServiceGeneric<Organization> {
         super(OrganizationsRespository)
     }
 
-    async create({ identification, name, description, logo, user_id }: IOrganization): Promise<IOrganization> {
+    async create(organization: IOrganization): Promise<IOrganization> {
 
-        const identificationNormalized = Identification.identificationNormalizer(identification);
+        const identificationNormalized = Identification.identificationNormalizer(organization.identification);
         const validatorResult = Identification.identificationValidator(identificationNormalized);
 
-        if (!validatorResult.isValid) {
+        if (!validatorResult.isValid)
             throw new Error(`Adicione um ${validatorResult.type} válido.`);
-        }
 
         const organizationExists = await this.genericRepository.findOne({ 
             where: {
-                identification,
-                user_id
+                identification: organization.identification,
+                user_id: organization.user_id
             }
         });
 
-        if (organizationExists) {
+        if (organizationExists)
             return organizationExists;
-        }
 
-        const organization = this.genericRepository.create({
-            identification,
-            name,
-            description,
-            logo,
-            user_id
-        });
+        const organizationCreated = this.genericRepository.create(organization);
 
-        await this.genericRepository.save(organization);
+        await this.genericRepository.save(organizationCreated);
 
-        return organization;
+        return organizationCreated;
     }
 
     async index(): Promise<IOrganization[]> {

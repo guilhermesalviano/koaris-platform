@@ -17,39 +17,31 @@ class UsersService extends ServiceGeneric<User> {
         super(UsersRespository)
     }
 
-    async create({ name, role, email, password }: IUsers): Promise<IUsers> {
-        if (!name || !role || !email || !password) {
+    async create(user: IUsers): Promise<IUsers> {
+        if (!user.name || !user.role || !user.email || !user.password)
             throw new Error(`Alguns campos faltando.`);
-        }
 
-        email = Email.emailNormalizer(email);
+        user.email = Email.emailNormalizer(user.email);
 
-        if (!Email.emailValidator(email)) {
+        if (!Email.emailValidator(user.email))
             throw new Error('E-mail inválido.');
-        }
 
         const emailAlreadyExists = await this.genericRepository.findOne({ 
             where: { 
-              email
+                email: user.email,
             } 
         });
 
-        if (emailAlreadyExists) {
+        if (emailAlreadyExists)
             throw new Error('Email already exists');
-        }
 
-        role = Role.checkRole(role);
+        user.role = Role.checkRole(user.role);
 
-        const users = this.genericRepository.create({
-            name,
-            role,
-            email,
-            password
-        });
+        const userCreated = this.genericRepository.create(user);
 
-        await this.genericRepository.save(users);
+        await this.genericRepository.save(userCreated);
 
-        return users;
+        return userCreated;
     }
 }
 

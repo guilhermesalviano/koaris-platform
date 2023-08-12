@@ -36,6 +36,7 @@ class ContactsService extends ServiceGeneric<Contact> {
     public async checkIfConctactAlreadyExistsInDB({ id }: IContact): Promise<IContact> {
         if (!id)
             throw new Error('O campo Id é requerido.');
+
         const contactExists = await this.genericRepository.findOne({ 
             where: {
                 id
