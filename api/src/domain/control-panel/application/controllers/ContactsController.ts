@@ -60,17 +60,7 @@ class ContactsController {
         try {
             const contactsService = new ContactsService();
             const result = await contactsService.delete(contact);
-            let resultConfig: { status: number, message: string};
-            if (result)
-                resultConfig = {
-                    status: 200,
-                    message: "Contato deletado."
-                }
-            else
-                resultConfig = {
-                    status: 404,
-                    message: "Contato não encontrado."
-                }
+            const resultConfig = (result)? { status: 200, message: "Contato deletado." } : { status: 404, message: "Contato deletado." };
             return response.status(resultConfig.status).json(resultConfig.message);
         } catch (error: any) {
             return response.status(400).json({
