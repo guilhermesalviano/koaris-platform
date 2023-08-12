@@ -30,8 +30,8 @@ class ServicesController {
         const servicesService = new ServicesService();
 
         try {
-            const service = await servicesService.index();
-            return response.json(service);
+            const services = await servicesService.index();
+            return response.json(services);
         } catch (error: any) {
             return response.status(400).json({
                 message: error.message

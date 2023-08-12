@@ -5,7 +5,7 @@ import datasource from "../../../../infra/database/datasource";
 import { Email } from "../../enterprise/entities/value-objects/email";
 import { Role } from "../../enterprise/entities/value-objects/role";
 
-interface IUsersCreate {
+interface IUsers {
     name: string;
     role: string;
     email: string;
@@ -21,7 +21,7 @@ class UsersService {
         this.usersRepository = getUserRepository(this.userManager);
     }
 
-    async create({ name, role, email, password }: IUsersCreate) {
+    async create({ name, role, email, password }: IUsers): Promise<IUsers> {
         if (!name || !role || !email || !password) {
             throw new Error(`Alguns campos faltando.`);
         }

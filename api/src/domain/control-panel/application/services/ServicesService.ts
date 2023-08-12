@@ -19,7 +19,7 @@ class ServicesService {
         this.servicesRepository = getServiceRepository(this.serviceManager);
     }
 
-    async create({ name, description, logo, price }: IService) {
+    async create({ name, description, logo, price }: IService): Promise<IService> {
 
         const serviceExists = await this.servicesRepository.findOne({ 
             where: {

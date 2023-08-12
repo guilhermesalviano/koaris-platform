@@ -19,7 +19,20 @@ class ContactsController {
 
         try {
             const contact = await contactsService.create(data);
-            return response.json(contact);
+            return response.status(201).json(contact);
+        } catch (error: any) {
+            return response.status(400).json({
+                message: error.message
+            });
+        }
+    }
+
+    async index(request: Request, response: Response): Promise<Response> {
+        const contactsService = new ContactsService();
+
+        try {
+            const contacts = await contactsService.index();
+            return response.json(contacts);
         } catch (error: any) {
             return response.status(400).json({
                 message: error.message

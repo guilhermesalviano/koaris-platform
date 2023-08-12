@@ -5,7 +5,7 @@ import { Organization } from "../../enterprise/entities/organization";
 import { Identification } from "../../enterprise/entities/value-objects/identification";
 
 interface IOrganization {
-    id: string;
+    id?: string;
     name: string;
     description: string;
     logo: string;
@@ -22,7 +22,7 @@ class OrganizationsService {
         this.organizationsRepository = getOrganizationRepository(this.organizationManager);
     }
 
-    async create({ identification, name, description, logo, user_id }) {
+    async create({ identification, name, description, logo, user_id }: IOrganization): Promise<IOrganization> {
 
         const identificationNormalized = Identification.identificationNormalizer(identification);
         const validatorResult = Identification.identificationValidator(identificationNormalized);
