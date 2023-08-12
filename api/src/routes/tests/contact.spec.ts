@@ -60,14 +60,14 @@ describe("Test the contacts routes", () => {
             .send(contact);
         expect(response.statusCode).toEqual(200);
     });
-    test("It should try to delete a Contact", async () => {
+    test("It should try to delete a non-existent Contact", async () => {
         const contact = {
-            id: "1929149"
+            id: "123456"
         };
         const response = await request(app)
             .delete("/contacts")
             .send(contact);
-        expect(response.statusCode).toEqual(200);
+        expect(response.statusCode).toEqual(404);
     });
     test("It should create a new Contact without email", async () => {
         const contact = {
