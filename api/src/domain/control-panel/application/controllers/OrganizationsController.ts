@@ -11,21 +11,12 @@ interface OrganizationsControllerProps {
 }
 
 class OrganizationsController {
-    async create(request: Request, response: Response): Promise<Response> {
-        const { identification, name, description, logo, user_id }: OrganizationsControllerProps = request.body;
 
-        const data = {
-            identification,
-            name,
-            description,
-            logo,
-            user_id
-        };
-
+    async index(request: Request, response: Response): Promise<Response> {
         try {
             const organizationsService = new OrganizationsService();
-            const organization = await organizationsService.create(data);
-            return response.status(201).json(organization);
+            const organizations = await organizationsService.index();
+            return response.json(organizations);
         } catch (error: any) {
             return response.status(400).json({
                 message: error.message
@@ -33,12 +24,13 @@ class OrganizationsController {
         }
     }
 
-    async index(request: Request, response: Response): Promise<Response> {
-        const organizationsService = new OrganizationsService();
+    async create(request: Request, response: Response): Promise<Response> {
+        const data: OrganizationsControllerProps = request.body;
 
         try {
-            const organizations = await organizationsService.index();
-            return response.json(organizations);
+            const organizationsService = new OrganizationsService();
+            const organization = await organizationsService.create(data);
+            return response.status(201).json(organization);
         } catch (error: any) {
             return response.status(400).json({
                 message: error.message

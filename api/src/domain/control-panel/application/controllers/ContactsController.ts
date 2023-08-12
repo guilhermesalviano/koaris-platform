@@ -15,9 +15,8 @@ interface ContactsControllerProps {
 class ContactsController {
 
     async index(request: Request, response: Response): Promise<Response> {
-        const contactsService = new ContactsService();
-
         try {
+            const contactsService = new ContactsService();
             const contacts = await contactsService.index();
             return response.json(contacts);
         } catch (error: any) {
@@ -28,19 +27,10 @@ class ContactsController {
     }
 
     async create(request: Request, response: Response): Promise<Response> {
-        const { name, email, phone, source, organization_id }: ContactsControllerProps = request.body;
-
-        const data = {
-            name,
-            email,
-            phone,
-            source,
-            organization_id
-        };
-
-        const contactsService = new ContactsService();
+        const data: ContactsControllerProps = request.body;
 
         try {
+            const contactsService = new ContactsService();
             const result = await contactsService.create(data);
             return response.status(201).json(result);
         } catch (error: any) {
@@ -51,21 +41,10 @@ class ContactsController {
     }
 
     async update(request: Request, response: Response): Promise<Response> {
-        const { id, name, email, phone, source, organization_id }: ContactsControllerProps = request.body;
-
-        const data = {
-            id,
-            name,
-            email,
-            phone,
-            source,
-            organization_id
-        };
-
-        const contactsService = new ContactsService();
+        const data: ContactsControllerProps = request.body;
 
         try {
-            await contactsService.checkIfConctactAlreadyExistsInDB(data);
+            const contactsService = new ContactsService();
             const result = await contactsService.update(data);
             return response.status(200).json(result);
         } catch (error: any) {

@@ -9,14 +9,7 @@ interface UsersControllerProps {
 }
 class UsersController {
     async create(request: Request, response: Response): Promise<Response> {
-        const { name, role, email, password }: UsersControllerProps = request.body;
-
-        const data = { 
-            name,
-            role,
-            email,
-            password 
-        };
+        const data: UsersControllerProps = request.body;
 
         try {
             const usersService = new UsersService();

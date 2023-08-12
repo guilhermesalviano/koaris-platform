@@ -18,21 +18,19 @@ class ContactsService extends ServiceGeneric<Contact> {
     }
     
     public async checkIfEmailAlreadyExistsInDB({ email, organization_id }: IContact): Promise<IContact> {
-        if (email && organization_id) {
-            if (!Email.emailValidator(email))
-                throw new Error('E-mail inválido.');
+        if (!Email.emailValidator(email))
+            throw new Error('E-mail inválido.');
 
-            email = Email.emailNormalizer(email);
-    
-            const contactExists = await this.genericRepository.findOne({ 
-                where: {
-                    email,
-                    organization_id
-                }
-            });
-    
-            return contactExists;
-        }
+        email = Email.emailNormalizer(email);
+
+        const contactExists = await this.genericRepository.findOne({ 
+            where: {
+                email,
+                organization_id
+            }
+        });
+
+        return contactExists;
     }
 
     public async checkIfConctactAlreadyExistsInDB({ id }: IContact): Promise<IContact> {
@@ -56,9 +54,8 @@ class ContactsService extends ServiceGeneric<Contact> {
     }
 
     async create({ name, email, phone, source, organization_id }: IContact): Promise<IContact> {
-        if (!organization_id || !name) {
+        if (!organization_id || !name)
             throw new Error(`Alguns campos faltando.`);
-        }
 
         if (email)
             email = Email.emailNormalizer(email);
@@ -82,9 +79,8 @@ class ContactsService extends ServiceGeneric<Contact> {
     }
 
     async update({ id, name, email, phone, source, organization_id }: IContact): Promise<IContact> {
-        if (!id || !organization_id) {
+        if (!id || !organization_id)
             throw new Error(`Alguns campos faltando.`);
-        }
 
         const contact = {
             id,
@@ -94,6 +90,10 @@ class ContactsService extends ServiceGeneric<Contact> {
             source,
             organization_id
         }
+
+        if (!await this.checkIfEmailAlreadyExistsInDB(contact))
+            throw new Error("Contato não encontrado.");
+
         await this.genericRepository.update(id, contact);
 
         return contact;
