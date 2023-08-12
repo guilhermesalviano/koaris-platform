@@ -60,6 +60,15 @@ describe("Test the contacts routes", () => {
             .send(contact);
         expect(response.statusCode).toEqual(200);
     });
+    test("It should try to delete a Contact", async () => {
+        const contact = {
+            id: "1929149"
+        };
+        const response = await request(app)
+            .delete("/contacts")
+            .send(contact);
+        expect(response.statusCode).toEqual(200);
+    });
     test("It should create a new Contact without email", async () => {
         const contact = {
             name: casual.name,
