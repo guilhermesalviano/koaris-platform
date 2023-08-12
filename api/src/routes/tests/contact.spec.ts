@@ -102,6 +102,6 @@ describe("Test the contacts routes", () => {
         const response = await request(app)
             .post("/contacts")
             .send(contact);
-        expect(response.statusCode).toEqual(200);
+        expect(response.statusCode).toEqual(400);
     });
 });

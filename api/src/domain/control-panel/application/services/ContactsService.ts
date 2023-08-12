@@ -60,15 +60,21 @@ class ContactsService extends ServiceGeneric<Contact> {
             throw new Error(`Alguns campos faltando.`);
         }
 
-        email = Email.emailNormalizer(email);
+        if (email)
+            email = Email.emailNormalizer(email);
 
-        const contact = this.genericRepository.create({
+        const newContact = {
             name,
             email,
             phone,
             source,
             organization_id
-        });
+        }
+
+        if (email && await this.checkIfEmailAlreadyExistsInDB(newContact))
+            throw new Error("Email já cadastrado.");
+
+        const contact = this.genericRepository.create(newContact);
 
         await this.genericRepository.save(contact);
 
