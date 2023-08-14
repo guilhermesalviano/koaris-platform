@@ -17,10 +17,9 @@ export class LoginService extends ServiceGeneric<User> {
         super(UsersRespository)
     }
 
-    public async verifyAccessToken(token: string): Promise<any> {
-        return await jwt.verify(token, process.env.JWT_SECRET, (error: any) => {
-            if (error) throw new Error(`Erro: ${error}`);
-            return true;
+    static async verifyAccessToken(token: string): Promise<any> {
+        return await jwt.verify(token.replace("Bearer", "").trim(), process.env.JWT_SECRET, (error: any) => {
+            if (error) throw new Error(`${error}`);
         });
     }
 

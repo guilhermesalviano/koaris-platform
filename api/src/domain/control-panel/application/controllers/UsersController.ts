@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { UsersService } from "../services/UsersService";
-import { LoginService } from "../services/LoginService";
 
 interface UsersControllerProps {
     name: string;

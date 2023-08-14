@@ -5,6 +5,7 @@ import { OrganizationsController } from "../domain/control-panel/application/con
 import { ContactsController } from "../domain/control-panel/application/controllers/ContactsController";
 import { ServicesController } from "../domain/control-panel/application/controllers/ServicesController";
 import { ConfigurationsController } from "../domain/control-panel/application/controllers/ConfigurationsController";
+import { verifyJWT } from "../domain/control-panel/application/middlewares/verify-jwt";
 
 const routes = Router();
 
@@ -19,25 +20,26 @@ routes.get("/status", (request, response) => {return response.json({message: "al
 
 routes.post("/login", loginController.login);
 
-routes.get("/users", usersController.index);
-routes.post("/users", usersController.create);
+// need authorization with bearer token
+routes.get("/users", verifyJWT, usersController.index);
+routes.post("/users", verifyJWT, usersController.create);
 
-routes.get("/organizations", organizationsController.index);
-routes.post("/organizations", organizationsController.create);
+routes.get("/organizations", verifyJWT, organizationsController.index);
+routes.post("/organizations", verifyJWT, organizationsController.create);
 
-routes.get("/contacts", contactsController.index);
-routes.post("/contacts", contactsController.create);
-routes.put("/contacts", contactsController.update);
-routes.delete("/contacts", contactsController.delete);
+routes.get("/contacts", verifyJWT, contactsController.index);
+routes.post("/contacts", verifyJWT, contactsController.create);
+routes.put("/contacts", verifyJWT, contactsController.update);
+routes.delete("/contacts", verifyJWT, contactsController.delete);
 
-routes.get("/services", servicesController.index);
-routes.post("/services", servicesController.create);
-routes.put("/services", servicesController.update);
-routes.delete("/services", servicesController.delete);
+routes.get("/services", verifyJWT, servicesController.index);
+routes.post("/services", verifyJWT, servicesController.create);
+routes.put("/services", verifyJWT, servicesController.update);
+routes.delete("/services", verifyJWT, servicesController.delete);
 
-routes.get("/configurations", configurationsController.index);
-routes.post("/configurations", configurationsController.create);
-routes.put("/configurations", configurationsController.update);
-routes.delete("/configurations", configurationsController.delete);
+routes.get("/configurations", verifyJWT, configurationsController.index);
+routes.post("/configurations", verifyJWT, configurationsController.create);
+routes.put("/configurations", verifyJWT, configurationsController.update);
+routes.delete("/configurations", verifyJWT, configurationsController.delete);
 
 export default routes;

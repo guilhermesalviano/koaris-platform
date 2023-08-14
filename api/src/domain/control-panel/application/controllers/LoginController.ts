@@ -18,9 +18,9 @@ export class LoginController {
             const user = await loginService.checkIfUserExists(data);
             // if true, return a refresh token
             const result = await loginService.generateRefreshToken({ sub: user.id });
-            // if false, return error 401
-            return response.status(200).json(result);
+            return response.status(200).json({ access_token: result });
         } catch (error: any) {
+            // if false, return error 401
             return response.status(401).json({
                 message: error.message
             });
