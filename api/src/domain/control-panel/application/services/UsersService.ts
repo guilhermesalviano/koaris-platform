@@ -4,7 +4,7 @@ import { Email } from "../../enterprise/entities/value-objects/email";
 import { Role } from "../../enterprise/entities/value-objects/role";
 import { ServiceGeneric } from "../../../../core/services/service.generic";
 
-interface IUsers {
+interface IUser {
     id?: string;
     name: string;
     role: string;
@@ -17,7 +17,12 @@ class UsersService extends ServiceGeneric<User> {
         super(UsersRespository)
     }
 
-    async create(user: IUsers): Promise<IUsers> {
+    async index(): Promise<IUser[]> {
+        const users = await this.genericRepository.find();
+        return users;
+    }
+
+    async create(user: IUser): Promise<IUser> {
         if (!user.name || !user.role || !user.email || !user.password)
             throw new Error(`Alguns campos faltando.`);
 

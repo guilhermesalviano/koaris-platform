@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { UsersService } from "../services/UsersService";
+import { LoginService } from "../services/LoginService";
 
 interface UsersControllerProps {
     name: string;
@@ -8,6 +9,19 @@ interface UsersControllerProps {
     password: string;
 }
 class UsersController {
+
+    async index(request: Request, response: Response): Promise<Response> {
+        try {
+            const usersService = new UsersService();
+            const users = await usersService.index();
+            return response.json(users);
+        } catch (error: any) {
+            return response.status(400).json({
+                message: error.message
+            });
+        }
+    }
+
     async create(request: Request, response: Response): Promise<Response> {
         const data: UsersControllerProps = request.body;
 

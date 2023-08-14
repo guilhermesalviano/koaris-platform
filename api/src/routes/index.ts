@@ -1,4 +1,5 @@
 import { Router, response } from "express";
+import { LoginController } from "../domain/control-panel/application/controllers/LoginController";
 import { UsersController } from "../domain/control-panel/application/controllers/UsersController";
 import { OrganizationsController } from "../domain/control-panel/application/controllers/OrganizationsController";
 import { ContactsController } from "../domain/control-panel/application/controllers/ContactsController";
@@ -7,6 +8,7 @@ import { ConfigurationsController } from "../domain/control-panel/application/co
 
 const routes = Router();
 
+const loginController = new LoginController();
 const usersController = new UsersController();
 const organizationsController = new OrganizationsController();
 const contactsController = new ContactsController();
@@ -15,6 +17,9 @@ const configurationsController = new ConfigurationsController();
 
 routes.get("/status", (request, response) => {return response.json({message: "already's fine!"})});
 
+routes.get("/login", loginController.login);
+
+routes.get("/users", usersController.index);
 routes.post("/users", usersController.create);
 
 routes.get("/organizations", organizationsController.index);
