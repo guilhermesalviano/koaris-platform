@@ -27,6 +27,6 @@ const DatabaseConnectionTestConfiguration: DataSourceOptions = {
     entities: [__dirname + "/src/domain/control-panel/enterprise/entities/**.{js,ts}"]
 }
 
-const connection = (process.env.NODE_ENV !== 'development')? DatabaseConnectionConfiguration: DatabaseConnectionTestConfiguration;
+const DataSourceOptions = (process.env.NODE_ENV === 'production')? DatabaseConnectionConfiguration: DatabaseConnectionTestConfiguration;
 
-export { connection };
+export { DataSourceOptions };

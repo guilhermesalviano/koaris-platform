@@ -1,4 +1,4 @@
 import { DataSource } from "typeorm"
-import { connection } from "../../../typeorm.config"
+import { DataSourceOptions } from "../../../typeorm.config"
 
-export default new DataSource(connection)
+export default new DataSource(DataSourceOptions)
