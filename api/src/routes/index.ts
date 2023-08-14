@@ -17,7 +17,7 @@ const configurationsController = new ConfigurationsController();
 
 routes.get("/status", (request, response) => {return response.json({message: "already's fine!"})});
 
-routes.get("/login", loginController.login);
+routes.post("/login", loginController.login);
 
 routes.get("/users", usersController.index);
 routes.post("/users", usersController.create);

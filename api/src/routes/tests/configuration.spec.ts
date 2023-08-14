@@ -27,7 +27,6 @@ describe("Test the Configurations routes", () => {
         expect(response.statusCode).toBe(200);
     });
     test("It should update a Configuration", async () => {
-        console.log(configurationId)
         const configuration = {
             id: configurationId,
             organization_id: "1813624b-495b-4c6f-a5f6-151fd07294ad",
