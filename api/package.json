@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "NODE_ENV=development ts-node-dev src/server.ts",
+    "start": "NODE_ENV=production node dist/server.js",
     "typeorm": "ts-node-dev node_modules/typeorm/cli.js",
     "migration:revert": "yarn typeorm migration:revert -d src/infra/database/datasource.ts",
     "migration:run": "yarn typeorm migration:run -d src/infra/database/datasource.ts",
