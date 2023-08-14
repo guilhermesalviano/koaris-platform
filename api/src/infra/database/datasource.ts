@@ -1,4 +1,4 @@
 import { DataSource } from "typeorm"
-import { DatabaseConnectionTestConfiguration } from "../../../typeorm.config"
+import { connection } from "../../../typeorm.config"
 
-export default new DataSource(DatabaseConnectionTestConfiguration)
+export default new DataSource(connection)

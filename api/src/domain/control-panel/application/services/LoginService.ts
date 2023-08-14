@@ -2,7 +2,6 @@ import { ServiceGeneric } from "../../../../core/services/service.generic";
 import { UsersRespository } from "../repositories/UsersRepository";
 import { User } from "../../enterprise/entities/user";
 import jwt from "jsonwebtoken";
-import "dotenv/config"
 
 interface IUser {
     id?: string;

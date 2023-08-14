@@ -1,6 +1,5 @@
-require('dotenv').config();
-
 import { DataSourceOptions } from 'typeorm';
+import "dotenv/config";
 
 const port: number = Number.parseInt(process.env.MYSQL_PORT || '8080');
 
@@ -28,4 +27,6 @@ const DatabaseConnectionTestConfiguration: DataSourceOptions = {
     entities: [__dirname + "/src/domain/control-panel/enterprise/entities/**.{js,ts}"]
 }
 
-export { DatabaseConnectionConfiguration, DatabaseConnectionTestConfiguration };
+const connection = (process.env.NODE_ENV !== 'development')? DatabaseConnectionConfiguration: DatabaseConnectionTestConfiguration;
+
+export { connection };
