@@ -16,6 +16,7 @@ The backend for Koaris Technologies, LTDA.
 ```bash
 cp .env.example .env
 vi .env
+docker compose up -d # docker compose stop, docker compose down, docker rm <nome>
 yarn install
 yarn dev
 ```

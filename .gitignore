@@ -6,3 +6,5 @@ api/src/infra/database/database.sqlite
 api/coverage
 
 .env
+
+ormlogs.log
