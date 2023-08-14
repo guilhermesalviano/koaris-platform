@@ -1,12 +1,15 @@
 import request from "supertest";
 import casual from "casual";
-import app from "../../app";
-import AppDataSource from "../../infra/database/datasource";
+import app from "../app";
+import AppDataSource from "../infra/database/datasource";
+import { generateNewJWTToken } from "./utils/generate-new-jwt-token";
 
 describe("Test the Services routes", () => {
     let serviceId: string;
+    let token: string;
     beforeAll(async function () {
         await AppDataSource.initialize();
+        token = await generateNewJWTToken();
     });
     test("It should create a new Service", async () => {
         const service = {
@@ -17,12 +20,15 @@ describe("Test the Services routes", () => {
         };
         const response = await request(app)
             .post("/services")
+            .auth(token, { type: 'bearer' })
             .send(service);
         expect(response.statusCode).toBe(201);
         serviceId = response.body.id;
     });
     test("It should get all Services", async () => {
-        const response = await request(app).get("/services");
+        const response = await request(app)
+            .get("/services")
+            .auth(token, { type: 'bearer' });
         expect(response.statusCode).toBe(200);
     });
     test("It should update a Service", async () => {
@@ -35,6 +41,7 @@ describe("Test the Services routes", () => {
         };
         const response = await request(app)
             .put("/services")
+            .auth(token, { type: 'bearer' })
             .send(service);
         expect(response.statusCode).toEqual(200);
     });
@@ -48,6 +55,7 @@ describe("Test the Services routes", () => {
         };
         const response = await request(app)
             .put("/services")
+            .auth(token, { type: 'bearer' })
             .send(service);
         expect(response.statusCode).toEqual(400);
     });
@@ -57,6 +65,7 @@ describe("Test the Services routes", () => {
         };
         const response = await request(app)
             .delete("/services")
+            .auth(token, { type: 'bearer' })
             .send(service);
         expect(response.statusCode).toEqual(200);
     });
@@ -66,6 +75,7 @@ describe("Test the Services routes", () => {
         };
         const response = await request(app)
             .delete("/services")
+            .auth(token, { type: 'bearer' })
             .send(service);
         expect(response.statusCode).toEqual(404);
     });

@@ -1,12 +1,15 @@
 import request from "supertest";
 import casual from "casual";
-import app from "../../app";
-import AppDataSource from "../../infra/database/datasource";
+import app from "../app";
+import AppDataSource from "../infra/database/datasource";
+import { generateNewJWTToken } from "./utils/generate-new-jwt-token";
 
 describe("Test the Configurations routes", () => {
     let configurationId: string;
+    let token: string;
     beforeAll(async function () {
         await AppDataSource.initialize();
+        token = await generateNewJWTToken();
     });
     test("It should create a new Configuration", async () => {
         const configuration = {
@@ -18,12 +21,15 @@ describe("Test the Configurations routes", () => {
         };
         const response = await request(app)
             .post("/configurations")
+            .auth(token, { type: 'bearer' })
             .send(configuration);
         expect(response.statusCode).toBe(201);
         configurationId = response.body.id;
     });
     test("It should get all Configurations", async () => {
-        const response = await request(app).get("/configurations");
+        const response = await request(app)
+            .get("/configurations")
+            .auth(token, { type: 'bearer' });
         expect(response.statusCode).toBe(200);
     });
     test("It should update a Configuration", async () => {
@@ -37,6 +43,7 @@ describe("Test the Configurations routes", () => {
         };
         const response = await request(app)
             .put("/configurations")
+            .auth(token, { type: 'bearer' })
             .send(configuration);
         expect(response.statusCode).toEqual(200);
     });
@@ -51,6 +58,7 @@ describe("Test the Configurations routes", () => {
         };
         const response = await request(app)
             .put("/configurations")
+            .auth(token, { type: 'bearer' })
             .send(configuration);
         expect(response.statusCode).toEqual(400);
     });
@@ -60,6 +68,7 @@ describe("Test the Configurations routes", () => {
         };
         const response = await request(app)
             .delete("/configurations")
+            .auth(token, { type: 'bearer' })
             .send(configuration);
         expect(response.statusCode).toEqual(200);
     });
@@ -69,6 +78,7 @@ describe("Test the Configurations routes", () => {
         };
         const response = await request(app)
             .delete("/configurations")
+            .auth(token, { type: 'bearer' })
             .send(configuration);
         expect(response.statusCode).toEqual(404);
     });

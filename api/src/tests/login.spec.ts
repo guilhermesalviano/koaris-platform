@@ -1,7 +1,7 @@
 import request from "supertest";
-import { LoginService } from "../../domain/control-panel/application/services/LoginService";
-import app from "../../app";
-import AppDataSource from "../../infra/database/datasource";
+import { LoginService } from "../domain/control-panel/application/services/LoginService";
+import app from "../app";
+import AppDataSource from "../infra/database/datasource";
 
 describe("Test Login", () => {
     beforeAll(async function () {
@@ -10,8 +10,8 @@ describe("Test Login", () => {
     let jwt: string;
     test("It should to generate a new Login", async () => {
         const login = {
-            email: "guilherme.salviano1@hotmail.com",
-            password: "1234"
+            email: process.env.KOARIS_USER_TEST,
+            password: process.env.KOARIS_PASSWORD_TEST
         };
         const response = await request(app)
             .post("/login")
@@ -33,8 +33,7 @@ describe("Test Login", () => {
         expect(token).toBeDefined();
     });
     test("It should to verify a Login", async () => {
-        const loginService = new LoginService();
-        const token = await loginService.verifyAccessToken(jwt);
-        expect(token).toBeDefined();
+        const token = await LoginService.verifyAccessToken(jwt);
+        expect(token).toEqual(true);
     });
 });

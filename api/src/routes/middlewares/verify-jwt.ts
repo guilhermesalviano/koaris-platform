@@ -3,8 +3,8 @@ import { LoginService } from "../../domain/control-panel/application/services/Lo
 
 export async function verifyJWT(request: Request, response: Response, next: any): Promise<Response> {
     try {
-        await LoginService.verifyAccessToken(request.headers.authorization);
-        return next();
+        const result = await LoginService.verifyAccessToken(request.headers.authorization);
+        if (result) return next();
     } catch (error) {
         return response.status(401).json({ message: "Acesso não autorizado."})
     }

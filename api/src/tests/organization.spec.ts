@@ -1,12 +1,15 @@
 import request from "supertest";
 import casual from "casual";
 import { generate as cpfGenerate } from "gerador-validador-cpf";
-import app from "../../app";
-import AppDataSource from "../../infra/database/datasource";
+import app from "../app";
+import AppDataSource from "../infra/database/datasource";
+import { generateNewJWTToken } from "./utils/generate-new-jwt-token";
 
 describe("Test the Organizations routes", () => {
+    let token: string;
     beforeAll(async function () {
         await AppDataSource.initialize();
+        token = await generateNewJWTToken();
     });
     test("It should create a new Organization", async () => {
         const organization = {
@@ -18,11 +21,14 @@ describe("Test the Organizations routes", () => {
         };
         const response = await request(app)
             .post("/organizations")
+            .auth(token, { type: 'bearer' })
             .send(organization);
         expect(response.statusCode).toBe(201);
     });
     test("It should get all Organizations", async () => {
-        const response = await request(app).get("/organizations");
+        const response = await request(app)
+            .get("/organizations")
+            .auth(token, { type: 'bearer' });
         expect(response.statusCode).toBe(200);
     });
     test("It should update a Organization", async () => {

@@ -16,10 +16,11 @@ export class LoginService extends ServiceGeneric<User> {
         super(UsersRespository)
     }
 
-    static async verifyAccessToken(token: string): Promise<any> {
-        return await jwt.verify(token.replace("Bearer", "").trim(), process.env.JWT_SECRET, (error: any) => {
+    static async verifyAccessToken(token: string): Promise<boolean> {
+        await jwt.verify(token.replace("Bearer", "").trim(), process.env.JWT_SECRET, (error: any) => {
             if (error) throw new Error(`${error}`);
         });
+        return true;
     }
 
     public async generateRefreshToken(userId: { sub: string }): Promise<string> {

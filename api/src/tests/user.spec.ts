@@ -1,11 +1,14 @@
 import request from "supertest";
 import casual from "casual";
-import app from "../../app";
-import AppDataSource from "../../infra/database/datasource";
+import app from "../app";
+import AppDataSource from "../infra/database/datasource";
+import { generateNewJWTToken } from "./utils/generate-new-jwt-token";
 
 describe("Test the Users routes", () => {
+    let token: string;
     beforeAll(async function () {
         await AppDataSource.initialize();
+        token = await generateNewJWTToken();
     });
     test("It should create a new User", async () => {
         const user = {
@@ -16,12 +19,15 @@ describe("Test the Users routes", () => {
         };
         const response = await request(app)
             .post("/users")
+            .auth(token, { type: 'bearer' })
             .send(user);
-        expect(response.statusCode).toBe(201);
+        expect(response.statusCode).toEqual(201);
     });
     test("It should get all Users", async () => {
-        const response = await request(app).get("/users");
-        expect(response.statusCode).toBe(404);
+        const response = await request(app)
+        .get("/users")
+        .auth(token, { type: 'bearer' });
+        expect(response.statusCode).toEqual(200);
     });
     test("It should update a User", async () => {
         expect(200).toBe(200);
@@ -38,6 +44,7 @@ describe("Test the Users routes", () => {
         };
         const response = await request(app)
             .post("/users")
+            .auth(token, { type: 'bearer' })
             .send(user);
         expect(response.statusCode).toBe(400);
     });
@@ -50,6 +57,7 @@ describe("Test the Users routes", () => {
         };
         const response = await request(app)
             .post("/users")
+            .auth(token, { type: 'bearer' })
             .send(user);
         expect(response.statusCode).toBe(400);
     });

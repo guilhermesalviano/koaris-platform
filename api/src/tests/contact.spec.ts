@@ -1,12 +1,15 @@
 import request from "supertest";
 import casual from "casual";
-import app from "../../app";
-import AppDataSource from "../../infra/database/datasource";
+import app from "../app";
+import AppDataSource from "../infra/database/datasource";
+import { generateNewJWTToken } from "./utils/generate-new-jwt-token";
 
 describe("Test the Contacts routes", () => {
     let contactId: string;
+    let token: string;
     beforeAll(async function () {
         await AppDataSource.initialize();
+        token = await generateNewJWTToken();
     });
     test("It should create a new Contact", async () => {
         const contact = {
@@ -18,12 +21,15 @@ describe("Test the Contacts routes", () => {
         };
         const response = await request(app)
             .post("/contacts")
+            .auth(token, { type: 'bearer' })
             .send(contact);
         expect(response.statusCode).toBe(201);
         contactId = response.body.id;
     });
     test("It should get all Contact", async () => {
-        const response = await request(app).get("/contacts");
+        const response = await request(app)
+            .get("/contacts")
+            .auth(token, { type: 'bearer' });
         expect(response.statusCode).toBe(200);
     });
     test("It should update a Contact", async () => {
@@ -36,6 +42,7 @@ describe("Test the Contacts routes", () => {
         };
         const response = await request(app)
             .put("/contacts")
+            .auth(token, { type: 'bearer' })
             .send(contact);
         expect(response.statusCode).toEqual(200);
     });
@@ -48,6 +55,7 @@ describe("Test the Contacts routes", () => {
         };
         const response = await request(app)
             .put("/contacts")
+            .auth(token, { type: 'bearer' })
             .send(contact);
         expect(response.statusCode).toEqual(400);
     });
@@ -57,6 +65,7 @@ describe("Test the Contacts routes", () => {
         };
         const response = await request(app)
             .delete("/contacts")
+            .auth(token, { type: 'bearer' })
             .send(contact);
         expect(response.statusCode).toEqual(200);
     });
@@ -66,6 +75,7 @@ describe("Test the Contacts routes", () => {
         };
         const response = await request(app)
             .delete("/contacts")
+            .auth(token, { type: 'bearer' })
             .send(contact);
         expect(response.statusCode).toEqual(404);
     });
@@ -79,6 +89,7 @@ describe("Test the Contacts routes", () => {
         };
         const response = await request(app)
             .post("/contacts")
+            .auth(token, { type: 'bearer' })
             .send(contact);
         expect(response.body.phone).toEqual(contact.phone);
     });
@@ -92,6 +103,7 @@ describe("Test the Contacts routes", () => {
         };
         const response = await request(app)
             .post("/contacts")
+            .auth(token, { type: 'bearer' })
             .send(contact);
         expect(response.statusCode).toEqual(201);
     });
@@ -105,6 +117,7 @@ describe("Test the Contacts routes", () => {
         };
         const response = await request(app)
             .post("/contacts")
+            .auth(token, { type: 'bearer' })
             .send(contact);
         expect(response.statusCode).toEqual(400);
     });
@@ -118,6 +131,7 @@ describe("Test the Contacts routes", () => {
         };
         const response = await request(app)
             .post("/contacts")
+            .auth(token, { type: 'bearer' })
             .send(contact);
         expect(response.statusCode).toEqual(400);
     });
