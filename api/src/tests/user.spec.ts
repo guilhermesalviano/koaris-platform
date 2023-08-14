@@ -15,7 +15,7 @@ describe("Test the Users routes", () => {
             name: casual.name,
             role: "operator",
             email: casual.email,
-            password: casual.password,
+            password: casual.password + '1*',
         };
         const response = await request(app)
             .post("/users")

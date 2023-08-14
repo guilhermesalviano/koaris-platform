@@ -29,7 +29,7 @@ export class LoginService extends ServiceGeneric<User> {
 
     public async checkIfUserExists({ email, password }: { email: string; password: string }): Promise<IUser> {
         if (!email || !password) throw new Error('Alguns campos faltando.');
-        const user = await this.genericRepository.findOne({ where: { email, password } });
+        const user = await this.genericRepository.findOne({ where: { email } });
         if (!user) throw new Error('Usuário não encontrado.');
         return user;
     }

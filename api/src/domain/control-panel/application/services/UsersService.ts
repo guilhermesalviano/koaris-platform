@@ -3,6 +3,8 @@ import { User } from "../../enterprise/entities/user";
 import { Email } from "../../enterprise/entities/value-objects/email";
 import { Role } from "../../enterprise/entities/value-objects/role";
 import { ServiceGeneric } from "../../../../core/services/service.generic";
+import { Password } from "../../enterprise/entities/value-objects/password";
+import bcrypt from "bcryptjs";
 
 interface IUser {
     id?: string;
@@ -24,8 +26,12 @@ class UsersService extends ServiceGeneric<User> {
 
     async create(user: IUser): Promise<IUser> {
         if (!user.name || !user.role || !user.email || !user.password)
-            throw new Error(`Alguns campos faltando.`);
+            throw new Error('Alguns campos faltando.');
 
+        if (!Password.checkPassword(user.password))
+            throw new Error('Senha inválida.');
+
+        user.password = await bcrypt.hashSync(user.password, bcrypt.genSaltSync(10));
         user.email = Email.emailNormalizer(user.email);
 
         if (!Email.emailValidator(user.email))
