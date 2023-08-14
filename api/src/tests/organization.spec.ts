@@ -3,7 +3,7 @@ import casual from "casual";
 import { generate as cpfGenerate } from "gerador-validador-cpf";
 import app from "../app";
 import AppDataSource from "../infra/database/datasource";
-import { generateNewJWTToken } from "./utils/generate-new-jwt-token";
+import generateNewJWTToken from "./utils/generate-new-jwt-token";
 
 describe("Test the Organizations routes", () => {
     let token: string;

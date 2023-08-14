@@ -2,7 +2,7 @@ import request from "supertest";
 import casual from "casual";
 import app from "../app";
 import AppDataSource from "../infra/database/datasource";
-import { generateNewJWTToken } from "./utils/generate-new-jwt-token";
+import generateNewJWTToken from "./utils/generate-new-jwt-token";
 
 describe("Test the Services routes", () => {
     let serviceId: string;
