@@ -33,6 +33,7 @@ class UsersService extends ServiceGeneric<User> {
 
         user.password = await bcrypt.hashSync(user.password, bcrypt.genSaltSync(10));
         user.email = Email.emailNormalizer(user.email);
+        user.role = Role.checkRole(user.role);
 
         if (!Email.emailValidator(user.email))
             throw new Error('E-mail inválido.');
@@ -44,9 +45,7 @@ class UsersService extends ServiceGeneric<User> {
         });
 
         if (emailAlreadyExists)
-            throw new Error('Email already exists');
-
-        user.role = Role.checkRole(user.role);
+            throw new Error('Email já cadastrado.');
 
         const userCreated = this.genericRepository.create(user);
 

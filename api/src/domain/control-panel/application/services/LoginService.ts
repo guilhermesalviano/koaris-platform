@@ -2,6 +2,7 @@ import { ServiceGeneric } from "../../../../core/services/service.generic";
 import { UsersRespository } from "../repositories/UsersRepository";
 import { User } from "../../enterprise/entities/user";
 import jwt from "jsonwebtoken";
+import { Email } from "../../enterprise/entities/value-objects/email";
 
 interface IUser {
     id?: string;
@@ -29,6 +30,7 @@ export class LoginService extends ServiceGeneric<User> {
 
     public async checkIfUserExists({ email, password }: { email: string; password: string }): Promise<IUser> {
         if (!email || !password) throw new Error('Alguns campos faltando.');
+        email = Email.emailNormalizer(email);
         const user = await this.genericRepository.findOne({ where: { email } });
         if (!user) throw new Error('Usuário não encontrado.');
         return user;
