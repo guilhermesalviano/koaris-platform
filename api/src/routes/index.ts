@@ -1,5 +1,5 @@
 import { Router, response } from "express";
-import { LoginController } from "../domain/control-panel/application/controllers/LoginController";
+import { AuthenticationController } from "../domain/control-panel/application/controllers/AuthenticationController";
 import { UsersController } from "../domain/control-panel/application/controllers/UsersController";
 import { OrganizationsController } from "../domain/control-panel/application/controllers/OrganizationsController";
 import { ContactsController } from "../domain/control-panel/application/controllers/ContactsController";
@@ -9,7 +9,7 @@ import { verifyJWT } from "./middlewares/verify-jwt";
 
 const routes = Router();
 
-const loginController = new LoginController();
+const authenticationController = new AuthenticationController();
 const usersController = new UsersController();
 const organizationsController = new OrganizationsController();
 const contactsController = new ContactsController();
@@ -18,7 +18,7 @@ const configurationsController = new ConfigurationsController();
 
 routes.get("/status", (request, response) => {return response.json({message: "already's fine!"})});
 
-routes.post("/login", loginController.login);
+routes.post("/login", authenticationController.authenticate);
 
 // need authorization with bearer token
 routes.get("/users", verifyJWT, usersController.index);

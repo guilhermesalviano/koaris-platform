@@ -12,7 +12,7 @@ interface IUser {
     password: string;
 }
 
-export class LoginService extends ServiceGeneric<User> {
+export class AuthenticationService extends ServiceGeneric<User> {
     constructor() {
         super(UsersRespository)
     }

@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { LoginService } from "../../domain/control-panel/application/services/LoginService";
+import { AuthenticationService } from "../../domain/control-panel/application/services/AuthenticationService";
 
 export async function verifyJWT(request: Request, response: Response, next: any): Promise<Response> {
     try {
-        const result = await LoginService.verifyAccessToken(request.headers.authorization);
+        const result = await AuthenticationService.verifyAccessToken(request.headers.authorization);
         if (result) return next();
         return response.status(500).json({ message: "Erro desconhecido."});
     } catch (error) {

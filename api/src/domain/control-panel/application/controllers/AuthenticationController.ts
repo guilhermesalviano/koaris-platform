@@ -1,36 +1,35 @@
 import { Request, Response } from "express";
 import { Password } from "../../enterprise/entities/value-objects/password";
-import { LoginService } from "../services/LoginService";
+import { AuthenticationService } from "../services/AuthenticationService";
 import bcrypt from "bcryptjs";
 
-interface LoginControllerProps {
+interface AuthenticationControllerProps {
     email: string;
     password: string;
 }
 
-export class LoginController {
+export class AuthenticationController {
 
     /**
      * recieve email and password and return jwt token
      * @param request email and password
      * @param response jwt token
      */
-    async login(request: Request, response: Response): Promise<Response> {
-        const data: LoginControllerProps = request.body;
+    async authenticate(request: Request, response: Response): Promise<Response> {
+        const data: AuthenticationControllerProps = request.body;
 
         try {
-            // password validations
             this?.verifyPassword(data.password);
-            // check if has login and password in Database
-            const loginService = new LoginService();
-            const user = await loginService.checkIfUserExists(data);
-            // compare password hash against hash in database
+
+            const authenticationService = new AuthenticationService();
+            const user = await authenticationService.checkIfUserExists(data);
+
             if (!bcrypt.compareSync(data.password, user.password)) throw new Error('Senha incorreta.');
-            // if true, return a refresh token
-            const result = await loginService.generateRefreshToken({ sub: user.id });
+
+            const result = await authenticationService.generateRefreshToken({ sub: user.id });
+
             return response.status(200).json({ access_token: result });
         } catch (error: any) {
-            // if false, return error 401
             return response.status(401).json({
                 message: error.message
             });
