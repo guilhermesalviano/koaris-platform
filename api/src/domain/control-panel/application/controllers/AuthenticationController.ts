@@ -53,9 +53,9 @@ export class AuthenticationController {
             const refreshToken = request.headers.cookie.split("=")[1];
             await AuthenticationService.verifyRefreshToken(refreshToken);
 
-            const jwtVariables = Object(jwt.decode(refreshToken)).sub;
-            const newRefreshToken = await authenticationService.generateRefreshToken({ sub: jwtVariables });
-            const accessToken = await authenticationService.generateAccessToken({ sub: jwtVariables });
+            const userId = Object(jwt.decode(refreshToken)).sub;
+            const newRefreshToken = await authenticationService.generateRefreshToken({ sub: userId });
+            const accessToken = await authenticationService.generateAccessToken({ sub: userId });
 
             return response
                 .cookie("refreshToken", newRefreshToken, {

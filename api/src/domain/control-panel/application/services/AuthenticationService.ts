@@ -19,11 +19,11 @@ export class AuthenticationService extends ServiceGeneric<User> {
     }
 
     public async generateAccessToken(userId: { sub: string }): Promise<string> {
-        return await jwt.sign(userId, process.env.JWT_SECRET, { expiresIn: '4s' });
+        return await jwt.sign(userId, process.env.JWT_SECRET, { expiresIn: '480m' });
     }
 
     public async generateRefreshToken(userId: { sub: string }): Promise<string> {
-        return await jwt.sign(userId, process.env.JWT_SECRET, { expiresIn: '30s' });
+        return await jwt.sign(userId, process.env.JWT_SECRET, { expiresIn: '7d' });
     }
 
     public verifyPassword(passwordRecieved: string): void {
