@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { Password } from "../../enterprise/entities/value-objects/password";
 import { AuthenticationService } from "../services/AuthenticationService";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
 
 interface AuthenticationControllerProps {
     email: string;
@@ -48,12 +48,15 @@ export class AuthenticationController {
 
     async verifyJWTResfreshToken(request: Request, response: Response, next: any): Promise<Response> {
         const authenticationService = new AuthenticationService();
-        const refreshToken = request.headers.cookie.split("=")[1];
-        const jwtVariables = jwt.decode(refreshToken).toString();
+
         try {
-            await AuthenticationService.verifyRefreshToken(refreshToken)
+            const refreshToken = request.headers.cookie.split("=")[1];
+            await AuthenticationService.verifyRefreshToken(refreshToken);
+
+            const jwtVariables = Object(jwt.decode(refreshToken)).sub;
             const newRefreshToken = await authenticationService.generateRefreshToken({ sub: jwtVariables });
             const accessToken = await authenticationService.generateAccessToken({ sub: jwtVariables });
+
             return response
                 .cookie("refreshToken", newRefreshToken, {
                     path: "/",
