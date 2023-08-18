@@ -49,28 +49,22 @@ export class AuthenticationController {
     async verifyJWTResfreshToken(request: Request, response: Response, next: any): Promise<Response> {
         const authenticationService = new AuthenticationService();
         const refreshToken = request.headers.cookie.split("=")[1];
+        const jwtVariables = jwt.decode(refreshToken).toString();
         try {
-            const result = await AuthenticationService.verifyRefreshToken(refreshToken);
-            if (result) return response.status(200).json({ message: "Ok"});
-            else if (result !== undefined) {
-                const jwtVariables = jwt.decode(refreshToken).toString();
-                const accessToken = await authenticationService.generateAccessToken({ sub: jwtVariables });
-                const newRefreshToken = await authenticationService.generateRefreshToken({ sub: jwtVariables });
-                return response
-                    .cookie("refreshToken", newRefreshToken, {
-                        path: "/",
-                        secure: true,
-                        sameSite: true,
-                        httpOnly: true
-                    })
-                    .status(200)
-                    .json({ access_token: accessToken });
-            }
-            
-            return response.status(500).json({ message: "Erro desconhecido."});
+            await AuthenticationService.verifyRefreshToken(refreshToken)
+            const newRefreshToken = await authenticationService.generateRefreshToken({ sub: jwtVariables });
+            const accessToken = await authenticationService.generateAccessToken({ sub: jwtVariables });
+            return response
+                .cookie("refreshToken", newRefreshToken, {
+                    path: "/",
+                    secure: true,
+                    sameSite: true,
+                    httpOnly: true
+                })
+                .status(200)
+                .json({ access_token: accessToken });
         } catch (error) {
-            console.log(error);
-            return response.status(401).json({ message: "Acesso não autorizado.", erro: error });
+            return response.status(401).json({ message: "Login necessário." });
         }
     }
 
