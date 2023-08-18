@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { AuthenticationService } from "../../domain/control-panel/application/services/AuthenticationService";
+import { AuthenticationService } from "../../services/AuthenticationService";
 
 export async function verifyJWT(request: Request, response: Response, next: any): Promise<Response> {
     try {

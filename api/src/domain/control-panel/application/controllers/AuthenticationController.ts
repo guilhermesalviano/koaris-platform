@@ -26,7 +26,7 @@ export class AuthenticationController {
 
             if (!bcrypt.compareSync(data.password, user.password)) throw new Error('Senha incorreta.');
 
-            const result = await authenticationService.generateRefreshToken({ sub: user.id });
+            const result = await authenticationService.generateAccessToken({ sub: user.id });
 
             return response.status(200).json({ access_token: result });
         } catch (error: any) {

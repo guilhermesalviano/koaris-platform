@@ -28,7 +28,7 @@ describe("Test Authentication", () => {
     });
     test("It should generate a new JWT", async () => {
         const authenticationService = new AuthenticationService();
-        const token = await authenticationService.generateRefreshToken({ sub: "920d55ce-4dbd-4793-88b1-8baf0f76bf98" });
+        const token = await authenticationService.generateAccessToken({ sub: "920d55ce-4dbd-4793-88b1-8baf0f76bf98" });
         jwt = token;
         expect(token).toBeDefined();
     });

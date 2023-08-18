@@ -5,7 +5,7 @@ import { OrganizationsController } from "../domain/control-panel/application/con
 import { ContactsController } from "../domain/control-panel/application/controllers/ContactsController";
 import { ServicesController } from "../domain/control-panel/application/controllers/ServicesController";
 import { ConfigurationsController } from "../domain/control-panel/application/controllers/ConfigurationsController";
-import { verifyJWT } from "./middlewares/verify-jwt";
+import { verifyJWT } from "../domain/control-panel/application/controllers/middlewares/verify-jwt";
 
 const routes = Router();
 
