@@ -19,6 +19,7 @@ const configurationsController = new ConfigurationsController();
 routes.get("/status", (request, response) => {return response.json({message: "already's fine!"})});
 
 routes.post("/login", authenticationController.authenticate);
+routes.patch("/token/refresh", authenticationController.verifyJWTResfreshToken);
 
 // need authorization with bearer token
 routes.get("/users", verifyJWT, usersController.index);

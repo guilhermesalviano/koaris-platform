@@ -1,8 +1,9 @@
 import { ServiceGeneric } from "../../../../core/services/service.generic";
 import { UsersRespository } from "../repositories/UsersRepository";
 import { User } from "../../enterprise/entities/user";
-import jwt from "jsonwebtoken";
+import jwt, { TokenExpiredError } from "jsonwebtoken";
 import { Email } from "../../enterprise/entities/value-objects/email";
+import { Password } from "../../enterprise/entities/value-objects/password";
 
 interface IUser {
     id?: string;
@@ -17,6 +18,12 @@ export class AuthenticationService extends ServiceGeneric<User> {
         super(UsersRespository)
     }
 
+    public verifyPassword(passwordRecieved: string): void {
+        if (!Password.checkPassword(passwordRecieved))
+            throw new Error('Senha inválida.');
+        if (!passwordRecieved) throw new Error('Insira uma senha.');
+    }
+
     static async verifyAccessToken(token: string): Promise<boolean> {
         await jwt.verify(token.replace("Bearer", "").trim(), process.env.JWT_SECRET, (error: any) => {
             if (error) throw new Error(`${error}`);
@@ -24,8 +31,25 @@ export class AuthenticationService extends ServiceGeneric<User> {
         return true;
     }
 
+    static async verifyRefreshToken(refreshToken: string): Promise<boolean> {
+        let result: boolean;
+        await jwt.verify(refreshToken, process.env.JWT_SECRET, (error: TokenExpiredError) => {
+            if (error) {
+                if (error.message === 'jwt expired') result = false;
+                else throw new Error(`Refresh token inválido.`);
+            } else {
+                result = true;
+            }
+        });
+        return result;
+    }
+
     public async generateAccessToken(userId: { sub: string }): Promise<string> {
-        return await jwt.sign(userId, process.env.JWT_SECRET, { expiresIn: '1800s' });
+        return await jwt.sign(userId, process.env.JWT_SECRET, { expiresIn: '480m' });
+    }
+
+    public async generateRefreshToken(userId: { sub: string }): Promise<string> {
+        return await jwt.sign(userId, process.env.JWT_SECRET, { expiresIn: '7s' });
     }
 
     public async checkIfUserExists({ email, password }: { email: string; password: string }): Promise<IUser> {
