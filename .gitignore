@@ -1,5 +1,10 @@
 node_modules
+yarn-error.log
+dist
 
-api/node_modules
-api/src/dist
-api/src/database/database.sqlite
+api/src/infra/database/database.sqlite
+api/coverage
+
+.env
+
+ormlogs.log
