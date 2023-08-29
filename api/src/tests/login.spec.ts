@@ -22,13 +22,13 @@ describe("Test Authentication", () => {
         const response = await request(app)
             .post("/login")
             .send({
-                sub: "920d55ce-4dbd-4793-88b1-8baf0f76bf98"
+                sub: process.env.KOARIS_USER_ID
             });
         expect(response.statusCode).toEqual(401);
     });
     test("It should generate a new JWT", async () => {
         const authenticationService = new AuthenticationService();
-        const token = await authenticationService.generateAccessToken({ sub: "920d55ce-4dbd-4793-88b1-8baf0f76bf98" });
+        const token = await authenticationService.generateAccessToken({ sub: process.env.KOARIS_USER_ID });
         jwt = token;
         expect(token).toBeDefined();
     });
