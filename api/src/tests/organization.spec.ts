@@ -17,7 +17,7 @@ describe("Test the Organizations routes", () => {
             description: casual.description,
             logo: "https://w7.pngwing.com/pngs/874/15/png-transparent-graphic-designer-logo-bd-logo-web-design-user-interface-design-text.png",
             identification: cpfGenerate().replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4'),
-            user_id: "af453ac6-e3d4-44f4-9c98-8ad49f0cf0be",
+            user_id: process.env.KOARIS_USER_ID,
         };
         const response = await request(app)
             .post("/organizations")
