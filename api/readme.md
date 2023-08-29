@@ -15,6 +15,7 @@ I'm using PostgreSQL as a Production Database and SQLite as a Development Databa
 - Chat
 
 ## Development
+Obs: Enquanto não tiver gerando os ids automaticamente, sera necessário cadastro do primeiro usuário direto no DB e o restante pelo postman.
 ```bash
 # install dependencies
 - git pull

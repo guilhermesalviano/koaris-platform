@@ -17,7 +17,7 @@ describe("Test the Contacts routes", () => {
             email: casual.email,
             phone: casual.phone,
             source: casual.company_name + " - LP dia dos pais",
-            organization_id: "8f614c88-3b40-4994-92dc-8c1ec54affdc"
+            organization_id: process.env.KOARIS_ORGANIZATION_ID
         };
         const response = await request(app)
             .post("/contacts")
@@ -34,11 +34,11 @@ describe("Test the Contacts routes", () => {
     });
     test("It should update a Contact", async () => {
         const contact = {
-            id: "314887c9-cc4c-44db-808f-e360774fd8fb",
+            id: process.env.KOARIS_CONTACT_ID,
             name: casual.name,
             email: "contact@outlook.com",
             phone: casual.phone,
-            organization_id: "8f614c88-3b40-4994-92dc-8c1ec54affdc"
+            organization_id: process.env.KOARIS_ORGANIZATION_ID
         };
         const response = await request(app)
             .put("/contacts")
@@ -51,7 +51,7 @@ describe("Test the Contacts routes", () => {
             name: casual.name,
             email: "contact@outlook.com",
             phone: casual.phone,
-            organization_id: "8f614c88-3b40-4994-92dc-8c1ec54affdc"
+            organization_id: process.env.KOARIS_ORGANIZATION_ID
         };
         const response = await request(app)
             .put("/contacts")
@@ -85,7 +85,7 @@ describe("Test the Contacts routes", () => {
             email: "",
             phone: casual.phone,
             source: casual.company_name + " - LP dia dos pais",
-            organization_id: "8f614c88-3b40-4994-92dc-8c1ec54affdc"
+            organization_id: process.env.KOARIS_ORGANIZATION_ID
         };
         const response = await request(app)
             .post("/contacts")
@@ -99,7 +99,7 @@ describe("Test the Contacts routes", () => {
             email: casual.email,
             phone: "",
             source: casual.company_name + " - LP dia dos pais",
-            organization_id: "8f614c88-3b40-4994-92dc-8c1ec54affdc"
+            organization_id: process.env.KOARIS_ORGANIZATION_ID
         };
         const response = await request(app)
             .post("/contacts")
@@ -113,7 +113,7 @@ describe("Test the Contacts routes", () => {
             email: "guilhermesalviano@test",
             phone: casual.phone,
             source: casual.company_name + " - LP dia dos pais",
-            organization_id: "8f614c88-3b40-4994-92dc-8c1ec54affdc"
+            organization_id: process.env.KOARIS_ORGANIZATION_ID
         };
         const response = await request(app)
             .post("/contacts")
@@ -127,7 +127,7 @@ describe("Test the Contacts routes", () => {
             email: "contact@outlook.com",
             phone: casual.phone,
             source: casual.company_name + " - LP dia dos pais",
-            organization_id: "8f614c88-3b40-4994-92dc-8c1ec54affdc"
+            organization_id: process.env.KOARIS_ORGANIZATION_ID
         };
         const response = await request(app)
             .post("/contacts")

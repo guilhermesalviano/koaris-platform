@@ -13,8 +13,8 @@ describe("Test the Configurations routes", () => {
     });
     test("It should create a new Configuration", async () => {
         const configuration = {
-            organization_id: "f223bf64-0b18-4f9c-96d2-a54e7767fc46",
-            service_id: "5dfea2d0-d7cc-4eab-8ece-0ef2b2d9ac73",
+            organization_id: process.env.KOARIS_ORGANIZATION_ID,
+            service_id: process.env.KOARIS_SERVICE_ID,
             logoCustom: "https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-4.png",
             phone: casual.phone,
             socialLinks: "https://www.instragram.com/social"
@@ -35,8 +35,8 @@ describe("Test the Configurations routes", () => {
     test("It should update a Configuration", async () => {
         const configuration = {
             id: configurationId,
-            organization_id: "1813624b-495b-4c6f-a5f6-151fd07294ad",
-            service_id: "62ebb76c-65f8-4122-8e7a-8846ed6fa95c",
+            organization_id: process.env.KOARIS_ORGANIZATION_ID,
+            service_id: process.env.KOARIS_SERVICE_ID,
             logoCustom: "https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-4.png",
             phone: casual.phone,
             socialLinks: "https://www.instragram.com/social"
@@ -50,8 +50,8 @@ describe("Test the Configurations routes", () => {
 
     test("It shouldn't update a Configuration without id", async () => {
         const configuration = {
-            organization_id: "1813624b-495b-4c6f-a5f6-151fd07294ad",
-            service_id: "62ebb76c-65f8-4122-8e7a-8846ed6fa95c",
+            organization_id: process.env.KOARIS_ORGANIZATION_ID,
+            service_id: process.env.KOARIS_SERVICE_ID,
             logoCustom: "https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-4.png",
             phone: casual.phone,
             socialLinks: "https://www.instragram.com/social"
