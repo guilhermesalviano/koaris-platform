@@ -3,20 +3,21 @@
 @tailwind utilities;
 
 :root {
-  --foreground-hex: #000000;
-  --background-hex: #FEFEFE;
+  --foreground: #000000;
+  --background: #FEFEFE;
+  --primary-color: #F36246;
 }
 
 /*@media (prefers-color-scheme: dark) {
   :root {
-    --foreground-hex: #FEFEFE;
-    --background-hex: #000000;
+    --foreground: #FEFEFE;
+    --background: #000000;
   }
 }*/
 
 body {
-  color: var(--foreground-hex);
-  background: var(--background-hex);
+  color: var(--foreground);
+  background: var(--background);
 }
 
 .container {
@@ -25,5 +26,9 @@ body {
 }
 
 h1, ul, li {
-  color: var(--foreground-hex);
+  color: var(--foreground);
+}
+
+.text-highlight {
+  color: var(--primary-color);
 }

@@ -17,12 +17,19 @@ export default function Landing() {
           </ul>
           <SecundaryButton text="Login" />
         </nav>
-        <div className="flex py-8 items-center justify-center">
+        <div className="flex py-10 items-center">
           <div className="flex flex-col">
-            <h1 className="text-5xl font-bold tracking-widest leading-snug ">Transformando Ideias em Soluções Digitais de Excelência</h1>
-            <PrimaryButton text="Eu quero!" />
+            <h1 className="text-5xl font-bold tracking-widest leading-tight">
+              Transformando Ideias em Soluções Digitais de Excelência
+            </h1>
+            <div className="flex py-4">
+              <PrimaryButton text="Eu quero!" />
+              <a className="flex items-center font-bold text-highlight px-6 text-lg" href="#">
+                Ver Serviços
+              </a>
+            </div>
           </div>
-          <Image src="/banner.png" width={1080} height={1080} sizes="100%" alt="Banner" />
+          <Image src="/banner.png" width={1200} height={1200} sizes="100%" alt="Banner" />
         </div>
       </header>
       <main>
