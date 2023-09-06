@@ -29,7 +29,7 @@ export default function Landing() {
               </a>
             </div>
           </div>
-          <Image src="/banner.png" width={1200} height={1200} sizes="100%" alt="Banner" />
+          <Image src="/banner.png" width={1600} height={1600} sizes="100%" alt="Banner" />
         </div>
       </header>
       <main>
