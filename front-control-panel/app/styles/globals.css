@@ -5,6 +5,7 @@
 :root {
   --foreground: #000000;
   --background: #FEFEFE;
+  --background-harder: #FEFEFE;
   --primary-color: #F36246;
 }
 
@@ -20,11 +21,6 @@ body {
   background: var(--background);
 }
 
-.container {
-  max-width: 1680px;
-  margin: 0 auto;
-}
-
 h1, ul, li {
   color: var(--foreground);
 }
@@ -33,22 +29,20 @@ h1, ul, li {
   color: var(--primary-color);
 }
 
+.reasons {
+  background-color: var(--background-harder);
+}
+
+.container {
+  max-width: 1680px;
+  margin: 0 auto;
+}
+
 .card {
   background-color: var(--primary-color);
   color: var(--background);
+  min-height: 430px;
+  min-width: 250px;
+  max-width: 360px;
 }
-/*
-@media only screen and (max-width: 940px) {
-  .container-hero {
-    flex-direction: column-reverse;
-  }
 
-  .container-hero img {
-    width: 60%;
-    padding: 28px 0;
-  }
-
-  nav ul, nav button {
-    display: none !important;
-  }
-}*/
