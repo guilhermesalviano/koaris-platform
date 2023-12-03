@@ -30,7 +30,7 @@ h1, ul, li {
 }
 
 .reasons {
-  background-color: var(--background-harder);
+
 }
 
 .container {
@@ -46,3 +46,7 @@ h1, ul, li {
   max-width: 360px;
 }
 
+.primary-button {
+  background-color: var(--primary-color);
+  color: var(--background);
+}
