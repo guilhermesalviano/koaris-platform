@@ -99,8 +99,37 @@ export default function Landing() {
           </div>
         </div>
       </main>
-      <footer>
-        footer
+      <footer className="px-6 py-14">
+        <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 text-center sm:text-left ">
+          <div>
+            <img src="./logo.svg" alt="Logo" className="h-12 w-auto mx-auto sm:mx-0" />
+          </div>
+          <div>
+            <h2 className="font-bold mb-2">Produtos</h2>
+            <ul>
+              <li>Agendamento</li>
+              <li>Páginas Institucionais</li>
+              <li>Gestão Online</li>
+            </ul>
+          </div>
+          <div>
+            <h2 className="font-bold mb-2">Recursos</h2>
+            <ul>
+              <li>Blog</li>
+              <li>Central de ajuda</li>
+              <li>Termos de Serviço</li>
+              <li>Política de Privacidade</li>
+            </ul>
+          </div>
+          <div>
+            <h2 className="font-bold mb-2">Empresa</h2>
+            <ul>
+              <li>Sobre nós</li>
+              <li>Entre em contato</li>
+              <li>Trabalhe conosco</li>
+            </ul>
+          </div>
+        </div>
       </footer>
     </div>
   )
