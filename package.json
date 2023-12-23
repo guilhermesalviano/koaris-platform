@@ -1,0 +1,15 @@
+{
+  "name": "koaris-platform",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:guilhermesalviano/koaris-panel-monorepo.git",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "build": "turbo run build"
+  },
+  "license": "MIT"
+}

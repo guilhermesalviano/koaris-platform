@@ -8,3 +8,5 @@ api/coverage
 .env
 
 ormlogs.log
+
+.DS_Store
