@@ -102,7 +102,7 @@ export default function Landing() {
       <footer className="px-6 py-14">
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 text-center sm:text-left ">
           <div>
-            <img src="./logo.svg" alt="Logo" className="h-12 w-auto mx-auto sm:mx-0" />
+            <Image src="/logo.svg" width={104} height={104} alt="logo" />
           </div>
           <div>
             <h2 className="font-bold mb-2">Produtos</h2>
