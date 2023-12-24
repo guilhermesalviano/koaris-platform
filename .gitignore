@@ -10,3 +10,5 @@ api/coverage
 ormlogs.log
 
 .DS_Store
+
+secrets.tfvars
