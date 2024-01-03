@@ -1,5 +1,8 @@
 import { DataSourceOptions } from 'typeorm';
-import "dotenv/config";
+import path from 'path';
+import dotenv from 'dotenv';
+
+dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 // postgresql://docker:docker@localhost:5432/api?schema=public
 const port: number = Number.parseInt(process.env.DATABASE_PORT || '80');
