@@ -12,3 +12,4 @@ ormlogs.log
 .DS_Store
 
 secrets.tfvars
+terraforms/secrets.tfvars

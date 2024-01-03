@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { PrimaryButton } from "../components/PrimaryButton";
-import { SecundaryButton } from "../components/SecundaryButton";
+import { Button, Heading, Card, Input } from "@koaris/bloom-ui";
+import { Form } from "../components/Form";
 
 export default function Landing() {
   return (
@@ -15,15 +15,15 @@ export default function Landing() {
             <li>Novidades</li>
             <li>Contatos</li>
           </ul>
-          <SecundaryButton text="Login" />
+          <Button variant="secondary">Login</Button>
         </nav>
         <div className="flex py-10 items-center flex-col-reverse lg:flex-row">
           <div className="flex flex-col">
-            <h1 className="md:text-5xl text-4xl font-bold tracking-wider md:leading-tight">
+            <Heading variant="h1" size="7xl" /*className="font-bold md:text-5xl text-4xl font-bold tracking-wider md:leading-tight"*/>
               Transformando ideias em soluções digitais de excelência
-            </h1>
+            </Heading>
             <div className="flex py-4">
-              <PrimaryButton text="Eu quero!" />
+              <Button>Eu quero!</Button>
               <a className="flex items-center font-bold text-highlight px-6 text-lg" href="#">
                 Ver Serviços
               </a>
@@ -38,13 +38,21 @@ export default function Landing() {
             Por que escolher a Koaris?
           </h1>
           <div className="cards flex flex-col md:flex-row items-center py-4">
-            <div className="card rounded-lg p-8 flex flex-col m-2 md:w-4/12">
+            <Card className="" 
+              image="/card1.svg" 
+              title="Inovação" 
+              imageSize="200rem" 
+              size="medium"
+              direction="col"
+              content="Estamos na vanguarda da tecnologia, mantendo nossa equipe atualizada com as últimas tendências para oferecer soluções inovadoras e alinhadas com o futuro."
+            />
+            {/*<div className="card rounded-lg p-8 flex flex-col m-2 md:w-4/12">
               <img src="/card1.svg" alt="Inovação" className="py-2 w-200 self-center" />
               <h2 className="font-bold text-lg text-left">Inovação Constante</h2>
               <p className="text-base">
                 Estamos na vanguarda da tecnologia, mantendo nossa equipe atualizada com as últimas tendências para oferecer soluções inovadoras e alinhadas com o futuro.
               </p>
-            </div>
+            </div>*/}
 
             <div className="card rounded-lg p-8 flex flex-col m-2 md:w-4/12">
               <img src="/card2.svg" alt="Inovação" className="py-10 w-200 self-center" />
@@ -64,38 +72,12 @@ export default function Landing() {
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-center p-2 bg-background">
+        <div className="flex flex-col items-center justify-center p-2 bg-neutral-400">
           <h1 className="md:text-5xl text-4xl font-bold tracking-wider py-4 md:leading-tight ">
             Contate-nos
           </h1>
           <div className="flex md:flex-col flex-row items-center w-full">
-            <div className="flex flex-col m-2 w-6/12">
-              <label className="text-lg mb-2 px-1">Nome</label>
-              <input type="text" placeholder="Seu Nome" className="rounded-sm p-2 border-2 border-gray-700"/>
-            </div>
-            <div className="flex flex-col m-2 w-6/12">
-              <label className="text-lg mb-2 px-1">Celular</label>
-              <input type="phone" placeholder="(11) 91234-5678" className="rounded-sm p-2 border-2 border-gray-700"/>
-            </div>
-          </div>
-          <div className="flex flex-row items-center w-full">
-            <div className="flex flex-col m-2 w-full">
-              <label className="text-lg mb-2 px-1">E-mail</label>
-              <input type="email" placeholder="seuemail@email.com.br" className="rounded-sm p-2 border-2 border-gray-700"/>
-            </div>
-          </div>
-          <div className="flex flex-row items-center w-full">
-            <div className="flex flex-col m-2 w-full">
-              <label className="mb-2 px-1">Mensagem</label>
-              <textarea className="rounded-sm p-2 border-2 border-gray-700 h-32" placeholder="Deixe-nos saber como podemos ajudar! Por favor, preencha o formulário abaixo e entraremos em contato o mais breve possível. Seus comentários e perguntas são muito importantes para nós." />
-            </div>
-          </div>
-          <div className="flex flex-row items-end w-full">
-            <div className=" flex flex-col m-2 self-end">
-              <button className="p-3 primary-button text-lg rounded-sm w-40" type="submit">
-                Enviar
-              </button>
-            </div>
+            <Form action="POST" target="/dashboard" type="landing" />
           </div>
         </div>
       </main>
