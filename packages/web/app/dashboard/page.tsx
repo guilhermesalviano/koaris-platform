@@ -4,8 +4,8 @@ import { FiUsers, FiMessageSquare } from "react-icons/fi";
 
 export default function Dashboard() {
   return (
-    <div className="bg-dashboard-color w-full flex justify-center h-screen">
-      <aside className="p-4 w-60 flex justify-center flex-col">
+    <div className="w-full bg-background flex justify-center h-screen">
+      <aside className="bg-dashboard-color p-4 w-48 flex justify-center flex-col fixed left-0 top-0 h-full">
         <Image src="/logo-negative.svg" width={104} height={104} alt="logo" className="self-center"/>
         <nav className="h-full">
           <ul className="h-full flex align-middle justify-center flex-col gap-6">
@@ -32,7 +32,7 @@ export default function Dashboard() {
           </ul>
         </nav>
       </aside>
-      <div className="w-full h-screen bg-background rounded-2+xl">
+      <div className="w-full h-screen rounded-2+xl pl-48">
         <header className="border-b-2 p-6 flex justify-end">
           <h1 className="px-2">Conta:</h1>
           <ul>
@@ -41,15 +41,17 @@ export default function Dashboard() {
         </header>
         <main className="flex flex-col justify-center ">
           <Heading className="text-3xl font-bold p-8">Seja bem vindo, Guilherme</Heading>
-          <div className="grid grid-cols-2">
+          <div className="grid grid-cols-1 xl:grid-cols-2 ">
             <div className="flex flex-col px-8">
-              <div className="info-widget flex items-center py-2">
-                <div className="info-widget-image bg-gray-100 rounded-md p-4">
-                  <FiUsers className="text-black" size={30} />  
-                </div>
-                <div className="info-widget-text flex flex-col align-middle justify-center px-2">
-                  <h1>Total de contatos</h1>
-                  <p className="text-black">1</p>
+              <div className="widgets flex gap-12">
+                <div className="info-widget flex items-center py-2">
+                  <div className="info-widget-image bg-gray-100 rounded-md p-4">
+                    <FiUsers className="text-black" size={30} />  
+                  </div>
+                  <div className="info-widget-text flex flex-col align-middle justify-center px-2">
+                    <h1>Total de contatos</h1>
+                    <p className="text-black">1</p>
+                  </div>
                 </div>
               </div>
               <Card 
