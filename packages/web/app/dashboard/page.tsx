@@ -1,45 +1,60 @@
+"use client"
 import Image from "next/image";
 import { Link, Heading, Button, Text, Card } from "@koaris/bloom-ui";
-import { FiUsers, FiMessageSquare } from "react-icons/fi";
+import { FiUsers, FiMessageSquare, FiMenu, FiX } from "react-icons/fi";
+import { useState } from "react";
 
 export default function Dashboard() {
+  const [openedMenu, setOpenedMenu] = useState(false)
+
   return (
     <div className="w-full bg-background flex justify-center h-screen">
-      <aside className="bg-dashboard-color p-4 w-48 flex justify-center flex-col fixed left-0 top-0 h-full">
-        <Image src="/logo-negative.svg" width={104} height={104} alt="logo" className="self-center"/>
-        <nav className="h-full">
-          <ul className="h-full flex align-middle justify-center flex-col gap-6">
-            <li className="text-white">
-              <Link url="/dashboard" newPage={false} className="text-white">
-                Home
-              </Link>
-            </li>
-            <li className="text-white">
-              <Link url="/users" newPage={false} className="text-white">
-                Usuários
-              </Link>
-            </li>
-            <li className="text-white">
-              <Link url="/products" newPage={false} className="text-white">
-                Produtos
-              </Link>
-            </li>
-            <li className="text-white">
-              <Link url="/settings" newPage={false} className="text-white">
-                Configurações
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </aside>
-      <div className="w-full h-screen rounded-2+xl pl-48">
-        <header className="border-b-2 p-6 flex justify-end">
-          <h1 className="px-2">Conta:</h1>
-          <ul>
-            <li>Alpha</li>
-          </ul>
+      <div className="w-full h-screen rounded-2xl">
+        <aside className={`bg-dashboard-color py-8 pl-8 pr-14 z-10 fixed flex justify-center flex-col left-0 top-0 h-full transition-transform duration-300
+            ${openedMenu ? 'translate-x-0' : '-translate-x-60'}`}
+          >
+          <div className="flex justify-center items-center gap-4">
+            <FiX size={30} color="FFFFFF" className="cursor-pointer" onClick={() => setOpenedMenu(!openedMenu)} />
+            <Image src="/logo-negative.svg" width={104} height={104} alt="logo" className="self-center"/>
+          </div>
+          <nav className="h-full">
+            <ul className="h-full flex align-middle justify-center flex-col gap-6">
+              <li className="text-white">
+                <Link url="/dashboard" newPage={false} className="text-white">
+                  Home
+                </Link>
+              </li>
+              <li className="text-white">
+                <Link url="/users" newPage={false} className="text-white">
+                  Usuários
+                </Link>
+              </li>
+              <li className="text-white">
+                <Link url="/products" newPage={false} className="text-white">
+                  Produtos
+                </Link>
+              </li>
+              <li className="text-white">
+                <Link url="/settings" newPage={false} className="text-white">
+                  Configurações
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </aside>
+        <header className="border-b-2 p-6 flex justify-between fixed w-full h-28 bg-background ">
+          <div className="flex justify-center items-center gap-6">
+            <FiMenu size={36} className="cursor-pointer" onClick={() => setOpenedMenu(!openedMenu)}/>
+            <Image src="/logo.svg" width={104} height={104} alt="logo" className="self-center"/>
+          </div>
+          <div>
+            <h1 className="px-2">Conta:</h1>
+            <ul>
+              <li>Alpha</li>
+            </ul>
+          </div>
         </header>
-        <main className="flex flex-col justify-center">
+        <main className="flex flex-col justify-center pt-28">
           <Heading className="sm:text-3xl text-2xl font-bold p-8">Seja bem vindo, Guilherme</Heading>
           <div className="flex flex-col">
             <div className="flex flex-col px-8">
