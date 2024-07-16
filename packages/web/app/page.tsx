@@ -69,24 +69,24 @@ export default function Landing() {
             Contate-nos
           </h1>
           <div className="flex md:flex-col flex-row items-center w-full">
-            <div className="flex flex-col m-2 w-6/12">
-              <label className="text-lg mb-2 px-1">Nome</label>
+            <div className="flex flex-col ml-1 w-6/12">
+              <label className="text-lg mb-1">Nome</label>
               <input type="text" placeholder="Seu Nome" className="rounded-sm p-2 border-2 border-gray-700"/>
             </div>
-            <div className="flex flex-col m-2 w-6/12">
-              <label className="text-lg mb-2 px-1">Celular</label>
+            <div className="flex flex-col mr-1 w-6/12">
+              <label className="text-lg mb-1">Celular</label>
               <input type="phone" placeholder="(11) 91234-5678" className="rounded-sm p-2 border-2 border-gray-700"/>
             </div>
           </div>
           <div className="flex flex-row items-center w-full">
-            <div className="flex flex-col m-2 w-full">
-              <label className="text-lg mb-2 px-1">E-mail</label>
+            <div className="flex flex-col m-1 w-full">
+              <label className="text-lg mb-1">E-mail</label>
               <input type="email" placeholder="seuemail@email.com.br" className="rounded-sm p-2 border-2 border-gray-700"/>
             </div>
           </div>
           <div className="flex flex-row items-center w-full">
-            <div className="flex flex-col m-2 w-full">
-              <label className="mb-2 px-1">Mensagem</label>
+            <div className="flex flex-col m-1 w-full">
+              <label className="mb-1">Mensagem</label>
               <textarea className="rounded-sm p-2 border-2 border-gray-700 h-32" placeholder="Deixe-nos saber como podemos ajudar! Por favor, preencha o formulário abaixo e entraremos em contato o mais breve possível. Seus comentários e perguntas são muito importantes para nós." />
             </div>
           </div>
@@ -101,7 +101,7 @@ export default function Landing() {
       </main>
       <footer className="px-6 py-14">
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 text-center sm:text-left ">
-          <div>
+          <div className="flex justify-center">
             <Image src="/logo.svg" width={104} height={104} alt="logo" />
           </div>
           <div>
