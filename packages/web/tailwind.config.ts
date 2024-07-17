@@ -17,6 +17,7 @@ const config: Config = {
         'background': '#FEFEFE',
         'line-color': '#818484',
         'dashboard-color': '#1C2126',
+        'dashboard-color-selected': '#2a3138',
         'primary-color': '#F36246',
       }
     },
