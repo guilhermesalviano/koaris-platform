@@ -7,6 +7,7 @@
   --background: #FEFEFE;
   --background-harder: #FEFEFE;
   --primary-color: #F36246;
+  font-family: 'Open sans', 'Courier New', Courier, monospace;
 }
 
 /*@media (prefers-color-scheme: dark) {

@@ -18,25 +18,25 @@ export function Header() {
                 </div>
                 <nav className="h-full mt-4">
                     <ul className="h-full text-xl flex align-middle flex-col">
-                        <li className="flex items-center gap-4 text-white bg-dashboard-color-selected p-4 mt-2 rounded-lg">
+                        <li className="flex items-center gap-4 text-white p-4 mt-2 rounded-lg hover:bg-dashboard-color-selected">
                             <FiHome size={32} />
                             <Link url="/dashboard" newPage={false} className="font-bold">
                                 Dashboard
                             </Link>
                         </li>
-                        <li className="flex items-center gap-4 text-white p-4 mt-2 rounded-lg">
+                        <li className="flex items-center gap-4 text-white p-4 mt-2 rounded-lg hover:bg-dashboard-color-selected">
                             <FiUser size={32} />
                             <Link url="/users" newPage={false} className="font-normal">
                                 Usuários
                             </Link>
                         </li>
-                        <li className="flex items-center gap-4 text-white p-4 mt-2 rounded-lg">
+                        <li className="flex items-center gap-4 text-white p-4 mt-2 rounded-lg hover:bg-dashboard-color-selected">
                             <FiShoppingBag size={32} />
                             <Link url="/products" newPage={false} className="font-normal">
                                 Produtos
                             </Link>
                         </li>
-                        <li className="flex items-center gap-4 text-white p-4 mt-2 rounded-lg">
+                        <li className="flex items-center gap-4 text-white p-4 mt-2 rounded-lg hover:bg-dashboard-color-selected">
                             <FiTool size={32} />
                             <Link url="/settings" newPage={false} className="font-normal">
                                 Configurações
