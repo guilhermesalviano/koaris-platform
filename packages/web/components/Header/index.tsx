@@ -9,7 +9,7 @@ export function Header() {
 
     return (
         <>
-            <aside className={`bg-dashboard-color py-8 z-10 fixed flex justify-center flex-col left-0 top-0 h-full transition-transform duration-300
+            <aside className={`bg-neutral-800 py-8 z-10 fixed flex justify-center flex-col left-0 top-0 h-full transition-transform duration-300
             ${openedMenu ? 'translate-x-0' : '-translate-x-72'}`}
             >
                 <div className="flex justify-center items-center gap-4 pl-8 pr-14">
@@ -18,27 +18,27 @@ export function Header() {
                 </div>
                 <nav className="h-full mt-4">
                     <ul className="h-full text-xl flex align-middle flex-col">
-                        <li className="flex items-center gap-4 text-white p-4 mt-2 rounded-lg hover:bg-dashboard-color-selected">
+                        <li className="flex items-center gap-4 text-white p-4 mt-2 rounded-lg hover:bg-neutral-700">
                             <FiHome size={32} />
-                            <Link url="/dashboard" newPage={false} className="font-bold">
+                            <Link url="/dashboard" newPage={false} className="font-bold text-white">
                                 Dashboard
                             </Link>
                         </li>
-                        <li className="flex items-center gap-4 text-white p-4 mt-2 rounded-lg hover:bg-dashboard-color-selected">
+                        <li className="flex items-center gap-4 text-white p-4 mt-2 rounded-lg hover:bg-neutral-700">
                             <FiUser size={32} />
-                            <Link url="/users" newPage={false} className="font-normal">
+                            <Link url="/users" newPage={false} className="font-normal text-white">
                                 Usuários
                             </Link>
                         </li>
-                        <li className="flex items-center gap-4 text-white p-4 mt-2 rounded-lg hover:bg-dashboard-color-selected">
+                        <li className="flex items-center gap-4 text-white p-4 mt-2 rounded-lg hover:bg-neutral-700">
                             <FiShoppingBag size={32} />
-                            <Link url="/products" newPage={false} className="font-normal">
+                            <Link url="/products" newPage={false} className="font-normal text-white">
                                 Produtos
                             </Link>
                         </li>
-                        <li className="flex items-center gap-4 text-white p-4 mt-2 rounded-lg hover:bg-dashboard-color-selected">
+                        <li className="flex items-center gap-4 text-white p-4 mt-2 rounded-lg hover:bg-neutral-700">
                             <FiTool size={32} />
-                            <Link url="/settings" newPage={false} className="font-normal">
+                            <Link url="/settings" newPage={false} className="font-normal text-white">
                                 Configurações
                             </Link>
                         </li>

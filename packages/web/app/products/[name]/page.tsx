@@ -14,7 +14,7 @@ export default function Product() {
           Para ativar o sistema de gestão online, complete as seguintes informações.
         </Text>
 
-        <Form className="border-0 flex-col p-0 mt-10">
+        <Form className="border-0 flex-col p-0 mt-10 bg-neutral">
           <Text tag="label">
             Nome fantasia
           </Text>
@@ -51,11 +51,11 @@ export default function Product() {
             Telefone
           </Text>
           <Input placeholder="(DD)123456789"
-            type="text"
+            type="phone"
             value=""
             error={false} />
 
-          <div className="flex justify-between">
+          <div className="flex justify-between gap-4">
             <Button variant="secondary" size="md">
               Cancelar
             </Button>

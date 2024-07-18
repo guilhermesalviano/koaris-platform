@@ -14,7 +14,7 @@ export default function Payment() {
                     Selecione qual modalidade você deseja assinar.
                 </Text>
 
-                <Form className="border-0 flex-col p-0 mt-10">
+                <Form className="border-0 flex-col p-0 mt-10 bg-neutral">
 
                     <Text tag="strong" size="xl">
                         1. Tipo de assinatura

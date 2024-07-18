@@ -1,58 +1,20 @@
-@tailwind base;
-@tailwind components;
+@import "@koaris/bloom-ui/dist/tailwind.css";
 @tailwind utilities;
 
 :root {
-  --foreground: #000000;
-  --background: #FEFEFE;
-  --background-harder: #FEFEFE;
-  --primary-color: #F36246;
-  font-family: 'Open sans', 'Courier New', Courier, monospace;
+  --foreground: theme('colors.neutral.800');
+  --background: theme('colors.neutral.50');
 }
 
-/*@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
-    --foreground: #FEFEFE;
-    --background: #000000;
+    --foreground: theme('colors.neutral.50');
+    --background: theme('colors.neutral.800');
   }
-}*/
+}
 
+/*
 body {
   color: var(--foreground);
   background: var(--background);
-}
-
-h1, ul, li {
-  color: var(--foreground);
-}
-
-.text-highlight {
-  color: var(--primary-color);
-}
-
-.reasons {
-
-}
-
-.container {
-  max-width: 1680px;
-  margin: 0 auto;
-}
-
-.card {
-  background-color: var(--primary-color);
-  color: var(--background);
-  min-height: 430px;
-  min-width: 250px;
-  max-width: 360px;
-}
-
-.primary-button {
-  background-color: var(--primary-color);
-  color: var(--background);
-}
-
-.secundary-button {
-  background-color: var(--background);
-  color: var(--primary-color);
-}
+}*/
