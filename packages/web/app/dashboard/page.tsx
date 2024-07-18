@@ -1,7 +1,6 @@
-import Image from "next/image";
-import { Link, Heading, Button, Text, Card } from "@koaris/bloom-ui";
-import { FiUsers, FiMessageSquare } from "react-icons/fi";
-import { Header } from "../../components/Header";
+import { Heading, Button, Card } from "@koaris/bloom-ui"
+import { FiUsers, FiMessageSquare } from "react-icons/fi"
+import { Header } from "../../components/Header"
 
 export default function Dashboard() {
 

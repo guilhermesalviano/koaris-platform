@@ -1,6 +1,6 @@
 "use client"
-import { Button, Form, Heading, Input, Text } from "@koaris/bloom-ui";
-import { Header } from "../../../components/Header";
+import { Button, Form, Heading, Input, Text } from "@koaris/bloom-ui"
+import { Header } from "../../../components/Header"
 
 export default function Product() {
   return (

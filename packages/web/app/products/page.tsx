@@ -1,5 +1,5 @@
-import { Card, Link } from "@koaris/bloom-ui";
-import { Header } from "../../components/Header";
+import { Card, Link } from "@koaris/bloom-ui"
+import { Header } from "../../components/Header"
 
 export default function Products() {
     return (

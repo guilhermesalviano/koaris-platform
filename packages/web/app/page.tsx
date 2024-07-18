@@ -1,6 +1,6 @@
-import Image from "next/image";
-import { PrimaryButton } from "../components/PrimaryButton";
-import { SecundaryButton } from "../components/SecundaryButton";
+import Image from "next/image"
+import { PrimaryButton } from "../components/PrimaryButton"
+import { SecundaryButton } from "../components/SecundaryButton"
 
 export default function Landing() {
   return (
