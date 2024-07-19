@@ -8,7 +8,7 @@ export default function Dashboard() {
     <div className="w-full bg-background flex justify-center h-screen">
       <div className="w-full h-screen rounded-2xl">
         <Header />
-        <main className="flex flex-col justify-center pt-28">
+        <main className="flex flex-col justify-center pt-20">
           <Heading className="sm:text-3xl text-2xl font-bold p-8">Seja bem vindo, Guilherme</Heading>
           <div className="flex flex-col">
             <div className="flex flex-col px-8">

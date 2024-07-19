@@ -11,7 +11,7 @@ export default function Chat() {
         <div className="">
             <Header />
             <div className="chat-container flex">
-                <ul className="list w-full pt-28">
+                <ul className="list w-full pt-20">
                     <div className="flex items-center justify-between bg-neutral-200 p-6">
                         <Heading size="xl">Todas as conversas</Heading>
                         <FiSearch size={26} className="cursor-pointer" />
@@ -41,7 +41,7 @@ export default function Chat() {
                         <FiMoreHorizontal size={32} color="000000" />
                     </li>
                 </ul>
-                <div className={`chat w-full mt-28 bg-neutral ${chatSelected ? 'absolute' : 'hidden'}`}>
+                <div className={`chat w-full mt-20 bg-neutral ${chatSelected ? 'absolute' : 'hidden'}`}>
                     <div className="flex gap-2 p-4">
                         <Image src="/contact-icon.png" alt="" width={60} height={60} />
                         <div className="flex flex-col justify-center">

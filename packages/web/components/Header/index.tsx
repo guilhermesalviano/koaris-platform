@@ -1,19 +1,20 @@
 "use client"
-import { Link } from "@koaris/bloom-ui";
+import { Heading, Link } from "@koaris/bloom-ui";
 import Image from "next/image";
 import { useState } from "react";
-import { FiHome, FiMenu, FiShoppingBag, FiTool, FiUser, FiX } from "react-icons/fi";
+import { FiChevronDown, FiHome, FiMenu, FiShoppingBag, FiTool, FiUser, FiX } from "react-icons/fi";
 
 export function Header() {
-    const [openedMenu, setOpenedMenu] = useState(false)
+    const [openSidebar, setOpenSidebar] = useState(false)
+    const [openUserMenu, setOpenUserMenu] = useState(false)
 
     return (
         <>
             <aside className={`bg-neutral-800 py-8 z-10 fixed flex justify-center flex-col left-0 top-0 h-full transition-transform duration-300
-            ${openedMenu ? 'translate-x-0' : '-translate-x-72'}`}
+            ${openSidebar ? 'translate-x-0' : '-translate-x-72'}`}
             >
                 <div className="flex justify-center items-center gap-4 pl-8 pr-14">
-                    <FiX size={30} color="FFFFFF" className="cursor-pointer" onClick={() => setOpenedMenu(!openedMenu)} />
+                    <FiX size={30} color="FFFFFF" className="cursor-pointer" onClick={() => setOpenSidebar(!openSidebar)} />
                     <Image src="/koaris-negative.svg" width={104} height={104} alt="logo" className="self-center" />
                 </div>
                 <nav className="h-full mt-4">
@@ -45,15 +46,18 @@ export function Header() {
                     </ul>
                 </nav>
             </aside>
-            <header className="border-b-2 p-6 flex justify-between fixed w-full h-28 bg-neutral ">
+            <header className="border-b-2 p-6 flex justify-between fixed w-full h-20 bg-neutral-100">
                 <div className="flex justify-center items-center gap-6">
-                    <FiMenu size={36} className="cursor-pointer" onClick={() => setOpenedMenu(!openedMenu)} />
+                    <FiMenu size={36} className="cursor-pointer" onClick={() => setOpenSidebar(!openSidebar)} />
                     <Image src="/koaris.svg" width={104} height={104} alt="logo" className="self-center" />
                 </div>
-                <div>
-                    <h1 className="px-2">Conta:</h1>
-                    <ul>
-                        <li>Alpha</li>
+                <div className="flex items-center flex-col">
+                    <h3 className="flex items-center gap-1 cursor-pointer" onClick={() => setOpenUserMenu(!openUserMenu)}>
+                        Conta: Alpha
+                        <FiChevronDown size={24} className="mt-1" />
+                    </h3>
+                    <ul className={`bg-neutral-100 p-2 pl-8 pr-8 text-neutral-800 ${openUserMenu ? '' : ''}`}>
+                        <li>Usuários</li>
                     </ul>
                 </div>
             </header>

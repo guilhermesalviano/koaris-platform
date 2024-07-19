@@ -6,7 +6,7 @@ export default function Payment() {
     return (
         <div className="">
             <Header />
-            <main className="pt-32 pl-4 pr-4">
+            <main className="pt-24 pl-4 pr-4">
                 <Heading tag="h1" size="3xl" className="font-bold" >
                     Mensalidade
                 </Heading>
