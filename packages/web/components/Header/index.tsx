@@ -14,7 +14,7 @@ export function Header() {
             >
                 <div className="flex justify-center items-center gap-4 pl-8 pr-14">
                     <FiX size={30} color="FFFFFF" className="cursor-pointer" onClick={() => setOpenedMenu(!openedMenu)} />
-                    <Image src="/logo-negative.svg" width={104} height={104} alt="logo" className="self-center" />
+                    <Image src="/koaris-negative.svg" width={104} height={104} alt="logo" className="self-center" />
                 </div>
                 <nav className="h-full mt-4">
                     <ul className="h-full text-xl flex align-middle flex-col">
@@ -48,7 +48,7 @@ export function Header() {
             <header className="border-b-2 p-6 flex justify-between fixed w-full h-28 bg-neutral ">
                 <div className="flex justify-center items-center gap-6">
                     <FiMenu size={36} className="cursor-pointer" onClick={() => setOpenedMenu(!openedMenu)} />
-                    <Image src="/logo.svg" width={104} height={104} alt="logo" className="self-center" />
+                    <Image src="/koaris.svg" width={104} height={104} alt="logo" className="self-center" />
                 </div>
                 <div>
                     <h1 className="px-2">Conta:</h1>

@@ -9,7 +9,7 @@ export default function Landing() {
     <div className="container flex flex-col">
       <header className="flex flex-col w-11/12 p-14">
         <nav className="flex flex-row items-center justify-between px-4">
-          <Image src="/logo.svg" width={104} height={104} alt="logo" />
+          <Image src="/koaris.svg" width={104} height={104} alt="logo" />
           <ul className="space-x-8 text-lg font-bold md:flex">
             <li>Início</li>
             <li>Sobre</li>
