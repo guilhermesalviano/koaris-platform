@@ -26,8 +26,8 @@ export function Header() {
                         </li>
                         <li className="flex items-center gap-4 text-white p-4 mt-2 rounded-lg hover:bg-neutral-700">
                             <FiUser size={32} />
-                            <Link url="/users" newPage={false} className="font-normal text-white">
-                                Usuários
+                            <Link url="/contacts" newPage={false} className="font-normal text-white">
+                                Contatos
                             </Link>
                         </li>
                         <li className="flex items-center gap-4 text-white p-4 mt-2 rounded-lg hover:bg-neutral-700">
@@ -45,7 +45,7 @@ export function Header() {
                     </ul>
                 </nav>
             </aside>
-            <header className="border-b-2 p-6 flex justify-between fixed w-full h-28 bg-background ">
+            <header className="border-b-2 p-6 flex justify-between fixed w-full h-28 bg-neutral ">
                 <div className="flex justify-center items-center gap-6">
                     <FiMenu size={36} className="cursor-pointer" onClick={() => setOpenedMenu(!openedMenu)} />
                     <Image src="/logo.svg" width={104} height={104} alt="logo" className="self-center" />

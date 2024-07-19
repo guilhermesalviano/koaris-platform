@@ -1,6 +1,6 @@
 "use client"
 import { Button, Card, Form, Heading, Input, Text } from "@koaris/bloom-ui"
-import { Header } from "../../components/Header"
+import { Header } from "../../../components/Header"
 
 export default function Payment() {
     return (
