@@ -2,7 +2,7 @@
 import { Heading, Link } from "@koaris/bloom-ui";
 import Image from "next/image";
 import { useState } from "react";
-import { FiChevronDown, FiHome, FiMenu, FiShoppingBag, FiTool, FiUser, FiX } from "react-icons/fi";
+import { FiBell, FiChevronDown, FiHome, FiMenu, FiSettings, FiShoppingBag, FiTool, FiUser, FiX } from "react-icons/fi";
 
 export function Header() {
     const [openSidebar, setOpenSidebar] = useState(false)
@@ -46,19 +46,24 @@ export function Header() {
                     </ul>
                 </nav>
             </aside>
-            <header className="border-b-2 p-6 flex justify-between fixed w-full h-20 bg-neutral-100">
+            <header className="border-b-2 p-6 flex justify-between fixed w-full h-20 border-neutral-200">
                 <div className="flex justify-center items-center gap-6">
                     <FiMenu size={36} className="cursor-pointer" onClick={() => setOpenSidebar(!openSidebar)} />
                     <Image src="/koaris.svg" width={104} height={104} alt="logo" className="self-center" />
                 </div>
-                <div className="flex items-center flex-col">
-                    <h3 className="flex items-center gap-1 cursor-pointer" onClick={() => setOpenUserMenu(!openUserMenu)}>
-                        Conta: Alpha
-                        <FiChevronDown size={24} className="mt-1" />
-                    </h3>
-                    <ul className={`bg-neutral-100 p-2 pl-8 pr-8 text-neutral-800 ${openUserMenu ? '' : ''}`}>
-                        <li>Usuários</li>
-                    </ul>
+                <div className="flex items-center ">
+                    <div className="flex p-3 ml-2 mr-2 hover:bg-neutral-200 border border-neutral-200 rounded-md cursor-pointer">
+                        <FiBell size={25} />
+                    </div>
+                    <div className="flex items-center flex-col">
+                        <h3 className="flex items-center p-3 hover:bg-neutral-200 border border-neutral-200 rounded-md cursor-pointer" onClick={() => setOpenUserMenu(!openUserMenu)}>
+                            Alpha
+                            <FiChevronDown size={25} className="pt-1" />
+                        </h3>
+                        <ul className={`bg-neutral-100 p-2 pl-8 pr-8 text-neutral-800 ${openUserMenu ? 'hidden' : ''}`}>
+                            <li>Usuários</li>
+                        </ul>
+                    </div>
                 </div>
             </header>
         </>
