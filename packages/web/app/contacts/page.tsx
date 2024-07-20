@@ -1,6 +1,8 @@
-import { Heading } from "@koaris/bloom-ui";
+'use client'
+import { Checkbox, Heading } from "@koaris/bloom-ui";
 import { Header } from "../../components/Header";
 import { PiChatsCircleFill } from "react-icons/pi";
+import { FiSend } from "react-icons/fi";
 
 
 export default function Contacts() {
@@ -26,6 +28,9 @@ export default function Contacts() {
                             </tr>
                             <tr className="bg-orange-500 text-neutral">
                                 <td>
+                                    <Checkbox />
+                                </td>
+                                <td>
                                     Nome
                                 </td>
                                 <td>
@@ -43,7 +48,10 @@ export default function Contacts() {
                             </tr>
                         </thead>
                         <tbody>
-                        <tr>
+                            <tr>
+                                <td>
+                                    <Checkbox />
+                                </td>
                                 <td>
                                     Guilherme                  
                                 </td>
@@ -57,7 +65,7 @@ export default function Contacts() {
                                     Aguardando confirmação
                                 </td>
                                 <td>
-                                    <PiChatsCircleFill size={28} />
+                                    <FiSend size={24} />
                                 </td>
                             </tr>
                         </tbody>

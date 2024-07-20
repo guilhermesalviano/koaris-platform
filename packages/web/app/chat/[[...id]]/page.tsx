@@ -1,7 +1,7 @@
 'use client'
 import { Button, Heading, Text } from "@koaris/bloom-ui";
-import { Header } from "../../../../components/Header";
-import { FiMoreHorizontal, FiSearch, FiSend, FiX } from "react-icons/fi";
+import { Header } from "../../../components/Header";
+import { FiArchive, FiMoreHorizontal, FiSearch, FiSend, FiX } from "react-icons/fi";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -14,7 +14,10 @@ export default function Chat() {
                 <ul className="list w-full pt-20">
                     <div className="flex items-center justify-between bg-neutral-200 p-6">
                         <Heading size="xl">Todas as conversas</Heading>
-                        <FiSearch size={26} className="cursor-pointer" />
+                        <div className="flex gap-4">
+                            <FiArchive size={26} className="cursor-pointer" />
+                            <FiSearch size={26} className="cursor-pointer" />
+                        </div>
                     </div>
                     <li className="bg-orange-700 p-4 flex items-center justify-around border-b border-neutral-400 cursor-pointer" onClick={() => setChatSelected(!chatSelected)}>
                         <Image src="/contact-icon.png" alt="" width={60} height={60} />

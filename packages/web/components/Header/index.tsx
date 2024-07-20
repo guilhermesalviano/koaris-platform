@@ -2,7 +2,7 @@
 import { Heading, Link } from "@koaris/bloom-ui";
 import Image from "next/image";
 import { useState } from "react";
-import { FiBell, FiChevronDown, FiHome, FiMenu, FiSettings, FiShoppingBag, FiTool, FiUser, FiX } from "react-icons/fi";
+import { FiBarChart, FiBell, FiChevronDown, FiHome, FiMenu, FiMessageCircle, FiSettings, FiShoppingBag, FiTool, FiUser, FiX } from "react-icons/fi";
 
 export function Header() {
     const [openSidebar, setOpenSidebar] = useState(false)
@@ -32,9 +32,21 @@ export function Header() {
                             </Link>
                         </li>
                         <li className="flex items-center gap-4 text-white p-4 mt-2 rounded-lg hover:bg-neutral-700">
+                            <FiMessageCircle size={32} />
+                            <Link url="/chat" newPage={false} className="font-normal text-white">
+                                Atendimento ao cliente
+                            </Link>
+                        </li>
+                        <li className="flex items-center gap-4 text-white p-4 mt-2 rounded-lg hover:bg-neutral-700">
                             <FiShoppingBag size={32} />
                             <Link url="/products" newPage={false} className="font-normal text-white">
                                 Produtos
+                            </Link>
+                        </li>
+                        <li className="flex items-center gap-4 text-white p-4 mt-2 rounded-lg hover:bg-neutral-700">
+                            <FiBarChart size={32} />
+                            <Link url="/sales" newPage={false} className="font-normal text-white">
+                                Vendas
                             </Link>
                         </li>
                         <li className="flex items-center gap-4 text-white p-4 mt-2 rounded-lg hover:bg-neutral-700">
@@ -52,11 +64,17 @@ export function Header() {
                     <Image src="/koaris.svg" width={104} height={104} alt="logo" className="self-center" />
                 </div>
                 <div className="flex items-center ">
-                    <div className="flex p-3 ml-2 mr-2 hover:bg-neutral-200 border border-neutral-200 rounded-md cursor-pointer">
-                        <FiBell size={25} />
+                    <div className="flex p-3 hover:bg-neutral-200 border border-neutral-200 rounded-md cursor-pointer transition-colors duration-300">
+                        <FiMessageCircle size={25} />
+                    </div>
+                    <div className="flex ml-2 mr-2 p-3 hover:bg-neutral-200 border border-neutral-200 rounded-md cursor-pointer transition-colors duration-300">
+                        <div className="relative inline-block">
+                            <span className="notification-icon top-0 right-0 bg-red-500 w-2 h-2 rounded-full absolute " />
+                            <FiBell size={25} className="vibrate" />
+                        </div>
                     </div>
                     <div className="flex items-center flex-col">
-                        <h3 className="flex items-center p-3 hover:bg-neutral-200 border border-neutral-200 rounded-md cursor-pointer" onClick={() => setOpenUserMenu(!openUserMenu)}>
+                        <h3 className="flex items-center p-3 hover:bg-neutral-200 border border-neutral-200 rounded-md cursor-pointer transition-colors duration-300" onClick={() => setOpenUserMenu(!openUserMenu)}>
                             Alpha
                             <FiChevronDown size={25} className="pt-1" />
                         </h3>
