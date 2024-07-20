@@ -51,7 +51,7 @@ export default function Chat() {
                             <Heading>Chat com o cliente</Heading>
                             <Text tag="strong">Guilherme Farias, origem: Site</Text>
                         </div>
-                        <div className="absolute right-2 top-2 cursor-pointer" onClick={() => setChatSelected(!chatSelected)}>
+                        <div className="absolute right-2 top-4 hover:bg-neutral-200 p-1 rounded-md cursor-pointer transition-colors duration-300" onClick={() => setChatSelected(!chatSelected)}>
                             <FiX size={30}/>
                         </div>
                     </div>

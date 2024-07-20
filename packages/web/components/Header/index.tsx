@@ -2,7 +2,7 @@
 import { Heading, Link } from "@koaris/bloom-ui";
 import Image from "next/image";
 import { useState } from "react";
-import { FiBarChart, FiBell, FiChevronDown, FiHome, FiMenu, FiMessageCircle, FiSettings, FiShoppingBag, FiTool, FiUser, FiX } from "react-icons/fi";
+import { FiBarChart, FiBell, FiChevronDown, FiHome, FiMenu, FiMessageCircle, FiPieChart, FiSettings, FiShoppingBag, FiTool, FiUser, FiX } from "react-icons/fi";
 
 export function Header() {
     const [openSidebar, setOpenSidebar] = useState(false)
@@ -11,7 +11,7 @@ export function Header() {
     return (
         <>
             <aside className={`bg-neutral-800 py-8 z-10 fixed flex justify-center flex-col left-0 top-0 h-full transition-transform duration-300
-            ${openSidebar ? 'translate-x-0' : '-translate-x-72'}`}
+            ${openSidebar ? 'translate-x-0' : '-translate-x-80'}`}
             >
                 <div className="flex justify-center items-center gap-4 pl-8 pr-14">
                     <FiX size={30} color="FFFFFF" className="cursor-pointer" onClick={() => setOpenSidebar(!openSidebar)} />
@@ -50,6 +50,12 @@ export function Header() {
                             </Link>
                         </li>
                         <li className="flex items-center gap-4 text-white p-4 mt-2 rounded-lg hover:bg-neutral-700">
+                            <FiPieChart size={32} />
+                            <Link url="/sales" newPage={false} className="font-normal text-white">
+                                Analises
+                            </Link>
+                        </li>
+                        <li className="flex items-center gap-4 text-white p-4 mt-2 rounded-lg hover:bg-neutral-700">
                             <FiTool size={32} />
                             <Link url="/settings" newPage={false} className="font-normal text-white">
                                 Configurações
@@ -58,28 +64,36 @@ export function Header() {
                     </ul>
                 </nav>
             </aside>
-            <header className="border-b-2 p-6 flex justify-between fixed w-full h-20 border-neutral-200">
+            <header className="border-b-2 p-6 flex justify-between fixed w-full h-20 border-neutral-200 bg-neutral">
                 <div className="flex justify-center items-center gap-6">
                     <FiMenu size={36} className="cursor-pointer" onClick={() => setOpenSidebar(!openSidebar)} />
                     <Image src="/koaris.svg" width={104} height={104} alt="logo" className="self-center" />
                 </div>
                 <div className="flex items-center ">
-                    <div className="flex p-3 hover:bg-neutral-200 border border-neutral-200 rounded-md cursor-pointer transition-colors duration-300">
-                        <FiMessageCircle size={25} />
+                    <div className="flex p-3 bg-neutral hover:bg-neutral-200 border border-neutral-200 rounded-md cursor-pointer transition-colors duration-300">
+                        <div className="relative inline-block">
+                            <span className="notification-icon top-0 right-0 bg-red-500 w-2 h-2 rounded-full absolute " />
+                            <FiMessageCircle size={25} className="vibrate" />
+                        </div>
                     </div>
-                    <div className="flex ml-2 mr-2 p-3 hover:bg-neutral-200 border border-neutral-200 rounded-md cursor-pointer transition-colors duration-300">
+                    <div className="flex ml-2 mr-2 p-3 bg-neutral hover:bg-neutral-200 border border-neutral-200 rounded-md cursor-pointer transition-colors duration-300">
                         <div className="relative inline-block">
                             <span className="notification-icon top-0 right-0 bg-red-500 w-2 h-2 rounded-full absolute " />
                             <FiBell size={25} className="vibrate" />
                         </div>
                     </div>
-                    <div className="flex items-center flex-col">
-                        <h3 className="flex items-center p-3 hover:bg-neutral-200 border border-neutral-200 rounded-md cursor-pointer transition-colors duration-300" onClick={() => setOpenUserMenu(!openUserMenu)}>
+                    <div className="flex items-center flex-col relative">
+                        <h3 className="flex items-center p-3 hover:bg-neutral-200 bg-neutral border border-neutral-200 rounded-md cursor-pointer transition-colors duration-300" onClick={() => setOpenUserMenu(!openUserMenu)}>
                             Alpha
                             <FiChevronDown size={25} className="pt-1" />
                         </h3>
-                        <ul className={`bg-neutral-100 p-2 pl-8 pr-8 text-neutral-800 ${openUserMenu ? 'hidden' : ''}`}>
-                            <li>Usuários</li>
+                        <ul className={`text-neutral-800 absolute right-0 mt-12 border transition-transform duration-800 ${openUserMenu ? 'translate-y-0' : '-translate-y-10 hidden'}`}>
+                            <li className="p-2 pl-12 pr-12 hover:bg-neutral-100 bg-neutral cursor-pointer">
+                                Usuários
+                            </li>
+                            <li className="p-2 pl-12 pr-12 hover:bg-neutral-100 bg-neutral cursor-pointer">
+                                Usuários
+                            </li>
                         </ul>
                     </div>
                 </div>

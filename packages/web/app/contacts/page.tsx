@@ -1,5 +1,5 @@
 'use client'
-import { Checkbox, Heading } from "@koaris/bloom-ui";
+import { Checkbox, Heading, Input } from "@koaris/bloom-ui";
 import { Header } from "../../components/Header";
 import { PiChatsCircleFill } from "react-icons/pi";
 import { FiSend } from "react-icons/fi";
@@ -14,16 +14,16 @@ export default function Contacts() {
                     Gerencie seus clientes
                 </Heading>
                 <div className="flex flex-col pl-8 pr-8">
-                    <table className="border border-neutral-800 rounded-md bg-neutral-200">
+                    <table className="bg-neutral-200 shadow-md rounded shadow-neutral-400">
                         <thead>
                             <tr>
-                                <td colSpan={4}>
-                                    <div className="flex justify-end">
-                                        <input type="text" className="rounded-lg" />
-                                    </div>
+                                <td className="p-4 text-2xl">
+                                    Lista de clientes
                                 </td>
-                                <td>
-                                    test
+                                <td colSpan={5}>
+                                    <div className="flex justify-end pr-4">
+                                        <Input type="text" className="rounde w-60" error={false} />
+                                    </div>
                                 </td>
                             </tr>
                             <tr className="bg-orange-500 text-neutral">

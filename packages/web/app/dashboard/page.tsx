@@ -13,7 +13,7 @@ export default function Dashboard() {
           <div className="flex flex-col">
             <div className="flex flex-col px-8">
               <div className="widgets grid gap-4 pb-3 sm:grid-cols-2">
-                <div className="info-widget flex items-center py-2">
+                <div className="info-widget flex items-center">
                   <div className="info-widget-image bg-gray-100 rounded-md p-4">
                     <FiUsers className="text-black" size={30} />
                   </div>
