@@ -14,9 +14,13 @@ export default function Chat() {
                 <ul className="list w-full pt-20">
                     <div className="flex items-center justify-between bg-neutral-200 p-6">
                         <Heading size="xl">Todas as conversas</Heading>
-                        <div className="flex gap-4">
-                            <FiArchive size={26} className="cursor-pointer" />
-                            <FiSearch size={26} className="cursor-pointer" />
+                        <div className="flex gap-2">
+                            <div className="flex p-3 hover:bg-neutral-200 border-neutral-200 rounded-full cursor-pointer transition-colors duration-300">
+                                <FiArchive size={26} className="" />
+                            </div>
+                            <div className="flex p-3 hover:bg-neutral-200 border-neutral-200 rounded-full cursor-pointer transition-colors duration-300">
+                                <FiSearch size={26} className="" />
+                            </div>
                         </div>
                     </div>
                     <li className="bg-orange-700 p-4 flex items-center justify-around border-b border-neutral-400 cursor-pointer" onClick={() => setChatSelected(!chatSelected)}>
@@ -25,7 +29,9 @@ export default function Chat() {
                             <Text tag="strong" className="name text-neutral-200">guilherme.salviano12@outlook.com</Text>
                             <Text className="message text-neutral-200">Olá, gostaria de um orçamento para 2 impressões.</Text>
                         </div>
-                        <FiMoreHorizontal size={32} color="FFFFFF" />
+                        <div className="flex p-3 hover:bg-neutral-200 border-neutral-200 rounded-full cursor-pointer transition-colors duration-300">
+                            <FiMoreHorizontal size={32} color="FFFFFF" />
+                        </div>
                     </li>
                     <li className="p-4 flex items-center justify-around border-b border-neutral-400 cursor-pointer" onClick={() => setChatSelected(!chatSelected)}>
                         <Image src="/contact-icon.png" alt="" width={60} height={60} />
@@ -33,7 +39,9 @@ export default function Chat() {
                             <Text tag="strong" className="name text-neutral-800">guilherme.salviano12@outlook.com</Text>
                             <Text className="message text-neutral-800">Olá, gostaria de um orçamento para 2 impressões.</Text>
                         </div>
-                        <FiMoreHorizontal size={32} color="000000" />
+                        <div className="flex p-3 hover:bg-neutral-200 border-neutral-200 rounded-full cursor-pointer transition-colors duration-300">
+                            <FiMoreHorizontal size={32} color="000000" />
+                        </div>
                     </li>
                     <li className="p-4 flex items-center justify-around border-b border-neutral-400 cursor-pointer" onClick={() => setChatSelected(!chatSelected)}>
                         <Image src="/contact-icon.png" alt="" width={60} height={60} />
@@ -41,7 +49,9 @@ export default function Chat() {
                             <Text tag="strong" className="name text-neutral-800">guilherme.salviano12@outlook.com</Text>
                             <Text className="message text-neutral-800">Olá, gostaria de um orçamento para 2 impressões.</Text>
                         </div>
-                        <FiMoreHorizontal size={32} color="000000" />
+                        <div className="flex p-3 hover:bg-neutral-200 border-neutral-200 rounded-full cursor-pointer transition-colors duration-300">
+                            <FiMoreHorizontal size={32} color="000000" />
+                        </div>
                     </li>
                 </ul>
                 <div className={`chat w-full mt-20 bg-neutral ${chatSelected ? 'absolute' : 'hidden'}`}>
@@ -51,7 +61,7 @@ export default function Chat() {
                             <Heading>Chat com o cliente</Heading>
                             <Text tag="strong">Guilherme Farias, origem: Site</Text>
                         </div>
-                        <div className="absolute right-2 top-4 hover:bg-neutral-200 p-1 rounded-md cursor-pointer transition-colors duration-300" onClick={() => setChatSelected(!chatSelected)}>
+                        <div className="absolute right-2 top-4 hover:bg-neutral-200 p-2 rounded-full cursor-pointer transition-colors duration-300" onClick={() => setChatSelected(!chatSelected)}>
                             <FiX size={30}/>
                         </div>
                     </div>

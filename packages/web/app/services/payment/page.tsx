@@ -13,14 +13,10 @@ export default function Payment() {
                 <Text>
                     Selecione qual modalidade você deseja assinar.
                 </Text>
-
                 <Form className="border-0 flex-col p-0 mt-10 bg-neutral">
-
                     <Text tag="strong" size="xl">
                         1. Tipo de assinatura
                     </Text>
-
-                    
                     <div className="flex gap-2">
                         <Card
                             title="Assinatura Mensal"
@@ -29,7 +25,6 @@ export default function Payment() {
                             image="/site_institucional.svg"
                             className="p-8 h-36 gap-2"
                         ></Card>
-
                         <Card
                             title="Assinatura Trimestral"
                             content="Adiante o pagamento dos próximos três meses com 17% de desconto."
@@ -38,11 +33,9 @@ export default function Payment() {
                             className="p-8 h-36 gap-2"
                         ></Card>
                     </div>
-
                     <Text tag="strong" size="xl">
                         2. Método de pagamento
                     </Text>
-
                     <div className="flex gap-2 w-full">
                         <Card
                             title="Boleto"
@@ -66,7 +59,6 @@ export default function Payment() {
                             size="sm"
                         ></Card>
                     </div>
-
                     <div className="flex justify-between">
                         <Button variant="secondary" size="md">
                             Cancelar

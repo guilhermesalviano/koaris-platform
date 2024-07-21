@@ -1,12 +1,13 @@
 "use client"
-import { Heading, Link } from "@koaris/bloom-ui";
+import { Heading, Link, Text } from "@koaris/bloom-ui";
 import Image from "next/image";
 import { useState } from "react";
-import { FiBarChart, FiBell, FiChevronDown, FiHome, FiMenu, FiMessageCircle, FiPieChart, FiSettings, FiShoppingBag, FiTool, FiUser, FiX } from "react-icons/fi";
+import { FiAlertCircle, FiBarChart, FiBell, FiChevronDown, FiHome, FiMenu, FiMessageCircle, FiPieChart, FiSettings, FiShoppingBag, FiTool, FiUser, FiX } from "react-icons/fi";
 
 export function Header() {
     const [openSidebar, setOpenSidebar] = useState(false)
     const [openUserMenu, setOpenUserMenu] = useState(false)
+    const [openNotifications, setOpenNotifications] = useState(false)
 
     return (
         <>
@@ -70,28 +71,56 @@ export function Header() {
                     <Image src="/koaris.svg" width={104} height={104} alt="logo" className="self-center" />
                 </div>
                 <div className="flex items-center ">
-                    <div className="flex p-3 bg-neutral hover:bg-neutral-200 border border-neutral-200 rounded-md cursor-pointer transition-colors duration-300">
+                    <div className="flex p-3 bg-neutral hover:bg-neutral-200 border border-neutral-200 rounded-md transition-colors duration-300 cursor-pointer">
                         <div className="relative inline-block">
                             <span className="notification-icon top-0 right-0 bg-red-500 w-2 h-2 rounded-full absolute " />
                             <FiMessageCircle size={25} className="" />
                         </div>
                     </div>
-                    <div className="flex ml-2 mr-2 p-3 bg-neutral hover:bg-neutral-200 border border-neutral-200 rounded-md cursor-pointer transition-colors duration-300">
+                    <div className="flex ml-2 mr-2 p-3 bg-neutral relative hover:bg-neutral-200 border border-neutral-200 rounded-md transition-colors duration-300 cursor-pointer" onClick={() => setOpenNotifications(!openNotifications)}>
                         <div className="relative inline-block">
                             <span className="notification-icon top-0 right-0 bg-red-500 w-2 h-2 rounded-full absolute " />
                             <FiBell size={25} className="vibrate" />
                         </div>
+                        <ul className={`text-neutral-800 absolute bg-neutral right-0 mt-9 rounded-lg border transition-transform duration-800 ${openNotifications ? 'translate-y-0' : '-translate-y-10 hidden'}`}>
+                            <li className="p-2 border-b">
+                                <Text tag="strong" size="xl" className="p-2 pr-24">Notificações</Text>
+                            </li>
+                            <li className="flex gap-2 items-center p-2 pl-4 border-b hover:bg-neutral-100 cursor-pointer">
+                                <div className="relative inline-block">
+                                    <span className="notification-icon top-0 right-0 bg-red-500 w-2 h-2 rounded-full absolute " />
+                                    <FiAlertCircle size={20} />
+                                </div>
+                                <span>
+                                    Novo Lead
+                                </span>
+                            </li>
+                            <li className="flex gap-2 items-center p-2 pl-4 border-b hover:bg-neutral-100 cursor-pointer">
+                                <div className="relative inline-block">
+                                    <span className="notification-icon top-0 right-0 bg-red-500 w-2 h-2 rounded-full absolute " />
+                                    <FiAlertCircle size={20} />
+                                </div>
+                                <span>
+                                    Solicitação de orçamento
+                                </span>
+                            </li>
+                            <li className="flex justify-center items-center p-2 hover:bg-neutral-100 cursor-pointer">
+                                <span>
+                                    ver todas
+                                </span>
+                            </li>
+                        </ul>
                     </div>
                     <div className="flex items-center flex-col relative">
                         <h3 className="flex items-center p-3 hover:bg-neutral-200 bg-neutral border border-neutral-200 rounded-md cursor-pointer transition-colors duration-300" onClick={() => setOpenUserMenu(!openUserMenu)}>
-                            Alpha
+                            Alpha Bureau
                             <FiChevronDown size={25} className="pt-1" />
                         </h3>
-                        <ul className={`text-neutral-800 absolute right-0 mt-12 border transition-transform duration-800 ${openUserMenu ? 'translate-y-0' : '-translate-y-10 hidden'}`}>
-                            <li className="p-2 pl-12 pr-12 hover:bg-neutral-100 bg-neutral cursor-pointer">
+                        <ul className={`text-neutral-800 bg-neutral absolute right-0 mt-12 rounded-lg border transition-transform duration-800 ${openUserMenu ? 'translate-y-0' : '-translate-y-10 hidden'}`}>
+                            <li className="p-2 pl-11 pr-11 hover:bg-neutral-100 cursor-pointer">
                                 Usuários
                             </li>
-                            <li className="p-2 pl-12 pr-12 hover:bg-neutral-100 bg-neutral cursor-pointer">
+                            <li className="p-2 pl-11 pr-11 hover:bg-neutral-100 cursor-pointer">
                                 Usuários
                             </li>
                         </ul>

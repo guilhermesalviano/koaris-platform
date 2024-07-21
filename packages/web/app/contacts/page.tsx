@@ -27,7 +27,7 @@ export default function Contacts() {
                                 </td>
                             </tr>
                             <tr className="bg-orange-500 text-neutral">
-                                <td>
+                                <td className="p-4">
                                     <Checkbox />
                                 </td>
                                 <td>
@@ -49,7 +49,7 @@ export default function Contacts() {
                         </thead>
                         <tbody>
                             <tr>
-                                <td>
+                                <td className="p-4">
                                     <Checkbox />
                                 </td>
                                 <td>
@@ -65,7 +65,9 @@ export default function Contacts() {
                                     Aguardando confirmação
                                 </td>
                                 <td>
-                                    <FiSend size={24} />
+                                    <div className="flex p-2 hover:bg-neutral-200 border-neutral-200 rounded-full cursor-pointer transition-colors duration-300">
+                                        <FiSend size={24} />
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
