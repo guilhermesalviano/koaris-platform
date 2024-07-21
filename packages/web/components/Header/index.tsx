@@ -8,6 +8,7 @@ export function Header() {
     const [openSidebar, setOpenSidebar] = useState(false)
     const [openUserMenu, setOpenUserMenu] = useState(false)
     const [openNotifications, setOpenNotifications] = useState(false)
+    const [openMessages, setOpenMessages] = useState(false)
 
     return (
         <>
@@ -71,11 +72,39 @@ export function Header() {
                     <Image src="/koaris.svg" width={104} height={104} alt="logo" className="self-center" />
                 </div>
                 <div className="flex items-center ">
-                    <div className="flex p-3 bg-neutral hover:bg-neutral-200 border border-neutral-200 rounded-md transition-colors duration-300 cursor-pointer">
+                    <div className="flex p-3 bg-neutral relative hover:bg-neutral-200 border border-neutral-200 rounded-md transition-colors duration-300 cursor-pointer" onClick={() => setOpenMessages(!openMessages)}>
                         <div className="relative inline-block">
                             <span className="notification-icon top-0 right-0 bg-red-500 w-2 h-2 rounded-full absolute " />
                             <FiMessageCircle size={25} className="" />
                         </div>
+                        <ul className={`text-neutral-800 absolute bg-neutral right-0 mt-9 rounded-lg border transition-transform duration-800 ${openMessages ? 'translate-y-0' : '-translate-y-10 hidden'}`}>
+                            <li className="p-2 border-b">
+                                <Text tag="strong" size="xl" className="p-2 pr-24">Mensagens</Text>
+                            </li>
+                            <li className="flex gap-2 items-center p-2 pl-4 border-b hover:bg-neutral-100 cursor-pointer">
+                                <div className="relative inline-block">
+                                    <span className="notification-icon top-0 right-0 bg-red-500 w-2 h-2 rounded-full absolute " />
+                                    <FiMessageCircle size={20} />
+                                </div>
+                                <span>
+                                    Olá, tudo bem?
+                                </span>
+                            </li>
+                            <li className="flex gap-2 items-center p-2 pl-4 border-b hover:bg-neutral-100 cursor-pointer">
+                                <div className="relative inline-block">
+                                    <span className="notification-icon top-0 right-0 bg-red-500 w-2 h-2 rounded-full absolute " />
+                                    <FiMessageCircle size={20} />
+                                </div>
+                                <span>
+                                    Quais produtos de impressão?
+                                </span>
+                            </li>
+                            <li className="flex justify-center items-center p-2 hover:bg-neutral-100 cursor-pointer">
+                                <span>
+                                    ver todas
+                                </span>
+                            </li>
+                        </ul>
                     </div>
                     <div className="flex ml-2 mr-2 p-3 bg-neutral relative hover:bg-neutral-200 border border-neutral-200 rounded-md transition-colors duration-300 cursor-pointer" onClick={() => setOpenNotifications(!openNotifications)}>
                         <div className="relative inline-block">
