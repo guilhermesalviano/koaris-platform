@@ -39,8 +39,8 @@ export function Header() {
                         </li>
                         <li className="flex items-center gap-4 text-white p-4 mt-2 rounded-lg hover:bg-neutral-700">
                             <FiShoppingBag size={32} />
-                            <Link url="/products" newPage={false} className="font-normal text-white">
-                                Produtos
+                            <Link url="/services" newPage={false} className="font-normal text-white">
+                                Serviços
                             </Link>
                         </li>
                         <li className="flex items-center gap-4 text-white p-4 mt-2 rounded-lg hover:bg-neutral-700">
@@ -73,7 +73,7 @@ export function Header() {
                     <div className="flex p-3 bg-neutral hover:bg-neutral-200 border border-neutral-200 rounded-md cursor-pointer transition-colors duration-300">
                         <div className="relative inline-block">
                             <span className="notification-icon top-0 right-0 bg-red-500 w-2 h-2 rounded-full absolute " />
-                            <FiMessageCircle size={25} className="vibrate" />
+                            <FiMessageCircle size={25} className="" />
                         </div>
                     </div>
                     <div className="flex ml-2 mr-2 p-3 bg-neutral hover:bg-neutral-200 border border-neutral-200 rounded-md cursor-pointer transition-colors duration-300">

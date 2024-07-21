@@ -17,10 +17,10 @@ export default function Contacts() {
                     <table className="bg-neutral-200 shadow-md rounded shadow-neutral-400">
                         <thead>
                             <tr>
-                                <td className="p-4 text-2xl">
+                                <td className="p-4 text-2xl" colSpan={3}>
                                     Lista de clientes
                                 </td>
-                                <td colSpan={5}>
+                                <td colSpan={3}>
                                     <div className="flex justify-end pr-4">
                                         <Input type="text" className="rounde w-60" error={false} />
                                     </div>

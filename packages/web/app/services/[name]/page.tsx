@@ -2,7 +2,7 @@
 import { Button, Form, Heading, Input, Text } from "@koaris/bloom-ui"
 import { Header } from "../../../components/Header"
 
-export default function Product() {
+export default function Service() {
   return (
     <div className="">
       <Header />

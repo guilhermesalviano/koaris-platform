@@ -1,12 +1,12 @@
 import { Card, Link } from "@koaris/bloom-ui"
 import { Header } from "../../components/Header"
 
-export default function Products() {
+export default function Services() {
     return (
         <div className="">
             <Header />
             <main className="flex justify-center items-center h-screen gap-2 p-4">
-                <Link url="/products/online-management" newPage={false} className="font-bold">
+                <Link url="/services/online-management" newPage={false} className="font-bold">
                     <Card
                         title="Gestão Online"
                         content="Otimize seus processos"
