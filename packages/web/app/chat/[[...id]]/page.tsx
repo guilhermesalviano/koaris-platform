@@ -23,7 +23,7 @@ export default function Chat() {
                             </div>
                         </div>
                     </div>
-                    <li className="bg-orange-700 p-4 flex items-center justify-around border-b border-neutral-400 cursor-pointer" onClick={() => setChatSelected(!chatSelected)}>
+                    <li className="bg-orange-700 p-4 flex gap-1 items-center justify-around border-b border-neutral-400 cursor-pointer" onClick={() => setChatSelected(!chatSelected)}>
                         <Image src="/contact-icon.png" alt="" width={60} height={60} />
                         <div>
                             <Text tag="strong" className="name text-neutral-200">guilherme.salviano12@outlook.com</Text>
@@ -33,7 +33,7 @@ export default function Chat() {
                             <FiMoreHorizontal size={32} color="FFFFFF" />
                         </div>
                     </li>
-                    <li className="p-4 flex items-center justify-around border-b border-neutral-400 cursor-pointer" onClick={() => setChatSelected(!chatSelected)}>
+                    <li className="p-4 flex gap-1 items-center justify-around border-b border-neutral-400 cursor-pointer" onClick={() => setChatSelected(!chatSelected)}>
                         <Image src="/contact-icon.png" alt="" width={60} height={60} />
                         <div>
                             <Text tag="strong" className="name text-neutral-800">guilherme.salviano12@outlook.com</Text>
@@ -43,7 +43,7 @@ export default function Chat() {
                             <FiMoreHorizontal size={32} color="000000" />
                         </div>
                     </li>
-                    <li className="p-4 flex items-center justify-around border-b border-neutral-400 cursor-pointer" onClick={() => setChatSelected(!chatSelected)}>
+                    <li className="p-4 flex gap-1 items-center justify-around border-b border-neutral-400 cursor-pointer" onClick={() => setChatSelected(!chatSelected)}>
                         <Image src="/contact-icon.png" alt="" width={60} height={60} />
                         <div>
                             <Text tag="strong" className="name text-neutral-800">guilherme.salviano12@outlook.com</Text>

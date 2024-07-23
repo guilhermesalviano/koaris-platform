@@ -21,7 +21,7 @@ export default function Landing() {
         </nav>
         <div className="flex py-10 items-center flex-col-reverse lg:flex-row">
           <div className="flex flex-col">
-            <Heading tag="h1" className="md:text-5xl text-4xl font-bold tracking-wider md:leading-tight">
+            <Heading tag="h1" className="md:text-4xl text-6xl font-bold tracking-wider md:leading-tight">
               Transformando ideias em soluções digitais de excelência
             </Heading>
             <div className="flex py-4">
@@ -35,7 +35,7 @@ export default function Landing() {
         </div>
       </header>
       <main className="w-full">
-        <div className="reasons flex flex-col items-center justify-around p-4 bg-gray-color">
+      <div className="reasons flex flex-col items-center justify-around p-4 bg-gray-color">
           <Heading className="md:text-5xl text-4xl font-bold tracking-wider md:leading-tight ">
             Por que escolher a Koaris?
           </Heading>
@@ -64,6 +64,31 @@ export default function Landing() {
               imageSize="205px" image="/card1.svg"
               className=""
             ></Card>
+          </div>
+        </div>
+        <div className="reasons flex flex-col items-center justify-around p-4 bg-gray-color">
+          <Heading className="md:text-5xl text-4xl font-bold tracking-wider md:leading-tight ">
+            Passo-a-passo:
+          </Heading>
+          <div className="cards flex flex-col-reverse items-center gap-2 py-4 md:flex-row">
+            <ol className="">
+              <li>1. <a>Crie</a> sua conta na Koaris</li>
+              <li>2. Crie a conta de sua empresa</li>
+              <li>3. Selecione o produto desejado</li>
+              <li>4. Configure a opção de pagamento mais adequada</li>
+              <li>5. Pronto, você já está apto a usar seu novo software!</li>
+            </ol>
+          </div>
+        </div>
+        <div className="reasons flex flex-col items-center justify-around p-4 bg-gray-color">
+          <Heading className="md:text-5xl text-4xl font-bold tracking-wider md:leading-tight ">
+            Dúvidas frequêntes
+          </Heading>
+          <div className="cards flex flex-col-reverse items-center gap-2 py-4 md:flex-row">
+            <ol className="">
+              <li>Afinal, o que é a Koaris?</li>
+              <li>A Koaris é um software de gestão de produtos. Nele centralizamos o controle dos outros softwares, como o <a>Gestão Online</a>, <a>Agendamentos</a> e <a>Landing Pages</a>.</li>
+            </ol>
           </div>
         </div>
         <div>
