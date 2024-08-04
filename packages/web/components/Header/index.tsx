@@ -1,8 +1,8 @@
 "use client"
-import { Heading, Link, Text } from "@koaris/bloom-ui";
+import { FiAlertCircle, FiBarChart, FiBell, FiChevronDown, FiHome, FiMenu, FiMessageCircle, FiPieChart, FiSettings, FiShoppingBag, FiTool, FiUser, FiX } from "react-icons/fi";
 import Image from "next/image";
 import { useState } from "react";
-import { FiAlertCircle, FiBarChart, FiBell, FiChevronDown, FiHome, FiMenu, FiMessageCircle, FiPieChart, FiSettings, FiShoppingBag, FiTool, FiUser, FiX } from "react-icons/fi";
+import { Link, Text } from "@koaris/bloom-ui";
 
 export function Header() {
     const [openSidebar, setOpenSidebar] = useState(false)
@@ -146,11 +146,11 @@ export function Header() {
                             <FiChevronDown size={25} className="pt-1" />
                         </h3>
                         <ul className={`text-neutral-800 bg-neutral absolute right-0 mt-12 rounded-lg border transition-transform duration-800 ${openUserMenu ? 'translate-y-0' : '-translate-y-10 hidden'}`}>
-                            <li className="p-2 pl-11 pr-11 hover:bg-neutral-100 cursor-pointer">
+                            <li className="p-2 pl-10 pr-10 hover:bg-neutral-100 cursor-pointer">
                                 Usuários
                             </li>
-                            <li className="p-2 pl-11 pr-11 hover:bg-neutral-100 cursor-pointer">
-                                Usuários
+                            <li className="p-2 pl-10 pr-10 hover:bg-neutral-100 cursor-pointer">
+                                Sair
                             </li>
                         </ul>
                     </div>
