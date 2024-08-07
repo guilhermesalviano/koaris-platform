@@ -2,16 +2,18 @@
 import { Checkbox, Heading, Input } from "@koaris/bloom-ui";
 import { Header } from "../../components/Header";
 import { FiSend, FiDownload, FiUserPlus } from "react-icons/fi";
+import { ModalCreateUser } from "../../components/ModalCreateUser";
 
 
 export default function Contacts() {
     return (
         <div className="w-full bg-background h-screen">
             <Header />
-            <main className="flex flex-col pt-20">
+            <main className="flex flex-col pt-20 relative">
                 <Heading className="sm:text-3xl text-4xl font-bold p-8">
                     Gerencie seus clientes
                 </Heading>
+                <ModalCreateUser opened={true} />
                 <div className="flex flex-col pl-8 pr-8">
                     <table className="bg-neutral-200 shadow-md rounded shadow-neutral-400">
                         <thead>
