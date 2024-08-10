@@ -5,7 +5,7 @@ export default function Estimations() {
     return (
         <div className="w-full bg-background h-screen">
             <Header />
-            <main className="flex flex-col items-center justify-center pt-20">
+            <main className="flex flex-col items-center  h-full pt-20 bg-neutral-100">
                 <div className="header pt-20 pb-2">
                     <Heading size="3xl" className="font-bold">Configurações</Heading>
                 </div>
@@ -19,13 +19,13 @@ export default function Estimations() {
                             <li className="rounded-3xl p-2 pl-4">Histórico</li>
                         </ul>
                     </div>
-                    <div className="content bg-neutral-200 p-4 rounded-lg flex flex-col gap-2">
+                    <div className="content bg-white p-8 mx-6 rounded-lg flex flex-col gap-2">
                         <Heading size="xl" className="">Organizações</Heading>
                         <Text>Lista de Organizações</Text>
                         <ul className="min-w-[360px]">
-                            <li className="bg-white p-4">Alphabureau</li>
+                            <li className="bg-neutral-100 p-4">Alphabureau</li>
                             <li className="p-4">
-                                <Button>Nova Orgranização</Button>
+                                <Button disabled={true}>Nova Orgranização</Button>
                             </li>
                         </ul>
                     </div>

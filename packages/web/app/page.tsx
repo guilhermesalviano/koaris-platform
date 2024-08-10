@@ -1,6 +1,5 @@
 "use client"
 import Image from "next/image"
-import { PrimaryButton } from "../components/PrimaryButton"
 import { FormLeads } from "../components/Form"
 import { Button, Card, Heading } from "@koaris/bloom-ui"
 import { useRouter } from "next/navigation"
@@ -9,17 +8,20 @@ export default function Landing() {
   const route = useRouter();
   return (
     <div className="container flex flex-col">
-      <header className="flex flex-col w-11/12 p-14">
-        <nav className="flex flex-row items-center justify-between px-4">
-          <Image src="/koaris.svg" width={104} height={104} alt="logo" />
-          <ul className="space-x-8 text-lg font-bold md:flex">
+      <header className="flex flex-col p-14">
+        <nav className="flex gap-2 flex-row items-center justify-between px-4 w-full bg-white rounded-md">
+          <Image className="pb-2" src="/koaris.svg" width={104} height={104} alt="logo" />
+          <ul className="space-x-6 text-lg font-bold items-center md:flex">
             <li>Início</li>
             <li>Sobre</li>
             <li>Serviços</li>
             <li>Novidades</li>
             <li>Contato</li>
           </ul>
-          <Button className="w-20" onClick={() => route.push("/login")}>Login</Button>
+          <div className="buttons flex gap-2">
+            <Button className="max-w-[120px]" onClick={() => route.push("/register")}>Cadastro</Button>
+            <Button className="max-w-[120px]" variant="secondary" onClick={() => route.push("/login")}>Login</Button>
+          </div>
         </nav>
         <div className="flex py-10 items-center flex-col-reverse lg:flex-row">
           <div className="flex flex-col">
@@ -37,7 +39,7 @@ export default function Landing() {
         </div>
       </header>
       <main className="w-full">
-      <div className="reasons flex flex-col items-center justify-around p-4 bg-gray-color">
+        <div className="reasons flex flex-col items-center justify-around p-4 bg-gray-color">
           <Heading className="md:text-5xl text-4xl font-bold tracking-wider md:leading-tight ">
             Por que escolher a Koaris?
           </Heading>

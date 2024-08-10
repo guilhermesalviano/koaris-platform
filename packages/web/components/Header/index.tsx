@@ -179,9 +179,6 @@ export function Header() {
                             <li className="p-2 pl-10 pr-10 hover:bg-neutral-100 cursor-pointer" onClick={() => router.push("/settings")}>
                                 Configurações
                             </li>
-                            <li className="p-2 pl-10 pr-10 hover:bg-neutral-100 cursor-pointer">
-                                Usuários
-                            </li>
                             <li className="p-2 pl-10 pr-10 hover:bg-neutral-100 cursor-pointer" onClick={() => handleLogout()}>
                                 Sair
                             </li>
