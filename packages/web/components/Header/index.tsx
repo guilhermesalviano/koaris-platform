@@ -3,12 +3,22 @@ import { FiAlertCircle, FiBarChart, FiBell, FiChevronDown, FiHome, FiMenu, FiMes
 import Image from "next/image";
 import { useState } from "react";
 import { Link, Text } from "@koaris/bloom-ui";
+import { useRouter } from "next/navigation";
+import { destroyCookie } from "nookies";
+
 
 export function Header() {
     const [openSidebar, setOpenSidebar] = useState(false)
+    const [openBUMenu, setOpenBUMenu] = useState(false)
     const [openUserMenu, setOpenUserMenu] = useState(false)
     const [openNotifications, setOpenNotifications] = useState(false)
     const [openMessages, setOpenMessages] = useState(false)
+    const router = useRouter()
+
+    function handleLogout() {
+        destroyCookie(null, 'koaris.token')
+        router.push("/login")
+    }
 
     return (
         <>
@@ -106,6 +116,7 @@ export function Header() {
                             </li>
                         </ul>
                     </div>
+
                     <div className="flex ml-2 mr-2 p-3 bg-neutral relative hover:bg-neutral-200 border border-neutral-200 rounded-md transition-colors duration-300 cursor-pointer" onClick={() => setOpenNotifications(!openNotifications)}>
                         <div className="relative inline-block">
                             <span className="notification-icon top-0 right-0 bg-red-500 w-2 h-2 rounded-full absolute " />
@@ -133,6 +144,15 @@ export function Header() {
                                     Solicitação de orçamento
                                 </span>
                             </li>
+                            <li className="flex gap-2 items-center p-2 pl-4 border-b hover:bg-neutral-100 cursor-pointer">
+                                <div className="relative inline-block">
+                                    <span className="notification-icon top-0 right-0 bg-red-500 w-2 h-2 rounded-full absolute " />
+                                    <FiAlertCircle size={20} />
+                                </div>
+                                <span>
+                                    Confirme seu e-mail e não perca acesso a sua conta
+                                </span>
+                            </li>
                             <li className="flex justify-center items-center p-2 hover:bg-neutral-100 cursor-pointer">
                                 <span>
                                     ver todas
@@ -141,15 +161,28 @@ export function Header() {
                         </ul>
                     </div>
                     <div className="flex items-center flex-col relative">
-                        <h3 className="flex items-center p-3 hover:bg-neutral-200 bg-neutral border border-neutral-200 rounded-md cursor-pointer transition-colors duration-300" onClick={() => setOpenUserMenu(!openUserMenu)}>
+                        <h3 className="flex items-center p-3 hover:bg-neutral-200 bg-neutral border border-neutral-200 rounded-md cursor-pointer transition-colors duration-300" onClick={() => setOpenBUMenu(!openBUMenu)}>
                             Alpha Bureau
                             <FiChevronDown size={25} className="pt-1" />
                         </h3>
+                        <ul className={`text-neutral-800 bg-neutral absolute right-0 mt-12 rounded-lg border transition-transform duration-800 ${openBUMenu ? 'translate-y-0' : '-translate-y-10 hidden'}`}>
+                            <li className="p-2 pl-10 pr-10 hover:bg-neutral-100 cursor-pointer">
+                                Nova Orgranização
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="ml-2 mr-2 flex items-center flex-col relative">
+                        <h3 className="flex items-center p-3 hover:bg-neutral-200 bg-neutral border border-neutral-200 rounded-md cursor-pointer transition-colors duration-300" onClick={() => setOpenUserMenu(!openUserMenu)}>
+                            <FiUser size={25} className="pt-1" />
+                        </h3>
                         <ul className={`text-neutral-800 bg-neutral absolute right-0 mt-12 rounded-lg border transition-transform duration-800 ${openUserMenu ? 'translate-y-0' : '-translate-y-10 hidden'}`}>
+                            <li className="p-2 pl-10 pr-10 hover:bg-neutral-100 cursor-pointer" onClick={() => router.push("/settings")}>
+                                Configurações
+                            </li>
                             <li className="p-2 pl-10 pr-10 hover:bg-neutral-100 cursor-pointer">
                                 Usuários
                             </li>
-                            <li className="p-2 pl-10 pr-10 hover:bg-neutral-100 cursor-pointer">
+                            <li className="p-2 pl-10 pr-10 hover:bg-neutral-100 cursor-pointer" onClick={() => handleLogout()}>
                                 Sair
                             </li>
                         </ul>

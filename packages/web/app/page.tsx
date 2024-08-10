@@ -1,10 +1,12 @@
+"use client"
 import Image from "next/image"
 import { PrimaryButton } from "../components/PrimaryButton"
-import { SecundaryButton } from "../components/SecundaryButton"
 import { FormLeads } from "../components/Form"
-import { Card, Heading } from "@koaris/bloom-ui"
+import { Button, Card, Heading } from "@koaris/bloom-ui"
+import { useRouter } from "next/navigation"
 
 export default function Landing() {
+  const route = useRouter();
   return (
     <div className="container flex flex-col">
       <header className="flex flex-col w-11/12 p-14">
@@ -17,7 +19,7 @@ export default function Landing() {
             <li>Novidades</li>
             <li>Contato</li>
           </ul>
-          <SecundaryButton text="Login" />
+          <Button className="w-20" onClick={() => route.push("/login")}>Login</Button>
         </nav>
         <div className="flex py-10 items-center flex-col-reverse lg:flex-row">
           <div className="flex flex-col">
@@ -25,7 +27,7 @@ export default function Landing() {
               Transformando ideias em soluções digitais de excelência
             </Heading>
             <div className="flex py-4">
-              <PrimaryButton text="Eu quero!" />
+              <Button className="w-36" onClick={() => route.push("#formLeads")}>Eu quero!</Button>
               <a className="flex items-center font-bold text-highlight px-6 text-lg" href="#">
                 Ver Serviços
               </a>

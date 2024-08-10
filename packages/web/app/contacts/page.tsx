@@ -9,11 +9,10 @@ export default function Contacts() {
     return (
         <div className="w-full bg-background h-screen">
             <Header />
-            <main className="flex flex-col pt-20 relative">
+            <main className="flex flex-col pt-20">
                 <Heading className="sm:text-3xl text-4xl font-bold p-8">
                     Gerencie seus clientes
                 </Heading>
-                <ModalCreateUser opened={true} />
                 <div className="flex flex-col pl-8 pr-8">
                     <table className="bg-neutral-200 shadow-md rounded shadow-neutral-400">
                         <thead>

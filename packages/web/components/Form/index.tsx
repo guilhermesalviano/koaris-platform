@@ -3,7 +3,7 @@ import { Button, Heading, Input, Text } from "@koaris/bloom-ui";
 
 export function FormLeads() {
   return (
-    <div className="flex flex-col items-center justify-center p-2 bg-background">
+    <div id="formLeads" className="flex flex-col items-center justify-center p-2 bg-background">
       <Heading className="md:text-5xl text-4xl font-bold tracking-wider py-4 md:leading-tight ">
         Contate-nos
       </Heading>
