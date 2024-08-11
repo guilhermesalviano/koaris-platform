@@ -398,7 +398,7 @@ routes.delete("/services", verifyJWT, servicesController.delete);
  *         description: Unauthorized, invalid or expired token
  */
 routes.get("/users", verifyJWT, usersController.index);
-routes.post("/users", verifyJWT, usersController.create);
+routes.post("/users", usersController.create);
 
 /**
  * @swagger
