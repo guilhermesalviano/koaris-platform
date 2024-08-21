@@ -2,11 +2,12 @@
 import { Button, Checkbox, Form, Heading, Input, Link, Text } from "@koaris/bloom-ui";
 import { Header } from "../../components/Header";
 import { useRouter } from "next/navigation";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from 'zod';
 import { api } from "../../lib/api";
+import nookies from 'nookies'
 
 const createEanSchema = z.object({
   name: z.string(),
@@ -29,10 +30,27 @@ export default function Register() {
   }
 
   async function handleRegister() {
-    try {
+
+    const expires = new Date(Date.now() + 24 * 60 * 60 * 1000)
+
+    nookies.set(null, 'register', JSON.stringify({ name, email, role: "administrator" }), { expires, httpOnly: false })
+  
+    router.push('/register/confirmation')
+    /*try {
+      const password = '123ajsdajd212312!';
       const response = await api.post('/users',
-        { name, email, role: "administrator", password: '123ajsdajd212312!' },
+        { name, email, role: "administrator", password },
       )
+      const id = response.data.id
+      const jwt = await api.post('/login',
+        { email, password },
+      )
+
+      const { access_token } = jwt.data
+      const expires = new Date(Date.now() + 24 * 60 * 60 * 1000)
+
+      nookies.set(null, 'koaris.token', access_token, { expires, httpOnly: false })
+
       if (response.status === 201) {
         router.push('/register/organization')
         return
@@ -40,7 +58,7 @@ export default function Register() {
       alert("Tente novamente.")
     } catch (error: any) {
       console.log(JSON.stringify(error.message))
-    }
+    }*/
   }
 
   return (

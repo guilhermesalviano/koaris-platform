@@ -2,7 +2,8 @@
 import { Button, Checkbox, Heading, Input, Link, Text } from "@koaris/bloom-ui";
 import { Header } from "../../../components/Header";
 
-export default function Login() {
+export default function Confirmation() {
+
   return (
     <div className="w-full bg-background flex justify-center h-screen">
       <div className="w-full h-screen rounded-2xl">

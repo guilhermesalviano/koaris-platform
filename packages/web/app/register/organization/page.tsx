@@ -1,8 +1,14 @@
 "use client"
 import { Button, Heading, Input, Link, Text } from "@koaris/bloom-ui";
 import { Header } from "../../../components/Header";
+import { useState } from "react";
 
 export default function Organization() {
+  const [name, setName] = useState('')
+  const [description, setDescription] = useState('')
+  const [logo, setLogo] = useState('')
+  const [identification, setIdentification] = useState(false)
+
   return (
     <div className="w-full bg-background flex justify-center h-screen">
       <div className="w-full h-screen rounded-2xl">
