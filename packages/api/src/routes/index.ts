@@ -106,6 +106,7 @@ routes.get("/status", (request, response) => {return response.json({message: "Ev
  *         description: Unauthorized, invalid or expired token
  */
 routes.post("/login", authenticationController.authenticate);
+routes.post("/register", authenticationController.register);
 routes.patch("/token/refresh", authenticationController.verifyJWTResfreshToken);
 
 /**

@@ -3,9 +3,17 @@ import { Password } from "../../enterprise/entities/value-objects/password";
 import { AuthenticationService } from "../services/AuthenticationService";
 import bcrypt from "bcryptjs";
 import jwt, { JwtPayload } from "jsonwebtoken";
+import { UsersService } from "../services/UsersService";
 
 interface AuthenticationControllerProps {
     email: string;
+    password: string;
+}
+
+interface RegisterControllerProps {
+    name: string;
+    email: string;
+    role: string;
     password: string;
 }
 
@@ -26,6 +34,35 @@ export class AuthenticationController {
             const user = await authenticationService.checkIfUserExists(data);
 
             if (!bcrypt.compareSync(data.password, user.password)) throw new Error('Senha incorreta.');
+
+            const accessToken = await authenticationService.generateAccessToken({ sub: user.id });
+            const refreshToken = await authenticationService.generateRefreshToken({ sub: user.id });
+
+            return response
+                .cookie("refreshToken", refreshToken, {
+                    path: "/",
+                    secure: true,
+                    sameSite: true,
+                    httpOnly: true
+                })
+                .status(200)
+                .json({ access_token: accessToken });
+        } catch (error: any) {
+            return response.status(401).json({
+                message: error.message
+            });
+        }
+    }
+
+    async register(request: Request, response: Response): Promise<Response> {
+        const data: RegisterControllerProps = request.body;
+        const authenticationService = new AuthenticationService();
+        const usersService = new UsersService();
+
+        try {
+            authenticationService.verifyPassword(data.password);
+
+            const user = await usersService.create(data);
 
             const accessToken = await authenticationService.generateAccessToken({ sub: user.id });
             const refreshToken = await authenticationService.generateRefreshToken({ sub: user.id });
