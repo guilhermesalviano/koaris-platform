@@ -13,7 +13,7 @@ export function middleware(request: NextRequest) {
     return Response.redirect(new URL('/login', request.url))
   }
 }
- 
+
 export const config = {
   matcher: ['/login', '/dashboard/:path*', '/chat/:path*', '/contacts/:path*', '/estimations/:path*', '/onboarding/:path*', '/services/:path*'],
 }

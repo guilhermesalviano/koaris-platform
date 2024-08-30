@@ -12,3 +12,5 @@ ormlogs.log
 .DS_Store
 
 secrets.tfvars
+
+.turbo
