@@ -79,7 +79,9 @@ export function Header() {
             <header className="border-b-2 p-6 flex justify-between fixed w-full h-20 border-neutral-200 bg-neutral">
                 <div className="flex justify-center items-center gap-6">
                     <FiMenu size={36} className="cursor-pointer" onClick={() => setOpenSidebar(!openSidebar)} />
-                    <Image src="/koaris.svg" width={104} height={104} alt="logo" className="self-center" />
+                    <Link url="/dashboard" newPage={false} className="font-bold text-white">
+                        <Image src="/koaris.svg" width={104} height={104} alt="logo" className="self-center" />
+                    </Link>
                 </div>
                 <div className="flex items-center ">
                     <div className="flex p-3 bg-neutral relative hover:bg-neutral-200 border border-neutral-200 rounded-md transition-colors duration-300 cursor-pointer" onClick={() => setOpenMessages(!openMessages)}>

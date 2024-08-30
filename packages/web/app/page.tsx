@@ -1,36 +1,46 @@
 "use client"
 import Image from "next/image"
 import { FormLeads } from "../components/Form"
-import { Button, Card, Heading } from "@koaris/bloom-ui"
+import { Button, Card, Heading, Link } from "@koaris/bloom-ui"
 import { useRouter } from "next/navigation"
 
 export default function Landing() {
   const route = useRouter();
   return (
     <div className="container flex flex-col">
-      <header className="flex flex-col p-14">
-        <nav className="flex gap-2 flex-row items-center justify-between px-4 w-full bg-white rounded-md">
+      <header id="title" className="flex flex-col py-6">
+        <nav className="flex gap-2 flex-row items-center justify-between w-full bg-white rounded-md fixed py-2 px-12">
           <Image className="pb-2" src="/koaris.svg" width={104} height={104} alt="logo" />
-          <ul className="space-x-6 text-lg font-bold items-center md:flex">
-            <li>Início</li>
-            <li>Sobre</li>
-            <li>Serviços</li>
-            <li>Novidades</li>
-            <li>Contato</li>
+          <ul className="text-lg font-bold items-center flex">
+            <Link url="#title" newPage={false} className="text-neutral-800 hover:underline">
+              <li>Início</li>
+            </Link>
+            <Link url="#reasons" newPage={false} className="text-neutral-800 hover:underline">
+              <li>Sobre</li>
+            </Link>
+            <Link url="/dashboard" newPage={false} className="text-neutral-800 hover:underline">
+              <li>Serviços</li>
+            </Link>
+            <Link url="/dashboard" newPage={false} className="text-neutral-800 hover:underline">
+              <li>Novidades</li>
+            </Link>
+            <Link url="#formLeads" newPage={false} className="text-neutral-800 hover:underline">
+              <li>Contato</li>
+            </Link>
           </ul>
           <div className="buttons flex gap-2">
             <Button className="max-w-[120px]" onClick={() => route.push("/register")}>Cadastro</Button>
             <Button className="max-w-[120px]" variant="secondary" onClick={() => route.push("/login")}>Login</Button>
           </div>
         </nav>
-        <div className="flex py-10 items-center flex-col-reverse lg:flex-row">
+        <div className="flex py-10 px-6 items-center flex-col-reverse lg:flex-row">
           <div className="flex flex-col">
             <Heading tag="h1" className="md:text-4xl text-6xl font-bold tracking-wider md:leading-tight">
               Transformando ideias em soluções digitais de excelência
             </Heading>
             <div className="flex py-4">
               <Button className="w-36" onClick={() => route.push("#formLeads")}>Eu quero!</Button>
-              <a className="flex items-center font-bold text-highlight px-6 text-lg" href="#">
+              <a className="flex items-center font-bold text-highlight px-6 text-lg hover:text-orange-500 hover:underline" href="#">
                 Ver Serviços
               </a>
             </div>
@@ -39,7 +49,7 @@ export default function Landing() {
         </div>
       </header>
       <main className="w-full">
-        <div className="reasons flex flex-col items-center justify-around p-4 bg-gray-color">
+        <div id="reasons" className="reasons bg-neutral-200 flex flex-col items-center justify-around p-4 bg-gray-color">
           <Heading className="md:text-5xl text-4xl font-bold tracking-wider md:leading-tight ">
             Por que escolher a Koaris?
           </Heading>
@@ -95,7 +105,7 @@ export default function Landing() {
             </ol>
           </div>
         </div>
-        <div>
+        <div className="bg-neutral-200 w-full flex justify-center">
           <FormLeads />
         </div>
       </main>
