@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Link, Text } from "@koaris/bloom-ui";
 import { useRouter } from "next/navigation";
 import { destroyCookie } from "nookies";
-
+import nookies from "nookies";
 
 export function Header() {
     const [openSidebar, setOpenSidebar] = useState(false)
@@ -14,6 +14,7 @@ export function Header() {
     const [openNotifications, setOpenNotifications] = useState(false)
     const [openMessages, setOpenMessages] = useState(false)
     const router = useRouter()
+    const token = nookies.get(null, "koaris.token")
 
     function handleLogout() {
         destroyCookie(null, 'koaris.token')
@@ -78,12 +79,12 @@ export function Header() {
             </aside>
             <header className="border-b-2 p-6 flex justify-between fixed w-full h-20 border-neutral-200 bg-neutral">
                 <div className="flex justify-center items-center gap-6">
-                    <FiMenu size={36} className="cursor-pointer" onClick={() => setOpenSidebar(!openSidebar)} />
-                    <Link url="/dashboard" newPage={false} className="font-bold text-white">
+                    <FiMenu size={36} className={Object.values(token).length === 0 ? 'hidden' : 'cursor-pointer'} onClick={() => setOpenSidebar(!openSidebar)} />
+                    <Link url={Object.values(token).length === 0 ? '/' : '/dashboard'} newPage={false} className="font-bold text-white">
                         <Image src="/koaris.svg" width={104} height={104} alt="logo" className="self-center" />
                     </Link>
                 </div>
-                <div className="flex items-center ">
+                <div className={Object.values(token).length === 0 ? 'hidden' : 'flex items-center'}>
                     <div className="flex p-3 bg-neutral relative hover:bg-neutral-200 border border-neutral-200 rounded-md transition-colors duration-300 cursor-pointer" onClick={() => setOpenMessages(!openMessages)}>
                         <div className="relative inline-block">
                             <span className="notification-icon top-0 right-0 bg-red-500 w-2 h-2 rounded-full absolute " />

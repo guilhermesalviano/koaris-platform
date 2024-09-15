@@ -15,7 +15,7 @@ export default function Landing() {
             <Link url="#title" newPage={false} className="text-neutral-800 hover:underline">
               <li>Início</li>
             </Link>
-            <Link url="#reasons" newPage={false} className="text-neutral-800 hover:underline">
+            <Link url="#main" newPage={false} className="text-neutral-800 hover:underline">
               <li>Sobre</li>
             </Link>
             <Link url="/dashboard" newPage={false} className="text-neutral-800 hover:underline">
@@ -48,8 +48,8 @@ export default function Landing() {
           <Image src="/banner.svg" className="lg:w-1600 w-4/6 py-8" width={1600} height={1600} sizes="100%" alt="Banner" />
         </div>
       </header>
-      <main className="w-full">
-        <div id="reasons" className="reasons bg-neutral-200 flex flex-col items-center justify-around p-4 bg-gray-color">
+      <main id="main" className="w-full">
+        <div className="reasons bg-neutral-200 flex flex-col items-center justify-around p-4 bg-gray-color">
           <Heading className="md:text-5xl text-4xl font-bold tracking-wider md:leading-tight ">
             Por que escolher a Koaris?
           </Heading>

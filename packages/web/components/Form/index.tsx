@@ -3,11 +3,11 @@ import { Button, Heading, Input, Text } from "@koaris/bloom-ui";
 
 export function FormLeads() {
   return (
-    <div id="formLeads" className="flex flex-col items-center justify-center p-2 bg-background max-w-[660px] w-full">
+    <div id="formLeads" className="flex flex-col items-center justify-center p-2 bg-background max-w-[860px] w-full">
       <Heading className="md:text-5xl text-4xl font-bold tracking-wider py-4 md:leading-tight ">
         Contate-nos
       </Heading>
-      <div className="flex md:flex-col flex-row items-center w-full gap-2">
+      <div className="flex items-center w-full gap-2">
         <div className="flex flex-col ml-1 w-6/12">
           <Text tag="label" className="text-lg mb-1">Nome</Text>
           <Input type="text" placeholder="Seu Nome" error={false} className="rounded-sm p-2 border-2 border-gray-700" />
